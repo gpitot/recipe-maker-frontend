@@ -1,0 +1,51 @@
+@import "styles/colors";
+@import "styles/sizes";
+@import "styles/breakpoints";
+.area {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: $base-blue;
+
+  @media (min-width: $device-medium) {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  .child {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: $device-medium) {
+      margin-left: 310px;
+      margin-top: $unit * 4;
+    }
+    @media (min-width: $device-med-large) {
+      flex-direction: row;
+      margin-top: 0;
+    }
+  }
+
+  .block {
+    margin: $unit * 2 $unit * 3;
+    width: calc(100% - $unit * 6);
+    max-width: 430px;
+
+    @media (min-width: $device-med-large) {
+      margin: $unit * 6 $unit * 3;
+    }
+  }
+
+  .active {
+    background: $base-dark;
+
+    &:hover {
+      color: $base-blue;
+    }
+  }
+}
+
+.detailTitle {
+  font-size: 1.2rem;
+  margin: 0;
+}

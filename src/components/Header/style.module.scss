@@ -1,0 +1,107 @@
+@import "styles/sizes";
+@import "styles/colors";
+@import "styles/breakpoints";
+
+$header-height: $unit * 12;
+// wierd scss bug
+$mobile-items-height: calc(100vh - 96px);
+.header {
+  height: $header-height;
+  background: $base-light;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  .inner {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+  }
+
+  .item-container {
+    width: $unit * 8;
+    display: flex;
+    align-items: center;
+    margin: 0 $unit * 3;
+    @media (min-width: $device-medium) {
+      margin: 0 $unit * 6;
+    }
+    img {
+      width: 100%;
+    }
+
+    .mobile-dropdown {
+      width: 100%;
+      height: $unit * 4;
+
+      @media (min-width: $device-medium) {
+        display: none;
+      }
+    }
+  }
+
+  .items-container {
+    position: absolute;
+    top: $header-height;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    pointer-events: none;
+
+    @media (min-width: $device-medium) {
+      position: relative;
+      top: 0;
+      height: 100%;
+    }
+  }
+
+  .items {
+    transition: all 250ms ease;
+    transform: translateX(100%);
+    display: flex;
+    position: relative;
+    width: 100%;
+    background: $base-dark;
+    flex-direction: column;
+    align-items: center;
+    
+
+    &.open {
+      transform: translateX(0%);
+    }
+
+    @media (min-width: $device-medium) {
+      flex-direction: row;
+      transform: translateX(0);
+      background: $base-light;
+      height: 100%;
+      justify-content: center;
+    }
+
+    a {
+      padding: $unit * 2 0;
+      color: $base-light;
+      font-size: 24px;
+      text-decoration: none;
+      border-bottom: solid 4px $base-light;
+      width: calc(100% - 32px);
+      padding-left: $unit * 4;
+      font-weight: 800;
+      pointer-events: all;
+      transition: all 300ms ease;
+      box-sizing: content-box;
+
+      &:hover {
+        color: $base-blue;
+        background: $base-light;
+      }
+
+      @media (min-width: $device-medium) {
+        color: $base-dark;
+        padding-left: 0;
+        width: auto;
+        padding: $unit $unit * 4;
+      }
+    }
+  }
+}
