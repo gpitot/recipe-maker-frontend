@@ -24,7 +24,7 @@
     background: $base-dark;
     color: $base-light;
     margin: 0;
-    padding: $unit * 3 0;
+    padding: $unit * 3 $unit * 2;
   }
 
   a {
@@ -40,7 +40,8 @@
     text-align: center;
     font-weight: 800;
     transition: all 300ms ease;
-    &:hover {
+    &:hover,
+    &:focus {
       background: $base-dark;
       color: $base-light;
     }

@@ -9,7 +9,7 @@ const Home = () => (
       <video src="video.webm" className={style.video}></video>
       <CTAMenu>
         <h2>PLAY AT MANLY</h2>
-        <Link to="/social">JOIN MONDAY SOCIAL</Link>
+        <Link to="/social">PLAY SOCIALLY</Link>
         <Link to="/competition">COMPETE AGAINST OTHERS</Link>
         <Link to="/coaching">IMPROVE YOUR PLAY</Link>
         <Link to="/shop">SHOP</Link>

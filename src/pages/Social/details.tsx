@@ -18,7 +18,7 @@ const Squash = () => (
 
 const Raquet = () => (
   <>
-    <h5 className={style.detailTitle}>Raquetball</h5>
+    <h5 className={style.detailTitle}>Racquetball</h5>
     <p>When : Every Thursday night from 8pm-10pm.</p>
     <p>Cost : $20</p>
   </>

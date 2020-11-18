@@ -1,0 +1,21 @@
+@import "styles/colors";
+@import "styles/sizes";
+
+.table-outer {
+  margin-top: $unit * 2;
+
+  table {
+    width: 100%;
+  }
+  th {
+    background: $base-dark;
+    color: $base-light;
+  }
+
+  td,
+  th {
+    padding: $unit * 1 $unit * 2;
+    margin: 0;
+    border: solid 2px $base-blue;
+  }
+}

@@ -1,39 +1,63 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classnames from "classnames";
 import { Link } from "react-router-dom";
 import style from "./style.module.scss";
+const HEADER_OFFSET = 96;
 
 const Header = () => {
   const [dropdownShown, setDropdownShown] = useState(false);
+  const [scrolledHeader, setScrolledHeader] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      console.log(window.pageYOffset, scrolledHeader);
+      if (window.pageYOffset > HEADER_OFFSET && !scrolledHeader) {
+        setScrolledHeader(true);
+      } else if (window.pageYOffset <= HEADER_OFFSET && scrolledHeader) {
+        setScrolledHeader(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [scrolledHeader]);
 
   const toggleHeader = () => {
     setDropdownShown(!dropdownShown);
   };
 
+  const scrolledStyle = scrolledHeader && style["header-scrolled"];
   return (
-    <section className={style.header}>
-      <div className={style.inner}>
-        <div className={style["item-container"]}>
-          <Link to="/">
-            <img src="/logo-black.png" />
-          </Link>
-        </div>
-        <div className={style["items-container"]}>
-          <div className={classnames(style.items, dropdownShown && style.open)}>
-            <Link to="/social">SOCIAL</Link>
-            <Link to="/competition">COMPETITION</Link>
-            <Link to="/coaching">COACHING</Link>
-            <Link to="/shop">SHOP</Link>
+    <>
+      <section className={classnames(style.header, scrolledStyle)}>
+        <div className={style.inner}>
+          <div className={style["item-container"]}>
+            <Link to="/">
+              <img src="/logo-black.png" />
+            </Link>
+          </div>
+          <div className={style["items-container"]}>
+            <div
+              className={classnames(style.items, dropdownShown && style.open)}
+            >
+              <Link to="/social">SOCIAL</Link>
+              <Link to="/competition">COMPETITION</Link>
+              <Link to="/coaching">COACHING</Link>
+              <Link to="/shop">SHOP</Link>
+            </div>
+          </div>
+          <div className={style["item-container"]}>
+            <button
+              onClick={toggleHeader}
+              className={style["mobile-dropdown"]}
+            ></button>
           </div>
         </div>
-        <div className={style["item-container"]}>
-          <button
-            onClick={toggleHeader}
-            className={style["mobile-dropdown"]}
-          ></button>
-        </div>
-      </div>
-    </section>
+      </section>
+      <section className={style["fake-header"]}></section>
+    </>
   );
 };
 
