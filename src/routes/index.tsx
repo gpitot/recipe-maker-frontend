@@ -4,31 +4,35 @@ import Base from "components/Base";
 import Home from "pages/Home";
 import Social from "pages/Social";
 import Competition from "pages/Competition";
+import Event from "pages/Event";
+import { StylesProvider } from "@material-ui/core/styles";
 
 const Routes = () => (
   <Router>
-    <Base>
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route exact path="/social">
-          <Social />
-        </Route>
-        <Route path="/social/:sport">
-          <Social />
-        </Route>
-        <Route exact path="/competition">
-          <Competition />
-        </Route>
-        <Route path="/competition/:comp">
-          <Competition />
-        </Route>
+    <StylesProvider injectFirst>
+      <Base>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/social">
+            <Social />
+          </Route>
+          <Route path="/event/:eventid">
+            <Event />
+          </Route>
+          <Route exact path="/competition">
+            <Competition />
+          </Route>
+          <Route path="/competition/:comp">
+            <Competition />
+          </Route>
 
-        <Route path="/coaching" />
-        <Route path="/shop" />
-      </Switch>
-    </Base>
+          <Route path="/coaching" />
+          <Route path="/shop" />
+        </Switch>
+      </Base>
+    </StylesProvider>
   </Router>
 );
 

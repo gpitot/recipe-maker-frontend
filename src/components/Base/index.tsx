@@ -6,7 +6,7 @@ interface IBase {
   children: React.ReactNode;
 }
 const Base = ({ children }: IBase) => (
-  <div>
+  <div className={style.base}>
     <Header />
     {children}
   </div>

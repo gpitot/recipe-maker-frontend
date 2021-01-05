@@ -46,4 +46,13 @@
       color: $base-light;
     }
   }
+
+  .active {
+    background: $base-dark;
+    color: $base-light;
+
+    &:hover {
+      color: $base-blue;
+    }
+  }
 }

@@ -24,7 +24,7 @@ const Competition = () => {
   return (
     <section className={style.area}>
       <CTAMenu>
-        <h2>PLAY COMPETITION</h2>
+        <h2>PLAY THE BEST</h2>
         <Link
           to="/competition/ladder"
           className={currentComp === CompOptions.ladder && style.active}

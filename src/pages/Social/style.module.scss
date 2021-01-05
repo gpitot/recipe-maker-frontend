@@ -7,46 +7,20 @@
   flex-direction: column;
   position: relative;
   background: $base-blue;
-
-  @media (min-width: $device-medium) {
-    flex-direction: row;
-    justify-content: flex-end;
-  }
-
-  .child {
-    display: flex;
-    flex-direction: column;
-
-    @media (min-width: $device-medium) {
-      margin-left: 405px;
-      margin-top: $unit * 4;
-    }
-    @media (min-width: $device-med-large) {
-      flex-direction: row;
-      margin-top: 0;
-    }
-  }
-
-  .block {
-    margin: $unit * 2 $unit * 3;
-    width: calc(100% - 48px);
-    max-width: 430px;
-
-    @media (min-width: $device-med-large) {
-      margin: $unit * 6 $unit * 3;
-    }
-  }
-
-  .active {
-    background: $base-dark;
-
-    &:hover {
-      color: $base-blue;
-    }
-  }
+  min-height: 600px;
 }
 
-.detailTitle {
-  font-size: 1.2rem;
-  margin: 0;
+.eventList {
+  display: flex;
+  top: 24px;
+  position: relative;
+  @media (min-width: $device-medium) {
+    margin-left: 405px;
+    margin-top: $unit * 4;
+  }
+  @media (min-width: $device-med-large) {
+    flex-direction: row;
+    margin-top: 0;
+    margin-top: 24px;
+  }
 }

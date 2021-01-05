@@ -332,6 +332,7 @@ module.exports = function (webpackEnv) {
           "scheduler/tracing": "scheduler/tracing-profiling",
         }),
         ...(modules.webpackAliases || {}),
+        rest: path.resolve(__dirname, "..", "src", "rest"),
         components: path.resolve(__dirname, "..", "src", "components"),
         pages: path.resolve(__dirname, "..", "src", "pages"),
         styles: path.resolve(__dirname, "..", "src", "styles"),
