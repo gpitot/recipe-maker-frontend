@@ -27,7 +27,6 @@ const Routes = () => (
           <Route path="/competition/:comp">
             <Competition />
           </Route>
-
           <Route path="/coaching" />
           <Route path="/shop" />
         </Switch>

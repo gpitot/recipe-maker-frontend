@@ -6,30 +6,140 @@ import {
   IResultResponse,
 } from "rest/common";
 
-export interface IEvent {
-  description: string;
-  enabled: boolean;
-  id: number;
-  name: string;
-  open: string;
-  spots: number;
-  start: string;
+export interface IRanksResponse {
+  results: Array<{
+    id: number;
+    name: string;
+    description: string;
+  }>;
 }
 
-interface IEventsResponse extends IResultResponse {
-  result: Array<IEvent>;
+interface IGetMatchesProps {
+  ladder_id: number;
+  player_id?: string;
+  challenges: boolean;
 }
 
-interface IEventResponse extends IResultResponse {
-  result: IEvent;
+interface IChallengeUserProps {
+  ladder_id: number;
+  player_2: string;
 }
+
+const LADDER_URL = `${BASE_URL}/ladder`;
 
 export default {
-  getLadder: () => {
+  getLadders: () => {
     return axios
-      .get<null, IJsonResponse<unknown>>(`/.netlify/functions/ranks`)
+      .get<null, IJsonResponse<IRanksResponse>>(LADDER_URL)
       .then((res) => {
-        console.log(res.data);
+        return res.data;
+      });
+  },
+
+  getMatches: ({
+    ladder_id,
+    player_id,
+    challenges = false,
+  }: IGetMatchesProps) => {
+    const matchUrl = new URL(`${LADDER_URL}/${ladder_id}/matches`);
+    if (player_id) {
+      matchUrl.searchParams.set("player_id", player_id);
+    }
+    matchUrl.searchParams.set("challenges", challenges.toString());
+    return axios
+      .get<null, IJsonResponse<IRanksResponse>>(matchUrl.toString())
+      .then((res) => {
+        return res.data;
+      });
+  },
+
+  getRanks: ({ ladder_id }: { ladder_id: number }) => {
+    return axios
+      .get<null, IJsonResponse<IRanksResponse>>(
+        `${LADDER_URL}/${ladder_id}/ranks`
+      )
+      .then((res) => {
+        return res.data;
+      });
+  },
+
+  challengeUser: ({ ladder_id, player_2 }: IChallengeUserProps) => {
+    return axios
+      .post<null, IJsonResponse<IRanksResponse>>(
+        `${LADDER_URL}/${ladder_id}/challenge`,
+        {
+          player_2,
+        },
+        {
+          withCredentials: true,
+          ...commonAxiosConfig,
+        }
+      )
+      .then((res) => {
+        return res.data;
+      });
+  },
+
+  challengeAccept: (data: { match_id: number }) => {
+    return axios
+      .put<null, IJsonResponse<IRanksResponse>>(
+        `${LADDER_URL}/challenge/accept`,
+        data,
+        {
+          withCredentials: true,
+          ...commonAxiosConfig,
+        }
+      )
+      .then((res) => {
+        return res.data;
+      });
+  },
+
+  challengeTime: (data: { match_id: number; time: string }) => {
+    return axios
+      .put<null, IJsonResponse<IRanksResponse>>(
+        `${LADDER_URL}/challenge/time`,
+        data,
+        {
+          withCredentials: true,
+          ...commonAxiosConfig,
+        }
+      )
+      .then((res) => {
+        return res.data;
+      });
+  },
+
+  challengeResult: (data: {
+    match_id: number;
+    player_1_games: number;
+    player_2_games: number;
+  }) => {
+    return axios
+      .put<null, IJsonResponse<IRanksResponse>>(
+        `${LADDER_URL}/challenge/result`,
+        data,
+        {
+          withCredentials: true,
+          ...commonAxiosConfig,
+        }
+      )
+      .then((res) => {
+        return res.data;
+      });
+  },
+
+  challengeApprove: (data: { match_id: number }) => {
+    return axios
+      .put<null, IJsonResponse<IRanksResponse>>(
+        `${LADDER_URL}/challenge/approve`,
+        data,
+        {
+          withCredentials: true,
+          ...commonAxiosConfig,
+        }
+      )
+      .then((res) => {
         return res.data;
       });
   },

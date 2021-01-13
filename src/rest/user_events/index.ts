@@ -9,7 +9,7 @@ import { IEvent } from "rest/events";
 const URL = `${BASE_URL}/user_events`;
 
 export interface IUserEvent {
-  id: number;
+  id: string;
   firstname: string;
   lastname: string;
   registered: string;
@@ -17,6 +17,7 @@ export interface IUserEvent {
   paid: boolean;
   receipt: string;
   enabled: boolean;
+  photo: string;
 }
 
 export interface IUserEventResponse extends IResultResponse {
@@ -45,11 +46,18 @@ export default {
   addUserEvent: (
     event: Pick<IUserEvent, "firstname" | "lastname" | "event_id">
   ) => {
-    console.log(event);
     return axios
-      .post<null, IJsonResponse<IResultResponse>>(URL, event, commonAxiosConfig)
+      .post<null, IJsonResponse<IResultResponse>>(URL, event, {
+        ...commonAxiosConfig,
+        withCredentials: true,
+      })
       .then((res) => {
         return res.data;
       });
+    // .catch((err) => {
+    //   if (err.status === 405) {
+    //     window.location.href = "http://localhost:3000/auth/login/google";
+    //   }
+    // });
   },
 };

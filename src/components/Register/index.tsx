@@ -62,23 +62,6 @@ const Register = ({
   return (
     <form className={style.register} onSubmit={handleSubmit}>
       <Information>
-        SIGN UP SHEET
-        <TextField
-          variant="outlined"
-          label={"First name"}
-          name={"firstname"}
-          required
-          className={style.input}
-          onChange={handleChange}
-        />
-        <TextField
-          variant="outlined"
-          label={"Last name"}
-          name={"lastname"}
-          required
-          className={style.input}
-          onChange={handleChange}
-        />
         <Button
           type="submit"
           color="primary"

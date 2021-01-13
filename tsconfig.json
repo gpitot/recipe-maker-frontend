@@ -20,7 +20,8 @@
       "rest": ["rest/*"],
       "components": ["components/*"],
       "pages": ["pages/*"],
-      "styles": ["styles/*"]
+      "styles": ["styles/*"],
+      "contexts" : ["contexts/*"]
     }
   },
   "include": ["src"],

@@ -1,6 +1,6 @@
-import React from 'react';
-import Header from 'components/Header';
-import style from './style.module.scss';
+import React from "react";
+import Header from "components/Header";
+import style from "./style.module.scss";
 
 interface IBase {
   children: React.ReactNode;

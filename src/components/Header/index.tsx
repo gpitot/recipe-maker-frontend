@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import classnames from "classnames";
 import { Link } from "react-router-dom";
 import style from "./style.module.scss";
+import User from "components/User";
+
 const HEADER_OFFSET = 96;
 
 const Header = () => {
@@ -48,7 +50,9 @@ const Header = () => {
               <Link to="/shop">SHOP</Link>
             </div>
           </div>
-          <div className={style["item-container"]}>
+          <User />
+
+          <div className={style["mobile-item-container"]}>
             <button
               onClick={toggleHeader}
               className={style["mobile-dropdown"]}

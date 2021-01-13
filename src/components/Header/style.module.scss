@@ -46,7 +46,8 @@ $mobile-items-height: calc(100vh - 96px);
     height: 100%;
   }
 
-  .item-container {
+  .item-container,
+  .mobile-item-container {
     width: $unit * 8;
     display: flex;
     align-items: center;
@@ -66,6 +67,12 @@ $mobile-items-height: calc(100vh - 96px);
       @media (min-width: $device-medium) {
         display: none;
       }
+    }
+  }
+
+  .mobile-item-container {
+    @media (min-width: $device-medium) {
+      display: none;
     }
   }
 

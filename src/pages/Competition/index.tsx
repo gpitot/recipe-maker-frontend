@@ -2,7 +2,7 @@ import CTAMenu from "components/CTAMenu";
 import React from "react";
 import style from "./style.module.scss";
 import { Link, useParams } from "react-router-dom";
-import Information from "components/Information";
+import Ladder from "pages/Ladder";
 
 enum CompOptions {
   ladder = "ladder",
@@ -46,10 +46,7 @@ const Competition = () => {
       </CTAMenu>
 
       <div className={style.child}>
-        <div className={style.ranks}></div>
-        <Information styles={style.block}>
-          Details about ladder league
-        </Information>
+        <Ladder />
       </div>
     </section>
   );
