@@ -2,48 +2,21 @@
 @import "styles/sizes";
 @import "styles/breakpoints";
 
-.area {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  background: $base-blue;
-  min-height: 800px;
+.block {
+  margin: $unit * 2 $unit * 3;
+  width: calc(100% - 48px);
+  max-width: 430px;
 
-  @media (min-width: $device-medium) {
-    flex-direction: row;
-    justify-content: flex-end;
+  @media (min-width: $device-med-large) {
+    margin: $unit * 6 $unit * 3;
   }
+}
 
-  .child {
-    display: flex;
-    flex-direction: column;
+.active {
+  background: $base-dark;
 
-    @media (min-width: $device-medium) {
-      margin-left: 405px;
-      margin-top: $unit * 4;
-    }
-    @media (min-width: $device-med-large) {
-      flex-direction: row;
-      margin-top: 0;
-    }
-  }
-
-  .block {
-    margin: $unit * 2 $unit * 3;
-    width: calc(100% - 48px);
-    max-width: 430px;
-
-    @media (min-width: $device-med-large) {
-      margin: $unit * 6 $unit * 3;
-    }
-  }
-
-  .active {
-    background: $base-dark;
-
-    &:hover {
-      color: $base-blue;
-    }
+  &:hover {
+    color: $base-blue;
   }
 }
 

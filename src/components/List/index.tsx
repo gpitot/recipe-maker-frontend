@@ -5,10 +5,12 @@ import style from "./style.module.scss";
 interface IProps {
   headers: Array<string>;
   body: Array<Array<any>>;
+  title?: string;
 }
 
-const List = ({ headers, body }: IProps) => (
+const List = ({ title, headers, body }: IProps) => (
   <Information styles={style["table-outer"]}>
+    {title && <h3>{title}</h3>}
     <table>
       <thead>
         <tr>

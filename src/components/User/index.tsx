@@ -11,7 +11,9 @@ const User = () => {
     API.users
       .getUser()
       .then((res) => {
-        setUser(res.user);
+        if (res.success) {
+          setUser(res.user);
+        }
       })
       .finally(() => setLoading(false));
   }, []);

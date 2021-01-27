@@ -1,6 +1,6 @@
 import CTAMenu from "components/CTAMenu";
 import React, { useEffect, useState } from "react";
-import style from "./style.module.scss";
+import style from "styles/pages.module.scss";
 import { Link } from "react-router-dom";
 import Event from "components/Event";
 import API from "rest/api";
@@ -27,7 +27,7 @@ const Social = () => {
         <Link to="/shop">SHOP</Link>
       </CTAMenu>
 
-      <section className={style.eventList}>
+      <section className={style.child}>
         {events.map((event) => (
           <Event {...event} key={event.id} />
         ))}

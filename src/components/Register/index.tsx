@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import style from "./style.module.scss";
 import { Button, TextField } from "@material-ui/core";
 import API from "rest/api";
+import { toast } from "react-toastify";
 
 interface IProps {
   registerCTA: string;
@@ -28,21 +29,15 @@ const Register = ({
   const [open, setOpen] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     API.userEvents.addUserEvent(formData).then(({ success, err }) => {
       if (success === true) {
         updateList(formData.firstname);
+        toast.success("Registered succesfully");
       } else {
-        console.log("error occurs ", err);
         setError(err as string);
+        toast.success("Could not register");
       }
       setOpen(false);
     });

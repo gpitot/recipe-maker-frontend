@@ -7,20 +7,20 @@
   flex-direction: column;
   position: relative;
   background: $base-blue;
-  min-height: 600px;
-}
+  min-height: 800px;
 
-.eventList {
-  display: flex;
-  top: 24px;
-  position: relative;
   @media (min-width: $device-medium) {
-    margin-left: 405px;
-    margin-top: $unit * 4;
-  }
-  @media (min-width: $device-med-large) {
     flex-direction: row;
-    margin-top: 0;
-    margin-top: 24px;
+    justify-content: center;
+    padding-bottom: $unit * 10;
+  }
+
+  .child {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: $device-medium) {
+      margin-top: $unit * 8;
+    }
   }
 }

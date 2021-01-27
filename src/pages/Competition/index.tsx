@@ -1,6 +1,8 @@
 import CTAMenu from "components/CTAMenu";
 import React from "react";
 import style from "./style.module.scss";
+import pageStyle from "styles/pages.module.scss";
+
 import { Link, useParams } from "react-router-dom";
 import Ladder from "pages/Ladder";
 
@@ -22,31 +24,31 @@ const Competition = () => {
   }
 
   return (
-    <section className={style.area}>
+    <section className={pageStyle.area}>
       <CTAMenu>
         <h2>PLAY THE BEST</h2>
         <Link
           to="/competition/ladder"
-          className={currentComp === CompOptions.ladder && style.active}
+          className={currentComp === CompOptions.ladder ? style.active : ""}
         >
           LADDER LEAGUE
         </Link>
         <Link
           to="/competition/timed"
-          className={currentComp === CompOptions.timed && style.active}
+          className={currentComp === CompOptions.timed ? style.active : ""}
         >
           TOURNAMENTS
         </Link>
         <Link
           to="/competition/pennant"
-          className={currentComp === CompOptions.pennant && style.active}
+          className={currentComp === CompOptions.pennant ? style.active : ""}
         >
           INTERCLUB PENNANT
         </Link>
       </CTAMenu>
 
-      <div className={style.child}>
-        <Ladder />
+      <div className={pageStyle.child}>
+        <Ladder ladderid={1} />
       </div>
     </section>
   );

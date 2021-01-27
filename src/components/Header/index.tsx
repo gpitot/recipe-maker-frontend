@@ -12,7 +12,6 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      console.log(window.pageYOffset, scrolledHeader);
       if (window.pageYOffset > HEADER_OFFSET && !scrolledHeader) {
         setScrolledHeader(true);
       } else if (window.pageYOffset <= HEADER_OFFSET && scrolledHeader) {
