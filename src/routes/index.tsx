@@ -6,6 +6,7 @@ import Social from "pages/Social";
 import Competition from "pages/Competition";
 import Event from "pages/Event";
 import { StylesProvider } from "@material-ui/core/styles";
+import ComingSoon from "pages/ComingSoon";
 
 const Routes = () => (
   <Router>
@@ -31,8 +32,13 @@ const Routes = () => (
           <Route path="/competition/ladder/:ladderid">
             <Competition />
           </Route>
-          <Route path="/coaching" />
-          <Route path="/shop" />
+          <Route path="/coaching">
+            <ComingSoon />
+          </Route>
+          <Route path="/shop">
+            {" "}
+            <ComingSoon />
+          </Route>
         </Switch>
       </Base>
     </StylesProvider>

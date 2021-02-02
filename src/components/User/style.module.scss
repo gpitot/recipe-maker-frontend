@@ -16,4 +16,12 @@
     max-height: $unit * 8;
     max-width: $unit * 8;
   }
+
+  .book {
+    color: $base-dark;
+
+    &.header-scrolled {
+      color: white;
+    }
+  }
 }

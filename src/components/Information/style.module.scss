@@ -2,8 +2,9 @@
 @import "styles/sizes";
 
 .block {
-  padding: $unit * 4 $unit * 6;
+  padding: $unit * 2 $unit * 3;
   background: $base-light;
   border-radius: $unit / 2;
   color: $base-blue;
+  margin: 0 $unit * 2 ;
 }

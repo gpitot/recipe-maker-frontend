@@ -43,10 +43,18 @@ const Header = () => {
             <div
               className={classnames(style.items, dropdownShown && style.open)}
             >
-              <Link to="/social">SOCIAL</Link>
-              <Link to="/competition">COMPETITION</Link>
-              <Link to="/coaching">COACHING</Link>
-              <Link to="/shop">SHOP</Link>
+              <Link to="/social" onClick={toggleHeader}>
+                SOCIAL
+              </Link>
+              <Link to="/competition" onClick={toggleHeader}>
+                COMPETITION
+              </Link>
+              <Link to="/coaching" onClick={toggleHeader}>
+                COACHING
+              </Link>
+              <Link to="/shop" onClick={toggleHeader}>
+                SHOP
+              </Link>
             </div>
           </div>
           <User />

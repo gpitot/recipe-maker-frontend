@@ -157,7 +157,6 @@
       "react-app"
     ]
   },
-  "proxy": "https://northmanlysquash.com",
   "devDependencies": {
     "css-loader": "^4.3.0",
     "less": "^3.12.2",

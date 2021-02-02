@@ -15,18 +15,3 @@
     display: block;
   }
 }
-
-.book {
-  display: block;
-  background: $base-dark;
-  color: $base-light;
-  text-align: center;
-  font-size: 3rem;
-  padding: $unit * 4;
-  text-decoration: none;
-  transition: all 600ms ease;
-  &:hover {
-    background: $base-light;
-    color: $base-blue;
-  }
-}

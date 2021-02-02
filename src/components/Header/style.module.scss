@@ -3,16 +3,25 @@
 @import "styles/breakpoints";
 
 $header-height: $unit * 12;
+$header-height-mobile: $unit * 6;
 // wierd scss bug
 $mobile-items-height: calc(100vh - 96px);
 
 .fake-header {
-  height: $header-height;
+  height: $header-height-mobile;
+  @media (min-width: $device-medium) {
+    height: $header-height;
+  }
+
   position: relative;
 }
 
 .header {
-  height: $header-height;
+  height: $header-height-mobile;
+  box-shadow: 0 0 4px 4px #00000063;
+  @media (min-width: $device-medium) {
+    height: $header-height;
+  }
   background: $base-light;
   width: 100%;
   position: fixed;
@@ -37,22 +46,27 @@ $mobile-items-height: calc(100vh - 96px);
 
   .item-container,
   .mobile-item-container {
-    width: $unit * 8;
+    width: $unit * 4;
     display: flex;
     align-items: center;
     margin: 0 $unit * 3;
     flex-shrink: 0;
     @media (min-width: $device-medium) {
       margin: 0 $unit * 6;
+      width: $unit * 8;
     }
     img {
-      width: 100%;
+      width: 32px;
+
+      @media (min-width: $device-medium) {
+        width: 64px;
+      }
     }
 
     .mobile-dropdown {
       width: 100%;
       height: $unit * 4;
-
+      opacity: 0;
       @media (min-width: $device-medium) {
         display: none;
       }
@@ -60,14 +74,29 @@ $mobile-items-height: calc(100vh - 96px);
   }
 
   .mobile-item-container {
+    position: relative;
+    &:before {
+      content: url("/icons/menu.svg");
+      width: 24px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
     @media (min-width: $device-medium) {
       display: none;
+      &:before {
+        content: none;
+      }
     }
   }
 
   .items-container {
     position: absolute;
-    top: $header-height;
+    top: $header-height-mobile;
+    @media (min-width: $device-medium) {
+      top: $header-height;
+    }
     left: 0;
     width: 100%;
     overflow: hidden;

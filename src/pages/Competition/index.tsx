@@ -25,28 +25,6 @@ const Competition = () => {
 
   return (
     <section className={pageStyle.area}>
-      <CTAMenu>
-        <h2>PLAY THE BEST</h2>
-        <Link
-          to="/competition/ladder"
-          className={currentComp === CompOptions.ladder ? style.active : ""}
-        >
-          LADDER LEAGUE
-        </Link>
-        <Link
-          to="/competition/timed"
-          className={currentComp === CompOptions.timed ? style.active : ""}
-        >
-          TOURNAMENTS
-        </Link>
-        <Link
-          to="/competition/pennant"
-          className={currentComp === CompOptions.pennant ? style.active : ""}
-        >
-          INTERCLUB PENNANT
-        </Link>
-      </CTAMenu>
-
       <div className={pageStyle.child}>
         <Ladder ladderid={1} />
       </div>

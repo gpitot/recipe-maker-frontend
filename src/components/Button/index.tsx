@@ -1,5 +1,5 @@
 import React from "react";
-
+import style from "./style.module.scss";
 interface IProps {
   handleClick: () => void;
   text: string;
@@ -8,7 +8,7 @@ interface IProps {
 
 const Button = ({ disabled = false, handleClick, text }: IProps) => {
   return (
-    <button disabled={disabled} onClick={handleClick}>
+    <button className={style.button} disabled={disabled} onClick={handleClick}>
       {text}
     </button>
   );

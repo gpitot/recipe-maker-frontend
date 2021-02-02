@@ -2,24 +2,20 @@
 @import "styles/sizes";
 @import "styles/breakpoints";
 
-.area {
-  position: relative;
-  background: $base-blue;
-  min-height: 600px;
+.eventArea {
   color: $base-light;
   padding: $unit * 4;
+  h5 {
+    margin: 0;
+    margin-bottom: $unit * 2;
+  }
 }
-
-.countdown,
 .cancelled {
   padding: $unit * 2;
 }
 
 .cancelled {
   background: $base-dark;
-}
-
-.countdown {
 }
 
 .signup {
@@ -35,4 +31,8 @@
 
 .title {
   display: inline-block;
+}
+
+.row {
+  display: flex;
 }

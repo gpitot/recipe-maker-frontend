@@ -9,7 +9,8 @@ import { IEvent } from "rest/events";
 const URL = `${BASE_URL}/user_events`;
 
 export interface IUserEvent {
-  id: string;
+  id: number; //user event id
+  user_id: string;
   firstname: string;
   lastname: string;
   registered: string;
@@ -37,15 +38,27 @@ export default {
     event: Pick<IUserEvent, "id" | "event_id" | "paid" | "enabled">
   ) => {
     return axios
-      .put<null, IJsonResponse<IResultResponse>>(URL, event, commonAxiosConfig)
+      .put<null, IJsonResponse<IResultResponse>>(URL, event, {
+        ...commonAxiosConfig,
+        withCredentials: true,
+      })
       .then((res) => {
         return res.data;
       });
   },
 
-  addUserEvent: (
-    event: Pick<IUserEvent, "firstname" | "lastname" | "event_id">
-  ) => {
+  deleteUserEvent: (event: Pick<IUserEvent, "id">) => {
+    return axios
+      .put<null, IJsonResponse<IResultResponse>>(`${URL}/remove`, event, {
+        ...commonAxiosConfig,
+        withCredentials: true,
+      })
+      .then((res) => {
+        return res.data;
+      });
+  },
+
+  addUserEvent: (event: Pick<IUserEvent, "event_id">) => {
     return axios
       .post<null, IJsonResponse<IResultResponse>>(URL, event, {
         ...commonAxiosConfig,

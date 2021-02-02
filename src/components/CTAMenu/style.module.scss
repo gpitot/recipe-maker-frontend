@@ -5,7 +5,8 @@
 .cta-menu {
   background: $base-light;
   position: relative;
-  top: $unit * 3;
+  top: $unit * 14;
+  z-index: 2;
 
   margin: $unit * 3;
   display: flex;
@@ -13,9 +14,12 @@
   opacity: 0.9;
   max-width: 430px;
 
-  @media (min-width: $device-medium) {
+  display: none;
+
+  @media (min-width: $device-large) {
     position: absolute;
     left: $unit * 3;
+    display: block;
   }
 
   h2 {
