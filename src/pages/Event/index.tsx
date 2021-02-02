@@ -48,7 +48,7 @@ const Event = () => {
   }
 
   if (event === undefined) return null;
-  const { description, enabled, name, start, spots } = event;
+  const { description, enabled, name, start } = event;
   return (
     <section className={pageStyle.area}>
       <div className={pageStyle.child}>

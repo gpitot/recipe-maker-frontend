@@ -36,7 +36,7 @@ const Header = () => {
         <div className={style.inner}>
           <div className={style["item-container"]}>
             <Link to="/">
-              <img src="/logo-black.png" />
+              <img src="/logo-black.png" alt="" />
             </Link>
           </div>
           <div className={style["items-container"]}>

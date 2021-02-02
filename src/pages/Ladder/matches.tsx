@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import API from "rest/api";
 import { IMatches } from "rest/ladder";
-import List from "components/List";
-import UserRow from "components/UserRow";
+
 import Challenges from "pages/Ladder/challenges";
 import Results from "pages/Ladder/results";
 
@@ -12,7 +11,6 @@ interface IProps {
 }
 const Matches = ({ ladderid, challenges }: IProps) => {
   const [matches, setMatches] = useState<Array<IMatches>>([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     API.ladder
@@ -21,15 +19,11 @@ const Matches = ({ ladderid, challenges }: IProps) => {
         challenges,
       })
       .then((res) => {
-        console.log(res);
         if (res.success) {
           setMatches(res.result);
         }
-      })
-      .finally(() => {
-        setLoading(false);
       });
-  }, []);
+  }, [challenges, ladderid]);
 
   return (
     <>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Header from "components/Header";
 import CTAMenu from "components/CTAMenu";
 import style from "./style.module.scss";
@@ -26,6 +26,7 @@ const Base = ({ children }: IBase) => (
     <a
       href="http://www.tennisvenues.com.au/booking/warringah-recreation-centre-squash"
       target="_blank"
+      rel="noreferrer"
       className={style.book}
     >
       BOOK A COURT

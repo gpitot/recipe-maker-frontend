@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { IEvent } from "rest/events";
 
 const Event = (event: IEvent) => {
-  const { description, enabled, id, name, open, spots, start } = event;
+  const { description, id, name } = event;
   return (
     <Link
       to={{ pathname: `/event/${id}`, state: event }}

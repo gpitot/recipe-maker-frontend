@@ -26,7 +26,9 @@ const Edit = ({ event, userEvents, setUserEvents }: IProps) => {
       .then((res) => {
         if (res.success) {
           toast.success("Removed user");
-          const newEvents = [...userEvents].filter((evt) => evt.id !==event. id);
+          const newEvents = [...userEvents].filter(
+            (evt) => evt.id !== event.id
+          );
           setUserEvents(newEvents);
         } else {
           toast.error("Could not remove user");

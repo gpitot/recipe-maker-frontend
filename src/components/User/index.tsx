@@ -16,17 +16,17 @@ const User = () => {
         }
       })
       .finally(() => setLoading(false));
-  }, []);
+  }, [setUser]);
 
   if (loading) return null;
 
   return (
     <div className={style.user}>
       {user.id ? (
-        <img src={user.photo} />
+        <img src={user.photo} alt="" />
       ) : (
         <a
-          href="http://localhost:3000/auth/login/google"
+          href={`${process.env.REACT_APP_API_URL}/auth/login/google`}
           className={style.book}
         >
           Login

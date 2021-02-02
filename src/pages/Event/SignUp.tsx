@@ -1,6 +1,6 @@
 import List from "components/List";
 import Register from "components/Register";
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { IEvent } from "rest/events";
 import { IUserEvent } from "rest/user_events";
 import { timeIsAfter } from "utils/compareTime";

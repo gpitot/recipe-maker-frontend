@@ -14,7 +14,7 @@ interface IMeResponse extends IResultResponse {
   user: IUser;
 }
 
-export default {
+const api = {
   refreshUser: () => {
     return axios
       .get<null, IJsonResponse<IResultResponse>>(`${BASE_URL}/users/refresh`, {
@@ -31,3 +31,4 @@ export default {
       .then((res) => res.data);
   },
 };
+export default api;

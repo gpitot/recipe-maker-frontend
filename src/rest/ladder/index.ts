@@ -36,7 +36,6 @@ export interface IMatches {
   player_2_photo: string;
 }
 
-
 interface IMatchesResponse extends IResultResponse {
   result: Array<IMatches>;
 }
@@ -66,7 +65,7 @@ interface IChallengeUserProps {
 
 const LADDER_URL = `${BASE_URL}/ladder`;
 
-export default {
+const api = {
   getLadders: () => {
     return axios
       .get<null, IJsonResponse<ILaddersResponse>>(LADDER_URL)
@@ -183,3 +182,5 @@ export default {
       });
   },
 };
+
+export default api;

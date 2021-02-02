@@ -21,7 +21,7 @@ axios.interceptors.response.use(
     if (error.response.status === 405) {
       //redirect to auth
       console.log("redirect to auth");
-      window.location.href = "http://localhost:3000/auth/login/google";
+      window.location.href = `${process.env.REACT_APP_API_URL}/auth/login/google`;
     }
     return Promise.reject(error);
   }

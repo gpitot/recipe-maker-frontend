@@ -1,5 +1,5 @@
 //export const BASE_URL = "https://north-manly-squash.herokuapp.com/api";
-export const BASE_URL = "http://localhost:3000/api";
+export const BASE_URL = `${process.env.REACT_APP_API_URL}/api`;
 export interface IJsonResponse<T> {
   data: T;
 }

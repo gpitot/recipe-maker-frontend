@@ -24,7 +24,7 @@ interface IEventResponse extends IResultResponse {
   result: IEvent;
 }
 
-export default {
+const api = {
   getEvent: (id: string) => {
     return axios
       .get<null, IJsonResponse<IEventResponse>>(`${BASE_URL}/events/${id}`)
@@ -65,3 +65,5 @@ export default {
       });
   },
 };
+
+export default api;

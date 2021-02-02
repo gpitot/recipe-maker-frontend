@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
-import CTAMenu from "components/CTAMenu";
 import style from "./style.module.scss";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import API from "rest/api";
 
 const Home = () => {
   const query = new URLSearchParams(useLocation().search);
+  const refreshUser = query.get("updatelogin") === "true";
 
   useEffect(() => {
-    if (query.get("updatelogin") === "true") {
+    if (refreshUser) {
       API.users.refreshUser();
     }
-  }, [query]);
+  }, [refreshUser]);
 
   return (
     <>

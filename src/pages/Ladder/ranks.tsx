@@ -8,10 +8,6 @@ import UserRow from "components/UserRow";
 import Button from "components/Button";
 import { toast } from "react-toastify";
 
-interface ParamTypes {
-  ladderid?: string;
-}
-
 interface IProps {
   ladderid: number;
 }
@@ -21,7 +17,6 @@ const Ranks = ({ ladderid }: IProps) => {
   const { user } = useContext(UserContext);
   const [ranks, setRanks] = useState<Array<IRanks>>([]);
   const [challenged, setChallenged] = useState<Array<string>>([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (ladderid === undefined) return;
@@ -35,7 +30,7 @@ const Ranks = ({ ladderid }: IProps) => {
           setRanks(res.result);
         }
       });
-  }, []);
+  }, [ladderid]);
 
   const challengeUser = (player_id: string) => {
     setChallenged([...challenged, player_id]);
@@ -62,23 +57,21 @@ const Ranks = ({ ladderid }: IProps) => {
   //   return <Redirect to="/" />;
   // }
 
-  const body = ranks.map(
-    ({ player_id, recent_change, id, firstname, lastname, photo }, rank) => {
-      return [
-        rank + 1,
-        <UserRow name={firstname} photo={photo} />,
-        <>
-          {user && user.id !== player_id && (
-            <Button
-              disabled={challenged.includes(player_id)}
-              handleClick={() => challengeUser(player_id)}
-              text={"Challenge"}
-            />
-          )}
-        </>,
-      ];
-    }
-  );
+  const body = ranks.map(({ player_id, firstname, photo }, rank) => {
+    return [
+      rank + 1,
+      <UserRow name={firstname} photo={photo} />,
+      <>
+        {user && user.id !== player_id && (
+          <Button
+            disabled={challenged.includes(player_id)}
+            handleClick={() => challengeUser(player_id)}
+            text={"Challenge"}
+          />
+        )}
+      </>,
+    ];
+  });
 
   return (
     <>

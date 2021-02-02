@@ -5,7 +5,6 @@ import {
   commonAxiosConfig,
   IResultResponse,
 } from "rest/common";
-import { IEvent } from "rest/events";
 const URL = `${BASE_URL}/user_events`;
 
 export interface IUserEvent {
@@ -25,7 +24,7 @@ export interface IUserEventResponse extends IResultResponse {
   result: Array<IUserEvent>;
 }
 
-export default {
+const api = {
   getUserEvents: (event_id: string) => {
     return axios
       .get<null, IJsonResponse<IUserEventResponse>>(`${URL}/${event_id}`)
@@ -67,10 +66,7 @@ export default {
       .then((res) => {
         return res.data;
       });
-    // .catch((err) => {
-    //   if (err.status === 405) {
-    //     window.location.href = "http://localhost:3000/auth/login/google";
-    //   }
-    // });
   },
 };
+
+export default api;

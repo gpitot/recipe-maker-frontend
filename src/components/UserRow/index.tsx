@@ -7,7 +7,7 @@ interface IProps {
 
 const UserRow = ({ name, photo }: IProps) => (
   <div className={style.user}>
-    <img src={photo} />
+    <img src={photo} alt=""/>
     <span>{name}</span>
   </div>
 );
