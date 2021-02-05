@@ -9,6 +9,7 @@ import API from "rest/api";
 import { toast } from "react-toastify";
 import Edit from "components/Edit";
 import EditChallenge from "components/EditConfigs/edit-challenge";
+import EventDate from "components/EventDate";
 
 interface IAcceptProps {
   id: number;
@@ -46,7 +47,7 @@ interface IProps {
 
 const Challenges = ({ matches }: IProps) => {
   const { user } = useContext(UserContext);
-
+  console.log(matches, "[gg]");
   const body = matches.map(
     ({
       id,
@@ -56,18 +57,30 @@ const Challenges = ({ matches }: IProps) => {
       player_2_firstname,
       player_2_photo,
       accepted,
+      match_date,
     }) => [
       <UserRow name={player_1_firstname} photo={player_1_photo} />,
       <UserRow name={player_2_firstname} photo={player_2_photo} />,
       <>
-        <AcceptChallenge
-          id={id}
-          accepted={accepted}
-          player_2={player_2}
-          user={user}
-        />
+        {match_date ? (
+          <EventDate time={match_date} />
+        ) : (
+          <AcceptChallenge
+            id={id}
+            accepted={accepted}
+            player_2={player_2}
+            user={user}
+          />
+        )}
+
         <Edit>
-          {(setOpen) => <EditChallenge setOpen={setOpen} match_id={id} />}
+          {(setOpen) => (
+            <EditChallenge
+              setOpen={setOpen}
+              match_id={id}
+              match_date={match_date}
+            />
+          )}
         </Edit>
       </>,
     ]
