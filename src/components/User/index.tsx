@@ -1,9 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
+import classnames from "classnames";
 import API from "rest/api";
 import { UserContext } from "contexts/UserContext";
 import style from "./style.module.scss";
 
-const User = () => {
+interface IProps {
+  headerScrolled?: boolean;
+}
+
+const User = ({ headerScrolled }: IProps) => {
   const [loading, setLoading] = useState(true);
   const { user, setUser } = useContext(UserContext);
 
@@ -27,9 +32,12 @@ const User = () => {
       ) : (
         <a
           href={`${process.env.REACT_APP_API_URL}/auth/login/google`}
-          className={style.book}
+          className={classnames(
+            style.book,
+            headerScrolled && style["header-scrolled"]
+          )}
         >
-          Login
+          LOGIN
         </a>
       )}
     </div>

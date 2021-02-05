@@ -10,9 +10,10 @@ import API from "rest/api";
 import UserRow from "components/UserRow";
 import { toast } from "react-toastify";
 import Edit from "components/Edit";
+import EditSocial from "components/EditConfigs/edit-social";
 import Paid from "components/Paid";
-import Button from "components/Button";
 
+import { ReactComponent as Close } from "icons/times-circle-solid.svg";
 interface IProps {
   event: IEvent;
   userEvents?: Array<IUserEvent>;
@@ -41,7 +42,7 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
 
   const isOpen = !timeIsAfter(new Date(open));
   const hasStarted = timeIsAfter(new Date(start));
-  console.log(userEvents, "[g]");
+  console.log(userEvents, "[g] rerender");
 
   const removeEntry = ({ id }: IUserEvent) => {
     API.userEvents.deleteUserEvent({ id }).then((res) => {
@@ -62,13 +63,18 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
         photo={event.photo}
       />
       {user.id === event.user_id && (
-        <Button handleClick={() => removeEntry(event)} text={"X"} />
+        <Close onClick={() => removeEntry(event)} />
       )}
-      <Edit
-        event={event}
-        userEvents={userEvents}
-        setUserEvents={setUserEvents}
-      />
+      <Edit>
+        {(setOpen) => (
+          <EditSocial
+            setOpen={setOpen}
+            event={event}
+            userEvents={userEvents}
+            setUserEvents={setUserEvents}
+          />
+        )}
+      </Edit>
       <Paid paid={event.paid} />
     </div>,
   ]);
@@ -81,6 +87,8 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
           eventId={event.id}
           eventName={event.name}
           isFull={isFull}
+          userEvents={userEvents}
+          setUserEvents={setUserEvents}
         />
       )}
       <List headers={[event.name]} body={nameList} />

@@ -4,9 +4,17 @@
 
 .date {
   padding: $unit * 2;
-  background: $base-dark;
+
   color: $base-light;
   display: inline-block;
   border-radius: $unit;
   margin: 0 $unit;
+
+  border: solid 2px $base-dark;
+  color: $base-dark;
+
+  &.light {
+    border: solid 2px $base-light;
+    color: $base-light;
+  }
 }

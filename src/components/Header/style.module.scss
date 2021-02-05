@@ -5,7 +5,7 @@
 $header-height: $unit * 12;
 $header-height-mobile: $unit * 6;
 // wierd scss bug
-$mobile-items-height: calc(100vh - 96px);
+$mobile-items-height: calc(100vh - 48px);
 
 .fake-header {
   height: $header-height-mobile;
@@ -55,6 +55,10 @@ $mobile-items-height: calc(100vh - 96px);
       margin: 0 $unit * 6;
       width: $unit * 8;
     }
+
+    a {
+      display: flex;
+    }
     img {
       width: 32px;
 
@@ -94,15 +98,12 @@ $mobile-items-height: calc(100vh - 96px);
   .items-container {
     position: absolute;
     top: $header-height-mobile;
-    @media (min-width: $device-medium) {
-      top: $header-height;
-    }
     left: 0;
     width: 100%;
     overflow: hidden;
     pointer-events: none;
-
     @media (min-width: $device-medium) {
+      height: auto;
       position: relative;
       top: 0;
       height: 100%;
@@ -115,7 +116,8 @@ $mobile-items-height: calc(100vh - 96px);
     display: flex;
     position: relative;
     width: 100%;
-    background: $base-dark;
+    height: $mobile-items-height;
+    pointer-events: all;
     flex-direction: column;
     align-items: center;
 
@@ -143,7 +145,7 @@ $mobile-items-height: calc(100vh - 96px);
       pointer-events: all;
       transition: all 300ms ease;
       box-sizing: content-box;
-
+      background: $base-dark;
       &:hover {
         color: $base-blue;
         background: $base-light;
@@ -156,6 +158,7 @@ $mobile-items-height: calc(100vh - 96px);
         padding: $unit $unit * 4;
         border: none;
         font-size: 16px;
+        background: none;
       }
 
       @media (min-width: $device-med-large) {

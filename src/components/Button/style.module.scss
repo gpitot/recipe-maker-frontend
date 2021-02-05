@@ -5,4 +5,11 @@
 .button {
   padding: $unit $unit * 2;
   cursor: pointer;
+  background: $base-dark;
+  border: solid 1px $base-blue;
+  color: $base-light;
+  border-radius: 4px;
+  box-shadow: 0 0 4px 4px #0000001a;
+  font-family: "Russo One";
+  letter-spacing: 1px;
 }

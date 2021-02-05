@@ -28,6 +28,10 @@ const Header = () => {
   const toggleHeader = () => {
     setDropdownShown(!dropdownShown);
   };
+  const hideHeader = () => {
+    console.log("hide header");
+    setDropdownShown(false);
+  };
 
   const scrolledStyle = scrolledHeader && style["header-scrolled"];
   return (
@@ -36,28 +40,26 @@ const Header = () => {
         <div className={style.inner}>
           <div className={style["item-container"]}>
             <Link to="/">
-              <img src="/logo-black.png" alt="" />
+              {scrolledHeader ? (
+                <img src="/logo-white.png" alt="" />
+              ) : (
+                <img src="/logo-black.png" alt="" />
+              )}
             </Link>
           </div>
           <div className={style["items-container"]}>
             <div
               className={classnames(style.items, dropdownShown && style.open)}
+              onClick={hideHeader}
             >
-              <Link to="/social" onClick={toggleHeader}>
-                SOCIAL
-              </Link>
-              <Link to="/competition" onClick={toggleHeader}>
-                COMPETITION
-              </Link>
-              <Link to="/coaching" onClick={toggleHeader}>
-                COACHING
-              </Link>
-              <Link to="/shop" onClick={toggleHeader}>
-                SHOP
-              </Link>
+              <Link to="/social">SOCIAL</Link>
+              <Link to="/competition">COMPETITION</Link>
+              <Link to="/coaching">COACHING</Link>
+              <Link to="/shop">SHOP</Link>
             </div>
           </div>
-          <User />
+
+          <User headerScrolled={scrolledHeader} />
 
           <div className={style["mobile-item-container"]}>
             <button

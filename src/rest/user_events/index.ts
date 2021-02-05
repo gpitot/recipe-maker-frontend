@@ -24,6 +24,10 @@ export interface IUserEventResponse extends IResultResponse {
   result: Array<IUserEvent>;
 }
 
+interface IUserEventAddedResponse extends IResultResponse {
+  result: IUserEvent;
+}
+
 const api = {
   getUserEvents: (event_id: string) => {
     return axios
@@ -59,7 +63,7 @@ const api = {
 
   addUserEvent: (event: Pick<IUserEvent, "event_id">) => {
     return axios
-      .post<null, IJsonResponse<IResultResponse>>(URL, event, {
+      .post<null, IJsonResponse<IUserEventAddedResponse>>(URL, event, {
         ...commonAxiosConfig,
         withCredentials: true,
       })

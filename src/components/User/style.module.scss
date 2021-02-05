@@ -3,9 +3,8 @@
 @import "styles/breakpoints";
 
 .user {
-  display: none;
+  display: flex;
   @media (min-width: $device-medium) {
-    display: flex;
   }
   color: $base-dark;
   z-index: 100;
@@ -13,8 +12,14 @@
   margin: 0 $unit * 6;
   img {
     border-radius: 50%;
-    max-height: $unit * 8;
-    max-width: $unit * 8;
+
+    @media (min-width: $device-medium) {
+      max-height: $unit * 8;
+      max-width: $unit * 8;
+    }
+
+    max-height: $unit * 4;
+    max-width: $unit * 4;
   }
 
   .book {
