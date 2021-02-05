@@ -48,8 +48,8 @@ interface IProps {
 const Challenges = ({ matches }: IProps) => {
   const { user } = useContext(UserContext);
   console.log(matches, "[gg]");
-  const body = matches.map(
-    ({
+  const body = matches.map((match) => {
+    const {
       id,
       player_1_firstname,
       player_1_photo,
@@ -58,7 +58,8 @@ const Challenges = ({ matches }: IProps) => {
       player_2_photo,
       accepted,
       match_date,
-    }) => [
+    } = match;
+    return [
       <UserRow name={player_1_firstname} photo={player_1_photo} />,
       <UserRow name={player_2_firstname} photo={player_2_photo} />,
       <>
@@ -74,17 +75,11 @@ const Challenges = ({ matches }: IProps) => {
         )}
 
         <Edit>
-          {(setOpen) => (
-            <EditChallenge
-              setOpen={setOpen}
-              match_id={id}
-              match_date={match_date}
-            />
-          )}
+          {(setOpen) => <EditChallenge setOpen={setOpen} {...match} />}
         </Edit>
       </>,
-    ]
-  );
+    ];
+  });
 
   return (
     <List

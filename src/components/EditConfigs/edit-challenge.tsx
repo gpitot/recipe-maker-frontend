@@ -5,16 +5,14 @@ import { IUserEvent } from "rest/user_events";
 import Button from "components/Button";
 import { IMatches } from "rest/ladder";
 
-interface IProps {
+interface IProps extends IMatches {
   setOpen: (open: boolean) => void;
-  match_id: number;
-  match_date: string | null;
 }
 
-const EditChallenge = ({ setOpen, match_id, match_date }: IProps) => {
+const EditChallenge = ({ setOpen, id, match_date, accepted }: IProps) => {
   const handleUpdateChallengeTime = () => {
     API.ladder
-      .challengeTime({ match_id, time: "2021-03-05 19:00:00" })
+      .challengeTime({ match_id: id, time: "2021-03-05 19:00:00" })
       .then((res) => {
         if (res.success) {
           toast.success("Updated challenge date");
@@ -24,16 +22,17 @@ const EditChallenge = ({ setOpen, match_id, match_date }: IProps) => {
       });
     setOpen(false);
   };
+  const isDisabled = !(match_date === null && accepted === true);
+
   return (
     <>
-      {match_date && (
-        <li>
-          <Button
-            handleClick={handleUpdateChallengeTime}
-            text="Add booking time"
-          />
-        </li>
-      )}
+      <li>
+        <Button
+          handleClick={handleUpdateChallengeTime}
+          text="Add booking time"
+          disabled={isDisabled}
+        />
+      </li>
     </>
   );
 };

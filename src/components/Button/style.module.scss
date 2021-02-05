@@ -12,4 +12,9 @@
   box-shadow: 0 0 4px 4px #0000001a;
   font-family: "Russo One";
   letter-spacing: 1px;
+
+
+  &:disabled {
+    background:gray;
+  }
 }
