@@ -24,7 +24,7 @@ const Base = ({ children }: IBase) => (
     <section className={style.background}>{children}</section>
 
     <a
-      href="http://www.tennisvenues.com.au/booking/warringah-recreation-centre-squash"
+      href="https://www.tennisvenues.com.au/booking/warringah-recreation-centre-squash"
       target="_blank"
       rel="noreferrer"
       className={style.book}
