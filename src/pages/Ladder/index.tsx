@@ -12,7 +12,7 @@ interface ParamTypes {
 const Ladder = () => {
   const { ladderid } = useParams<ParamTypes>();
 
-  let id;
+  let id: number;
   try {
     id = parseInt(ladderid);
   } catch {

@@ -7,6 +7,7 @@ import List from "components/List";
 import UserRow from "components/UserRow";
 import Button from "components/Button";
 import { toast } from "react-toastify";
+import Signup from "pages/Ladder/signup";
 
 interface IProps {
   ladderid: number;
@@ -14,19 +15,20 @@ interface IProps {
 
 const Ranks = ({ ladderid }: IProps) => {
   const { user } = useContext(UserContext);
+
+  const [loading, setLoading] = useState(true);
   const [ranks, setRanks] = useState<Array<IRanks>>([]);
   const [challenged, setChallenged] = useState<Array<string>>([]);
 
   useEffect(() => {
-    if (ladderid === undefined) return;
     API.ladder
       .getRanks({
         ladder_id: ladderid,
       })
       .then((res) => {
-        console.log(res);
         if (res.success) {
           setRanks(res.result);
+          setLoading(false);
         }
       });
   }, [ladderid]);
@@ -74,6 +76,7 @@ const Ranks = ({ ladderid }: IProps) => {
 
   return (
     <>
+      {!loading && <Signup ladder_id={ladderid} players={ranks} />}
       <List title="Ranks" headers={["Rank", "Player", ""]} body={body} />
     </>
   );

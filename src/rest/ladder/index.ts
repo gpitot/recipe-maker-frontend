@@ -181,6 +181,21 @@ const api = {
         return res.data;
       });
   },
+
+  signUp: (data: { ladder_id: number }) => {
+    return axios
+      .post<null, IJsonResponse<IResultResponse>>(
+        `${LADDER_URL}/signup`,
+        data,
+        {
+          withCredentials: true,
+          ...commonAxiosConfig,
+        }
+      )
+      .then((res) => {
+        return res.data;
+      });
+  },
 };
 
 export default api;

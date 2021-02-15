@@ -25,6 +25,12 @@ axios.interceptors.response.use(
   }
 );
 
+axios.interceptors.request.use(function (config) {
+  // Do something before request is sent
+  config.headers.preauthurl = window.location.pathname;
+  return config;
+});
+
 const API = {
   events,
   userEvents,
