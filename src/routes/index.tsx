@@ -4,9 +4,11 @@ import Base from "components/Base";
 import Home from "pages/Home";
 import Social from "pages/Social";
 import Competition from "pages/Competition";
+import Ladder from "pages/Ladder";
 import Event from "pages/Event";
-import { StylesProvider } from "@material-ui/core/styles";
 import ComingSoon from "pages/ComingSoon";
+import { StylesProvider } from "@material-ui/core/styles";
+
 
 const Routes = () => (
   <Router>
@@ -25,12 +27,12 @@ const Routes = () => (
           <Route exact path="/competition">
             <Competition />
           </Route>
-          <Route path="/competition/:comp">
+          {/* <Route path="/competition/:comp">
             <Competition />
-          </Route>
+          </Route> */}
 
           <Route path="/competition/ladder/:ladderid">
-            <Competition />
+            <Ladder />
           </Route>
           <Route path="/coaching">
             <ComingSoon />

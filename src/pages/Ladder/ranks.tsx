@@ -13,7 +13,6 @@ interface IProps {
 }
 
 const Ranks = ({ ladderid }: IProps) => {
-  //const { ladderid } = useParams<ParamTypes>();
   const { user } = useContext(UserContext);
   const [ranks, setRanks] = useState<Array<IRanks>>([]);
   const [challenged, setChallenged] = useState<Array<string>>([]);

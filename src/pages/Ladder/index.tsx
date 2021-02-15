@@ -1,21 +1,32 @@
 import React from "react";
+import { useParams, Redirect } from "react-router-dom";
+import style from "styles/pages.module.scss";
 
 import Ranks from "pages/Ladder/ranks";
 import Matches from "pages/Ladder/matches";
 
-interface IProps {
-  ladderid: number;
+interface ParamTypes {
+  ladderid: string;
 }
 
-const Ladder = ({ ladderid }: IProps) => {
-  //const { ladderid } = useParams<ParamTypes>();
+const Ladder = () => {
+  const { ladderid } = useParams<ParamTypes>();
+
+  let id;
+  try {
+    id = parseInt(ladderid);
+  } catch {
+    return <Redirect to="/competition" />;
+  }
 
   return (
-    <>
-      <Ranks ladderid={ladderid} />
-      <Matches ladderid={ladderid} challenges={true} />
-      <Matches ladderid={ladderid} challenges={false} />
-    </>
+    <section className={style.area}>
+      <section className={style.child}>
+        <Ranks ladderid={id} />
+        <Matches ladderid={id} challenges={true} />
+        <Matches ladderid={id} challenges={false} />
+      </section>
+    </section>
   );
 };
 

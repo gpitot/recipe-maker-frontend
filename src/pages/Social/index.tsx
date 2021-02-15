@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import style from "styles/pages.module.scss";
 import socialStyle from "./style.module.scss";
 
-import Event from "components/Event";
+import BoxLink from "components/BoxLink";
 import API from "rest/api";
 import { IEvent } from "rest/events";
 
@@ -20,7 +20,7 @@ const Social = () => {
       <section className={style.child}>
         <div className={socialStyle.events}>
           {events.map((event) => (
-            <Event {...event} key={event.id} />
+            <BoxLink {...event} key={event.id} link={'/event'} />
           ))}
         </div>
       </section>
