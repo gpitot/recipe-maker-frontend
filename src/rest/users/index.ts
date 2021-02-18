@@ -15,14 +15,6 @@ interface IMeResponse extends IResultResponse {
 }
 
 const api = {
-  refreshUser: () => {
-    return axios
-      .get<null, IJsonResponse<IResultResponse>>(`${BASE_URL}/users/refresh`, {
-        withCredentials: true,
-      })
-      .then((res) => res.data);
-  },
-
   getUser: () => {
     return axios
       .get<null, IJsonResponse<IMeResponse>>(`${BASE_URL}/users/me`, {
