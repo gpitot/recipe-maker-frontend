@@ -22,15 +22,6 @@ const Base = ({ children }: IBase) => (
       <Link to="/shop">SHOP</Link>
     </CTAMenu>
     <section className={style.background}>{children}</section>
-
-    <a
-      href="https://www.tennisvenues.com.au/booking/warringah-recreation-centre-squash"
-      target="_blank"
-      rel="noreferrer"
-      className={style.book}
-    >
-      BOOK A COURT
-    </a>
   </div>
 );
 

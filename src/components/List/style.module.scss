@@ -6,8 +6,6 @@
 
   table {
     width: 100%;
-    display: block;
-    overflow: auto;
 
     @media (min-width: $device-medium) {
       display: table;

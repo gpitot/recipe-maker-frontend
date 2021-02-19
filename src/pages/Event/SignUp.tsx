@@ -56,7 +56,7 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
     });
   };
 
-  const nameList = userEvents.map((event) => [
+  let nameList = userEvents.map((event) => [
     <div className={style.row}>
       <UserRow
         name={`${event.firstname} ${event.lastname}`}
@@ -78,6 +78,12 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
       <Paid paid={event.paid} />
     </div>,
   ]);
+
+  if (nameList.length === 0) {
+    nameList.push([
+      <div className={style.row}>No registrations yet.</div>
+    ])
+  }
 
   return (
     <div className={style.signup}>

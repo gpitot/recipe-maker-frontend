@@ -4,10 +4,6 @@
 .eventArea {
   color: $base-light;
   padding: $unit * 4;
-  h5 {
-    margin: 0;
-    margin-bottom: $unit * 2;
-  }
 }
 .cancelled {
   padding: $unit * 2;
@@ -25,6 +21,7 @@
 
 .titleArea {
   display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
