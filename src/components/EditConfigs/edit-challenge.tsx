@@ -1,7 +1,6 @@
 import React from "react";
 import API from "rest/api";
 import { toast } from "react-toastify";
-import { IUserEvent } from "rest/user_events";
 import Button from "components/Button";
 import { IMatches } from "rest/ladder";
 

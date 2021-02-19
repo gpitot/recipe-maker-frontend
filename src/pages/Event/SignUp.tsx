@@ -80,9 +80,7 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
   ]);
 
   if (nameList.length === 0) {
-    nameList.push([
-      <div className={style.row}>No registrations yet.</div>
-    ])
+    nameList.push([<div className={style.row}>No registrations yet.</div>]);
   }
 
   return (
@@ -91,7 +89,6 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
         <Register
           registerCTA={"Sign up for this event"}
           eventId={event.id}
-          eventName={event.name}
           isFull={isFull}
           userEvents={userEvents}
           setUserEvents={setUserEvents}

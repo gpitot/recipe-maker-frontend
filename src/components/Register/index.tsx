@@ -1,5 +1,5 @@
 import Information from "components/Information";
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import style from "./style.module.scss";
 import { Button } from "@material-ui/core";
 import API from "rest/api";
@@ -10,7 +10,6 @@ import { UserContext } from "contexts/UserContext";
 interface IProps {
   registerCTA: string;
   eventId: number;
-  eventName: string;
   isFull: boolean;
   userEvents: Array<IUserEvent>;
   setUserEvents: (userEvents: Array<IUserEvent>) => void;
@@ -19,14 +18,10 @@ interface IProps {
 const Register = ({
   registerCTA,
   eventId,
-  eventName,
   isFull,
   userEvents,
   setUserEvents,
 }: IProps) => {
-  const [open, setOpen] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-
   const { user } = useContext(UserContext);
   console.log(user);
 
@@ -49,22 +44,13 @@ const Register = ({
           ]);
           console.log([...userEvents]);
         } else {
-          setError(err as string);
-          toast.success("Could not register");
+          toast.error(err);
         }
-        //setOpen(false);
       });
   };
 
   if (isFull) {
     return <Information>This event is full</Information>;
-  }
-
-  if (!open) {
-    if (error) {
-      return <Information>{error}</Information>;
-    }
-    return <Information>Thank you for signing up to {eventName}</Information>;
   }
 
   return (
