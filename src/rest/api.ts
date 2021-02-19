@@ -28,6 +28,11 @@ axios.interceptors.response.use(
 axios.interceptors.request.use(function (config) {
   // Do something before request is sent
   config.headers.preauthurl = window.location.pathname;
+  const authCookie = window.localStorage.getItem("auth-cookie");
+  if (authCookie) {
+    config.headers.authcookie = authCookie;
+  }
+
   return config;
 });
 

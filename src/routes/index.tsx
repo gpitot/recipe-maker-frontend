@@ -8,7 +8,9 @@ import Ladder from "pages/Ladder";
 import Event from "pages/Event";
 import ComingSoon from "pages/ComingSoon";
 import { StylesProvider } from "@material-ui/core/styles";
+import { getCookie } from "auth";
 
+getCookie();
 
 const Routes = () => (
   <Router>
