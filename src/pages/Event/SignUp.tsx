@@ -83,6 +83,15 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
     nameList.push([<div className={style.row}>No registrations yet.</div>]);
   }
 
+  console.log(
+    "isopen",
+    isOpen,
+    "hasstarted",
+    hasStarted,
+    "alreadyregistered",
+    !alreadyRegistered
+  );
+
   return (
     <div className={style.signup}>
       {isOpen && hasStarted && !alreadyRegistered && (
