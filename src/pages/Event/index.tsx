@@ -24,7 +24,7 @@ const Event = () => {
 
   useEffect(() => {
     if (eventid === undefined) return;
-
+    console.log("[state is ", state);
     if (state === undefined) {
       API.events.getEvent(eventid).then((res) => {
         if (res.success) {
