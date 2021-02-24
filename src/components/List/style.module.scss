@@ -6,9 +6,11 @@
 
   table {
     width: 100%;
+    table-layout: fixed;
 
     @media (min-width: $device-medium) {
       display: table;
+      table-layout: initial;
     }
   }
   th {
@@ -30,5 +32,6 @@
   td {
     text-align: center;
     position: relative;
+    overflow: auto;
   }
 }
