@@ -22,6 +22,14 @@ const Base = ({ children }: IBase) => (
       <Link to="/shop">SHOP</Link>
     </CTAMenu>
     <section className={style.background}>{children}</section>
+    <a
+      href="https://northmanlysquashtest2.simplybook.me/v2/#book"
+      target="_blank"
+      rel="noreferrer"
+      className={style.book}
+    >
+      BOOK A COURT
+    </a>
   </div>
 );
 

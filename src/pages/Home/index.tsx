@@ -1,15 +1,13 @@
 import React from "react";
 import style from "./style.module.scss";
 
-import BookingSlots from "components/BookingSlots";
-
 const Home = () => {
   return (
-    <>
-      <section className={style.area}>
-        <BookingSlots />
-      </section>
-    </>
+    <section className={style.area}>
+      <div className={style.video}>
+        <h1>VIDEO GOES HERE</h1>
+      </div>
+    </section>
   );
 };
 
