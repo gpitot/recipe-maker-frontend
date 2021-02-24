@@ -8,8 +8,7 @@ interface IProps {
 }
 
 const EventDate = ({ time, isLight = false }: IProps) => {
-  const date = new Date(time);
-
+  const date = new Date(parseInt(time));
   const minutes =
     date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
 

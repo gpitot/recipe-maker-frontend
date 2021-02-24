@@ -40,8 +40,8 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
   }
   const isFull = spots <= registeredUsers;
 
-  const isOpen = !timeIsAfter(new Date(open));
-  const hasStarted = timeIsAfter(new Date(start));
+  const isOpen = !timeIsAfter(open);
+  const hasStarted = timeIsAfter(start);
   console.log(userEvents, "[g] rerender");
 
   const removeEntry = ({ id }: IUserEvent) => {

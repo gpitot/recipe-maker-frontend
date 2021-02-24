@@ -1,3 +1,3 @@
-export const timeIsAfter = (time: Date) => {
-  return time > new Date();
+export const timeIsAfter = (time: string) => {
+  return new Date(parseInt(time)) > new Date();
 };
