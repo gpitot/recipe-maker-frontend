@@ -91,6 +91,14 @@ const api = {
       });
   },
 
+  getUpcoming: () => {
+    return axios
+      .get<null, IJsonResponse<IMatchesResponse>>(`${LADDER_URL}/upcoming`)
+      .then((res) => {
+        return res.data;
+      });
+  },
+
   getRanks: ({ ladder_id }: { ladder_id: number }) => {
     return axios
       .get<null, IJsonResponse<IRanksResponse>>(

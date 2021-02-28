@@ -9,6 +9,7 @@ import Event from "pages/Event";
 import ComingSoon from "pages/ComingSoon";
 import { StylesProvider } from "@material-ui/core/styles";
 import { getCookie } from "auth";
+import Shop from "pages/Shop";
 
 getCookie();
 
@@ -40,8 +41,7 @@ const Routes = () => (
             <ComingSoon />
           </Route>
           <Route path="/shop">
-            {" "}
-            <ComingSoon />
+            <Shop />
           </Route>
         </Switch>
       </Base>
