@@ -45,3 +45,23 @@
 .background {
   background: $base-blue;
 }
+
+.area {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-bottom: $unit * 5;
+  max-width: 100%;
+  width: 800px;
+  margin: auto;
+  margin-top: $unit * 5;
+
+  @media (min-width: $device-large) {
+    padding-bottom: $unit * 10;
+    max-width: calc(100% - 860px);
+  }
+
+  @media (min-width: $device-medium) {
+    margin-top: $unit * 8;
+  }
+}

@@ -4,7 +4,6 @@ import API from "rest/api";
 import { IEvent } from "rest/events";
 import { IUserEvent } from "rest/user_events";
 import style from "./style.module.scss";
-import pageStyle from "styles/pages.module.scss";
 
 import SignupSheet from "./SignUp";
 import EventDate from "components/EventDate";
@@ -50,25 +49,23 @@ const Event = () => {
   if (event === undefined) return null;
   const { description, enabled, name, start } = event;
   return (
-    <section className={pageStyle.area}>
-      <div className={pageStyle.child}>
-        <div className={style.eventArea}>
-          <div className={style.titleArea}>
-            <h1 className={style.title}>{name}</h1>
-            {enabled === true && <EventDate isLight={true} time={start} />}
-            <h5>{description}</h5>
-            {enabled === false && (
-              <h1 className={style.cancelled}>This event has been cancelled</h1>
-            )}
-          </div>
+    <>
+      <div className={style.eventArea}>
+        <div className={style.titleArea}>
+          <h1 className={style.title}>{name}</h1>
+          {enabled === true && <EventDate isLight={true} time={start} />}
+          <h5>{description}</h5>
+          {enabled === false && (
+            <h1 className={style.cancelled}>This event has been cancelled</h1>
+          )}
         </div>
-        <SignupSheet
-          event={event}
-          userEvents={userEvents}
-          setUserEvents={setUserEvents}
-        />
       </div>
-    </section>
+      <SignupSheet
+        event={event}
+        userEvents={userEvents}
+        setUserEvents={setUserEvents}
+      />
+    </>
   );
 };
 

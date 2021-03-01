@@ -52,25 +52,23 @@ const Home = () => {
   };
 
   return (
-    <section className={style.area}>
-      <div className={style.video}>
-        {upcomingList.length > 0 && (
-          <List
-            title="Upcoming matches"
-            headers={["Challenger", "Opponent", "Time"]}
-            body={upcomingList}
-          />
-        )}
+    <>
+      {upcomingList.length > 0 && (
+        <List
+          title="Upcoming matches"
+          headers={["Challenger", "Opponent", "Time"]}
+          body={upcomingList}
+        />
+      )}
 
-        {events.map(({ name, description, id }) => (
-          <Information styles={style["table-outer"]}>
-            <h3>{name}</h3>
-            <h5>{description}</h5>
-            <Button text={"Sign up now"} handleClick={() => handleSignUp(id)} />
-          </Information>
-        ))}
-      </div>
-    </section>
+      {events.map(({ name, description, id }) => (
+        <Information styles={style["table-outer"]}>
+          <h3>{name}</h3>
+          <h5>{description}</h5>
+          <Button text={"Sign up now"} handleClick={() => handleSignUp(id)} />
+        </Information>
+      ))}
+    </>
   );
 };
 

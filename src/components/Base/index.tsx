@@ -21,7 +21,9 @@ const Base = ({ children }: IBase) => (
       <Link to="/coaching">IMPROVE YOUR PLAY</Link>
       <Link to="/shop">SHOP</Link>
     </CTAMenu>
-    <section className={style.background}>{children}</section>
+    <section className={style.background}>
+      <section className={style.area}>{children}</section>
+    </section>
     <a
       href="https://northmanlysquashtest2.simplybook.me/v2/#book"
       target="_blank"

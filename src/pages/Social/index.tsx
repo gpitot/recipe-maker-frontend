@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import style from "styles/pages.module.scss";
 import socialStyle from "./style.module.scss";
 
 import BoxLink from "components/BoxLink";
@@ -16,15 +15,11 @@ const Social = () => {
   }, []);
 
   return (
-    <section className={style.area}>
-      <section className={style.child}>
-        <div className={socialStyle.events}>
-          {events.map((event) => (
-            <BoxLink {...event} key={event.id} link={'/event'} />
-          ))}
-        </div>
-      </section>
-    </section>
+    <div className={socialStyle.events}>
+      {events.map((event) => (
+        <BoxLink {...event} key={event.id} link={"/event"} />
+      ))}
+    </div>
   );
 };
 
