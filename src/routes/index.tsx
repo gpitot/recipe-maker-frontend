@@ -6,10 +6,11 @@ import Social from "pages/Social";
 import Competition from "pages/Competition";
 import Ladder from "pages/Ladder";
 import Event from "pages/Event";
-import ComingSoon from "pages/ComingSoon";
+
 import { StylesProvider } from "@material-ui/core/styles";
 import { getCookie } from "auth";
 import Shop from "pages/Shop";
+import Coaching from "pages/Coaching";
 
 getCookie();
 
@@ -38,7 +39,7 @@ const Routes = () => (
             <Ladder />
           </Route>
           <Route path="/coaching">
-            <ComingSoon />
+            <Coaching />
           </Route>
           <Route path="/shop">
             <Shop />

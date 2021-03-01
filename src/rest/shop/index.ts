@@ -1,21 +1,40 @@
 import axios from "axios";
-import {
-  IJsonResponse,
-  BASE_URL,
-} from "rest/common";
+import { IJsonResponse, BASE_URL } from "rest/common";
+
+export interface IShop {
+  id: number;
+  name: string;
+  description: string;
+  image: string;
+  category: ShopCategory;
+  price: string;
+  discount: number;
+  stock: number;
+}
+export interface IShopResponse {
+  result: Array<IShop>;
+}
 
 export interface ITransactionsResponse {
-  id: number;
-  item: number;
-  purchaser: string;
-  purchase_date: string;
-  payment_status: string;
+  result: {
+    id: number;
+    item: number;
+    purchaser: string;
+    purchase_date: string;
+    payment_status: string;
+  };
+}
+
+export enum ShopCategory {
+  coaching = "coaching",
 }
 
 const api = {
-  getShop: () => {
+  getShop: (category: ShopCategory) => {
     return axios
-      .get<null, IJsonResponse<ITransactionsResponse>>(`${BASE_URL}/shop`)
+      .get<null, IJsonResponse<IShopResponse>>(
+        `${BASE_URL}/shop?category=${category}`
+      )
       .then((res) => {
         return res.data;
       });
@@ -23,7 +42,9 @@ const api = {
 
   getTransactions: () => {
     return axios
-      .get<null, IJsonResponse<ITransactionsResponse>>(`${BASE_URL}/shop/transactions`)
+      .get<null, IJsonResponse<ITransactionsResponse>>(
+        `${BASE_URL}/shop/transactions`
+      )
       .then((res) => {
         return res.data;
       });
@@ -31,7 +52,9 @@ const api = {
 
   addTransaction: () => {
     return axios
-      .post<null, IJsonResponse<ITransactionsResponse>>(`${BASE_URL}/shop/transactions`)
+      .post<null, IJsonResponse<ITransactionsResponse>>(
+        `${BASE_URL}/shop/transactions`
+      )
       .then((res) => {
         return res.data;
       });
