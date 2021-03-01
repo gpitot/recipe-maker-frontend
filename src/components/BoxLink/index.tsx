@@ -1,6 +1,9 @@
 import React from "react";
 import style from "./style.module.scss";
 import { Link } from "react-router-dom";
+import Information from "components/Information";
+import Button from "components/Button";
+import { useHistory } from "react-router-dom";
 
 interface IProps {
   id: number;
@@ -11,15 +14,17 @@ interface IProps {
 
 const BoxLink = (details: IProps) => {
   const { description, id, name, link } = details;
+  const history = useHistory();
+  const handlePlay = () => {
+    history.push(`${link}/${id}`, details);
+  };
+
   return (
-    <Link
-      to={{ pathname: `${link}/${id}`, state: details }}
-      className={style.event}
-      key={id}
-    >
-      <h2>{name}</h2>
+    <Information styles={style["table-outer"]}>
+      <h3>{name}</h3>
       <h5>{description}</h5>
-    </Link>
+      <Button text={"Play now"} handleClick={handlePlay} />
+    </Information>
   );
 };
 

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import socialStyle from "./style.module.scss";
 
 import BoxLink from "components/BoxLink";
 import API from "rest/api";
@@ -15,11 +14,11 @@ const Social = () => {
   }, []);
 
   return (
-    <div className={socialStyle.events}>
+    <>
       {events.map((event) => (
         <BoxLink {...event} key={event.id} link={"/event"} />
       ))}
-    </div>
+    </>
   );
 };
 

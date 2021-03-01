@@ -1,22 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 
-import style from "./style.module.scss";
 import List from "components/List";
 import UserRow from "components/UserRow";
 import EventDate from "components/EventDate";
-import Information from "components/Information";
 
 import API from "rest/api";
 import { IMatches } from "rest/ladder";
 import { IEvent } from "rest/events";
-import Button from "components/Button";
+import BoxLink from "components/BoxLink";
 
 const Home = () => {
   const [upcomingMatches, setUpcomingMatches] = useState<Array<IMatches>>([]);
   const [events, setEvent] = useState<Array<IEvent>>([]);
-
-  const history = useHistory();
 
   useEffect(() => {
     API.ladder.getUpcoming().then(({ result, success }) => {
@@ -47,10 +42,6 @@ const Home = () => {
     ];
   });
 
-  const handleSignUp = (id: number) => {
-    history.push(`/event/${id}`);
-  };
-
   return (
     <>
       {upcomingList.length > 0 && (
@@ -60,13 +51,8 @@ const Home = () => {
           body={upcomingList}
         />
       )}
-
-      {events.map(({ name, description, id }) => (
-        <Information styles={style["table-outer"]}>
-          <h3>{name}</h3>
-          <h5>{description}</h5>
-          <Button text={"Sign up now"} handleClick={() => handleSignUp(id)} />
-        </Information>
+      {events.map((event) => (
+        <BoxLink {...event} link={"/event"} />
       ))}
     </>
   );
