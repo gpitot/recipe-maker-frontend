@@ -26,6 +26,7 @@ export interface ITransactionsResponse {
 }
 
 export enum ShopCategory {
+  product = "product",
   coaching = "coaching",
 }
 

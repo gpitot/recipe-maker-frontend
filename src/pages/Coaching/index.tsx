@@ -1,19 +1,7 @@
-import React, { useEffect } from "react";
-import API from "rest/api";
+import React from "react";
+import ShopItems from "components/ShopItems";
 import { ShopCategory } from "rest/shop";
 
-const Coaching = () => {
-  useEffect(() => {
-    API.shop.getShop(ShopCategory.coaching).then((res) => {
-      console.log("shop ", res);
-    });
-  }, []);
-
-  return (
-    <section>
-      <h1>Coming soon</h1>
-    </section>
-  );
-};
+const Coaching = () => <ShopItems category={ShopCategory.coaching} />;
 
 export default Coaching;

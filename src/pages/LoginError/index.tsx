@@ -1,10 +1,10 @@
 import React from "react";
 import style from "./style.module.scss";
 
-const ComingSoon = () => (
+const LoginError = () => (
   <section className={style.area}>
-    <h1>Coming soon</h1>
+    <h1>Could not log you in, please try again.</h1>
   </section>
 );
 
-export default ComingSoon;
+export default LoginError;

@@ -11,6 +11,7 @@ import { StylesProvider } from "@material-ui/core/styles";
 import { getCookie } from "auth";
 import Shop from "pages/Shop";
 import Coaching from "pages/Coaching";
+import LoginError from "pages/LoginError";
 
 getCookie();
 
@@ -31,9 +32,6 @@ const Routes = () => (
           <Route exact path="/competition">
             <Competition />
           </Route>
-          {/* <Route path="/competition/:comp">
-            <Competition />
-          </Route> */}
 
           <Route path="/competition/ladder/:ladderid">
             <Ladder />
@@ -43,6 +41,10 @@ const Routes = () => (
           </Route>
           <Route path="/shop">
             <Shop />
+          </Route>
+
+          <Route path="/loginerror">
+            <LoginError />
           </Route>
         </Switch>
       </Base>
