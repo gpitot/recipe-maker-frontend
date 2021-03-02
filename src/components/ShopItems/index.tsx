@@ -5,18 +5,12 @@ import { ShopCategory, IShop } from "rest/shop";
 import style from "./style.module.scss";
 
 const Shop = ({ category }: { category: ShopCategory }) => {
-  const [loading, setLoading] = useState(true);
   const [items, setItems] = useState<Array<IShop>>([]);
 
   useEffect(() => {
-    API.shop
-      .getShop(category)
-      .then((res) => {
-        setItems(res.result);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    API.shop.getShop(category).then((res) => {
+      setItems(res.result);
+    });
   }, [category]);
 
   return (
