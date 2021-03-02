@@ -4,7 +4,7 @@ import style from "./style.module.scss";
 import { IShop } from "rest/shop";
 import Button from "components/Button";
 // import API from "rest/api";
-import PaymentForm from "components/PaymentForm";
+// import PaymentForm from "components/PaymentForm";
 
 const Product = ({ name, image, description, price, discount }: IShop) => {
   // const handleBuy = () => {
@@ -17,7 +17,7 @@ const Product = ({ name, image, description, price, discount }: IShop) => {
       <img src={image} alt={name} />
       <p>{description}</p>
       <Button text={`Buy for $${price}`} handleClick={() => {}} />
-      <PaymentForm />
+      {/* <PaymentForm /> */}
     </div>
   );
 };
