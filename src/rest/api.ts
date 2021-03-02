@@ -31,8 +31,9 @@ axios.interceptors.request.use(function (config) {
   config.headers.preauthurl = window.location.pathname;
   const authCookie = window.localStorage.getItem("auth-cookie");
   if (authCookie) {
-    config.headers.authcookie = authCookie;
+    //config.headers.authcookie = authCookie;
   }
+  config.withCredentials = true;
 
   return config;
 });

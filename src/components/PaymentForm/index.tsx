@@ -8,6 +8,7 @@ import {
   CreditCardSubmitButton,
 } from "react-square-payment-form";
 import "react-square-payment-form/lib/default.css";
+import API from "rest/api";
 
 import CONFIG from "./config";
 
@@ -21,6 +22,9 @@ const PaymentForm = () => {
   ) => {
     //https://developer.squareup.com/docs/api/paymentform/?q=verificationdetails#cardnonceresponsereceived
     console.log(nonce, errors, cardData);
+    API.shop.performPayment(nonce, 100000).then((res) => {
+      console.log(res);
+    });
   };
 
   const createVerificationDetails = () => {
@@ -28,7 +32,7 @@ const PaymentForm = () => {
 
     return {
       amount: "100.00",
-      currencyCode: "USD",
+      currencyCode: "AUD",
       intent: "CHARGE",
       billingContact: {
         familyName: "Smith",
@@ -52,7 +56,7 @@ const PaymentForm = () => {
         applicationId={SANDBOX_APPLICATION_ID}
         locationId={SANDBOX_LOCATION_ID}
         cardNonceResponseReceived={cardNonceResponseReceived}
-        createVerificationDetails={createVerificationDetails}
+        // createVerificationDetails={createVerificationDetails}
       >
         <fieldset className="sq-fieldset">
           <CreditCardNumberInput />

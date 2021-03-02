@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IJsonResponse, BASE_URL } from "rest/common";
+import { IJsonResponse, BASE_URL, commonAxiosConfig } from "rest/common";
 
 export interface IShop {
   id: number;
@@ -55,6 +55,22 @@ const api = {
     return axios
       .post<null, IJsonResponse<ITransactionsResponse>>(
         `${BASE_URL}/shop/transactions`
+      )
+      .then((res) => {
+        return res.data;
+      });
+  },
+
+  performPayment: (nonce: string, amount: number) => {
+    const data = {
+      nonce,
+      amount,
+    };
+    return axios
+      .post<null, IJsonResponse<ITransactionsResponse>>(
+        `${BASE_URL}/shop/payment`,
+        data,
+        commonAxiosConfig
       )
       .then((res) => {
         return res.data;
