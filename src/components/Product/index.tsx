@@ -3,13 +3,13 @@ import style from "./style.module.scss";
 
 import { IShop } from "rest/shop";
 import Button from "components/Button";
-import API from "rest/api";
+// import API from "rest/api";
 import PaymentForm from "components/PaymentForm";
 
 const Product = ({ name, image, description, price, discount }: IShop) => {
-  const handleBuy = () => {
-    //API.shop.addTransaction();
-  };
+  // const handleBuy = () => {
+  //   //API.shop.addTransaction();
+  // };
 
   return (
     <div className={style.product}>

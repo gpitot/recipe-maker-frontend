@@ -27,25 +27,25 @@ const PaymentForm = () => {
     });
   };
 
-  const createVerificationDetails = () => {
-    //https://developer.squareup.com/docs/api/paymentform/?q=verificationdetails#datatype-sqverificationdetails
+  //   const createVerificationDetails = () => {
+  //     //https://developer.squareup.com/docs/api/paymentform/?q=verificationdetails#datatype-sqverificationdetails
 
-    return {
-      amount: "100.00",
-      currencyCode: "AUD",
-      intent: "CHARGE",
-      billingContact: {
-        familyName: "Smith",
-        givenName: "John",
-        email: "jsmith@example.com",
-        country: "AU",
-        city: "London",
-        addressLines: ["1235 Emperor's Gate"],
-        postalCode: "SW7 4JA",
-        phone: "020 7946 0532",
-      },
-    };
-  };
+  //     return {
+  //       amount: "100.00",
+  //       currencyCode: "AUD",
+  //       intent: "CHARGE",
+  //       billingContact: {
+  //         familyName: "Smith",
+  //         givenName: "John",
+  //         email: "jsmith@example.com",
+  //         country: "AU",
+  //         city: "London",
+  //         addressLines: ["1235 Emperor's Gate"],
+  //         postalCode: "SW7 4JA",
+  //         phone: "020 7946 0532",
+  //       },
+  //     };
+  //   };
 
   return (
     <div>

@@ -1,6 +1,5 @@
 import React from "react";
 import style from "./style.module.scss";
-import { Link } from "react-router-dom";
 import Information from "components/Information";
 import Button from "components/Button";
 import { useHistory } from "react-router-dom";
