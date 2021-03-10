@@ -1,47 +1,40 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import classnames from "classnames";
 import { UserContext } from "contexts/UserContext";
 import style from "./style.module.scss";
 import { Link } from "react-router-dom";
-import API from "rest/api";
 
 interface IProps {
   headerScrolled?: boolean;
 }
 
 const User = ({ headerScrolled }: IProps) => {
-  const { user, setUser } = useContext(UserContext);
-
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    API.users
-      .me()
-      .then((res) => {
-        if (res.success) {
-          setUser(res.user);
-        }
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [setUser]);
+  const { user, loading } = useContext(UserContext);
 
   if (loading) return null;
 
   return (
     <div className={style.user}>
-      {user.email ? (
-        <span>{user.email}</span>
+      {user.id ? (
+        <Link
+          to={`/profile/${user.id}`}
+          className={classnames(
+            style.book,
+            style.inner,
+            headerScrolled && style["header-scrolled"]
+          )}
+        >
+          PROFILE
+        </Link>
       ) : (
         <Link
-          to="/create"
+          to="/login"
           className={classnames(
             style.book,
             headerScrolled && style["header-scrolled"]
           )}
         >
-          CREATE ACCOUNT
+          LOGIN
         </Link>
       )}
     </div>

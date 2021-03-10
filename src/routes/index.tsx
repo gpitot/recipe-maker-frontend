@@ -13,6 +13,7 @@ import Coaching from "pages/Coaching";
 import LoginError from "pages/LoginError";
 import Login from "pages/Login";
 import CreateUser from "pages/CreateUser";
+import Profile from "pages/Profile";
 
 const Routes = () => (
   <Router>
@@ -40,6 +41,10 @@ const Routes = () => (
           </Route>
           <Route path="/shop">
             <Shop />
+          </Route>
+
+          <Route path="/profile/:id">
+            <Profile />
           </Route>
 
           <Route path="/login">

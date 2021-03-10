@@ -3,9 +3,9 @@ import { UserContext } from "contexts/UserContext";
 
 const AdminControl = <P extends object>(Component: React.ComponentType<P>) => {
   const AdminComponent = (props: P) => {
-    const { user } = useContext(UserContext);
+    const { user, loading } = useContext(UserContext);
 
-    if (!user.email) return null;
+    if (loading) return null;
     if (user.role !== "admin" && user.role !== "superman") return null;
     return <Component {...props} />;
   };

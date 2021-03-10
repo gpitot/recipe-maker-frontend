@@ -7,7 +7,7 @@ import {
 } from "rest/common";
 
 export interface IUser {
-  email: string;
+  id: number;
   firstname: string;
   lastname: string;
   photo: string;

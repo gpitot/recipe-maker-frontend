@@ -14,7 +14,7 @@ import EventDate from "components/EventDate";
 interface IAcceptProps {
   id: number;
   accepted: boolean;
-  player_2: string;
+  player_2: number;
   user: IUser;
 }
 
@@ -22,8 +22,8 @@ const AcceptChallenge = ({ id, accepted, player_2, user }: IAcceptProps) => {
   const [submitted, setSubmitted] = useState(false);
 
   if (accepted) return <span>Accepted</span>;
-  if (!user.email) return <span>Pending</span>;
-  if (player_2 !== user.email) return <span>Pending</span>;
+  if (!user.id) return <span>Pending</span>;
+  if (player_2 !== user.id) return <span>Pending</span>;
 
   const handleClick = () => {
     API.ladder.challengeAccept({ match_id: id }).then((res) => {
@@ -50,6 +50,7 @@ const Challenges = ({ matches }: IProps) => {
   const body = matches.map((match) => {
     const {
       id,
+      player_1,
       player_1_firstname,
       player_1_photo,
       player_2,
@@ -59,8 +60,16 @@ const Challenges = ({ matches }: IProps) => {
       match_date,
     } = match;
     return [
-      <UserRow name={player_1_firstname} photo={player_1_photo} />,
-      <UserRow name={player_2_firstname} photo={player_2_photo} />,
+      <UserRow
+        id={player_1}
+        name={player_1_firstname}
+        photo={player_1_photo}
+      />,
+      <UserRow
+        id={player_2}
+        name={player_2_firstname}
+        photo={player_2_photo}
+      />,
       <>
         {match_date ? (
           <EventDate time={match_date} />

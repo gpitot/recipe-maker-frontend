@@ -29,12 +29,12 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
   let registeredUsers = 0;
   let alreadyRegistered = false;
   for (let i = 0; i < userEvents.length; i += 1) {
-    const { enabled, email } = userEvents[i];
+    const { enabled, id } = userEvents[i];
     if (enabled) {
       registeredUsers += 1;
     }
 
-    if (enabled && user.email === email) {
+    if (enabled && user.id === id) {
       alreadyRegistered = true;
     }
   }
@@ -58,10 +58,11 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
   let nameList = userEvents.map((event) => [
     <div className={style.row}>
       <UserRow
+        id={event.user_id}
         name={`${event.firstname} ${event.lastname}`}
         photo={event.photo}
       />
-      {user.email === event.email && (
+      {user.id === event.user_id && (
         <Close onClick={() => removeEntry(event)} />
       )}
       <Edit>

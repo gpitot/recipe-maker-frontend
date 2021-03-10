@@ -9,7 +9,7 @@ const URL = `${BASE_URL}/user_events`;
 
 export interface IUserEvent {
   id: number; //user event id
-  email: string;
+  user_id: number;
   firstname: string;
   lastname: string;
   registered: string;

@@ -26,8 +26,7 @@ const EditChallenge = ({ setOpen, id, match_date, accepted }: IProps) => {
     setTime(e.target.value);
   };
 
-  const isDisabled = !(match_date === null && accepted === true);
-
+  if (accepted !== true) return <p>match must first be accepted</p>;
   return (
     <>
       <li>
@@ -40,7 +39,6 @@ const EditChallenge = ({ setOpen, id, match_date, accepted }: IProps) => {
         <Button
           handleClick={handleUpdateChallengeTime}
           text="Add booking time"
-          disabled={isDisabled}
         />
       </li>
     </>

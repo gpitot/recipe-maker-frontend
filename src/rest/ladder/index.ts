@@ -18,8 +18,8 @@ interface ILaddersResponse {
 
 export interface IMatches {
   id: number;
-  player_1: string;
-  player_2: string;
+  player_1: number;
+  player_2: number;
   challenge_date: string;
   match_date: string;
   player_2_games: number;
@@ -41,9 +41,8 @@ interface IMatchesResponse extends IResultResponse {
 }
 
 export interface IRanks {
-  player_id: string;
   recent_change: number;
-  id: string;
+  id: number;
   firstname: string;
   lastname: string;
   photo: string;
@@ -53,14 +52,14 @@ interface IRanksResponse extends IResultResponse {
 }
 
 interface IGetMatchesProps {
-  ladder_id: number;
-  player_id?: string;
+  ladder_id?: number;
+  player_id?: number;
   challenges: boolean;
 }
 
 interface IChallengeUserProps {
   ladder_id: number;
-  player_2: string;
+  player_2: number;
 }
 
 const LADDER_URL = `${BASE_URL}/ladder`;
@@ -79,9 +78,12 @@ const api = {
     player_id,
     challenges = false,
   }: IGetMatchesProps) => {
-    const matchUrl = new URL(`${LADDER_URL}/${ladder_id}/matches`);
+    const matchUrl = new URL(`${LADDER_URL}/matches`);
     if (player_id) {
-      matchUrl.searchParams.set("player_id", player_id);
+      matchUrl.searchParams.set("player_id", player_id.toString());
+    }
+    if (ladder_id) {
+      matchUrl.searchParams.set("ladder_id", ladder_id.toString());
     }
     matchUrl.searchParams.set("challenges", challenges.toString());
     return axios

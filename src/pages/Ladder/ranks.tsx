@@ -18,7 +18,7 @@ const Ranks = ({ ladderid }: IProps) => {
 
   const [loading, setLoading] = useState(true);
   const [ranks, setRanks] = useState<Array<IRanks>>([]);
-  const [challenged, setChallenged] = useState<Array<string>>([]);
+  const [challenged, setChallenged] = useState<Array<number>>([]);
 
   useEffect(() => {
     API.ladder
@@ -33,7 +33,7 @@ const Ranks = ({ ladderid }: IProps) => {
       });
   }, [ladderid]);
 
-  const challengeUser = (player_id: string) => {
+  const challengeUser = (player_id: number) => {
     setChallenged([...challenged, player_id]);
     API.ladder
       .challengeUser({
@@ -58,21 +58,23 @@ const Ranks = ({ ladderid }: IProps) => {
   //   return <Redirect to="/" />;
   // }
 
-  const body = ranks.map(({ player_id, firstname, photo }, rank) => {
+  const body = ranks.map(({ id, firstname, photo }, rank) => {
     return [
       rank + 1,
-      <UserRow name={firstname} photo={photo} />,
+      <UserRow id={id} name={firstname} photo={photo} />,
       <>
-        {user && user.email !== player_id && (
+        {user && user.id !== id && (
           <Button
-            disabled={challenged.includes(player_id)}
-            handleClick={() => challengeUser(player_id)}
+            disabled={challenged.includes(id)}
+            handleClick={() => challengeUser(id)}
             text={"Challenge"}
           />
         )}
       </>,
     ];
   });
+
+  console.log("ranks loading : ", loading);
 
   return (
     <>

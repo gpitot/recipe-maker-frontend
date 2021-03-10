@@ -6,10 +6,11 @@ import Challenges from "pages/Ladder/challenges";
 import Results from "pages/Ladder/results";
 
 interface IProps {
-  ladderid: number;
+  ladderid?: number;
   challenges: boolean;
+  player_id?: number;
 }
-const Matches = ({ ladderid, challenges }: IProps) => {
+const Matches = ({ ladderid, challenges, player_id }: IProps) => {
   const [matches, setMatches] = useState<Array<IMatches>>([]);
 
   useEffect(() => {
@@ -17,13 +18,14 @@ const Matches = ({ ladderid, challenges }: IProps) => {
       .getMatches({
         ladder_id: ladderid,
         challenges,
+        player_id,
       })
       .then((res) => {
         if (res.success) {
           setMatches(res.result);
         }
       });
-  }, [challenges, ladderid]);
+  }, [challenges, ladderid, player_id]);
 
   return (
     <>

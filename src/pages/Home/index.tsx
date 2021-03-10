@@ -29,6 +29,8 @@ const Home = () => {
 
   const upcomingList = upcomingMatches.map((match) => {
     const {
+      player_1,
+      player_2,
       player_1_firstname,
       player_1_photo,
       player_2_firstname,
@@ -36,8 +38,16 @@ const Home = () => {
       match_date,
     } = match;
     return [
-      <UserRow name={player_1_firstname} photo={player_1_photo} />,
-      <UserRow name={player_2_firstname} photo={player_2_photo} />,
+      <UserRow
+        id={player_1}
+        name={player_1_firstname}
+        photo={player_1_photo}
+      />,
+      <UserRow
+        id={player_2}
+        name={player_2_firstname}
+        photo={player_2_photo}
+      />,
       <EventDate time={match_date} />,
     ];
   });
@@ -52,7 +62,7 @@ const Home = () => {
         />
       )}
       {events.map((event) => (
-        <BoxLink {...event} link={"/event"} />
+        <BoxLink {...event} link={"/event"} key={event.id} />
       ))}
     </>
   );
