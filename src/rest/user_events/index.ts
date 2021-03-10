@@ -9,7 +9,7 @@ const URL = `${BASE_URL}/user_events`;
 
 export interface IUserEvent {
   id: number; //user event id
-  user_id: string;
+  email: string;
   firstname: string;
   lastname: string;
   registered: string;
@@ -41,10 +41,7 @@ const api = {
     event: Pick<IUserEvent, "id" | "event_id" | "paid" | "enabled">
   ) => {
     return axios
-      .put<null, IJsonResponse<IResultResponse>>(URL, event, {
-        ...commonAxiosConfig,
-        withCredentials: true,
-      })
+      .put<null, IJsonResponse<IResultResponse>>(URL, event, commonAxiosConfig)
       .then((res) => {
         return res.data;
       });
@@ -52,10 +49,11 @@ const api = {
 
   deleteUserEvent: (event: Pick<IUserEvent, "id">) => {
     return axios
-      .put<null, IJsonResponse<IResultResponse>>(`${URL}/remove`, event, {
-        ...commonAxiosConfig,
-        withCredentials: true,
-      })
+      .put<null, IJsonResponse<IResultResponse>>(
+        `${URL}/remove`,
+        event,
+        commonAxiosConfig
+      )
       .then((res) => {
         return res.data;
       });
@@ -63,10 +61,11 @@ const api = {
 
   addUserEvent: (event: Pick<IUserEvent, "event_id">) => {
     return axios
-      .post<null, IJsonResponse<IUserEventAddedResponse>>(URL, event, {
-        ...commonAxiosConfig,
-        withCredentials: true,
-      })
+      .post<null, IJsonResponse<IUserEventAddedResponse>>(
+        URL,
+        event,
+        commonAxiosConfig
+      )
       .then((res) => {
         return res.data;
       });

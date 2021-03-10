@@ -1,0 +1,21 @@
+@import "styles/colors";
+@import "styles/sizes";
+@import "styles/breakpoints";
+
+.parent {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: $unit * 2;
+
+  label {
+    font-size: 12px;
+    margin-bottom: $unit / 2;
+  }
+
+  input {
+    max-width: 300px;
+    padding: $unit;
+    border: solid 2px black;
+    border-radius: $unit / 2;
+  }
+}

@@ -29,12 +29,12 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
   let registeredUsers = 0;
   let alreadyRegistered = false;
   for (let i = 0; i < userEvents.length; i += 1) {
-    const { enabled, user_id } = userEvents[i];
+    const { enabled, email } = userEvents[i];
     if (enabled) {
       registeredUsers += 1;
     }
 
-    if (enabled && user.id === user_id) {
+    if (enabled && user.email === email) {
       alreadyRegistered = true;
     }
   }
@@ -42,7 +42,6 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
 
   const isOpen = !timeIsAfter(open);
   const hasStarted = timeIsAfter(start);
-  console.log(userEvents, "[g] rerender");
 
   const removeEntry = ({ id }: IUserEvent) => {
     API.userEvents.deleteUserEvent({ id }).then((res) => {
@@ -62,7 +61,7 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
         name={`${event.firstname} ${event.lastname}`}
         photo={event.photo}
       />
-      {user.id === event.user_id && (
+      {user.email === event.email && (
         <Close onClick={() => removeEntry(event)} />
       )}
       <Edit>

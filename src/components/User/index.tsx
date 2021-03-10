@@ -1,44 +1,48 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import classnames from "classnames";
-import API from "rest/api";
 import { UserContext } from "contexts/UserContext";
 import style from "./style.module.scss";
+import { Link } from "react-router-dom";
+import API from "rest/api";
 
 interface IProps {
   headerScrolled?: boolean;
 }
 
 const User = ({ headerScrolled }: IProps) => {
-  const [loading, setLoading] = useState(true);
   const { user, setUser } = useContext(UserContext);
+
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     API.users
-      .getUser()
+      .me()
       .then((res) => {
         if (res.success) {
           setUser(res.user);
         }
       })
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setLoading(false);
+      });
   }, [setUser]);
 
   if (loading) return null;
 
   return (
     <div className={style.user}>
-      {user.id ? (
-        <img src={user.photo} alt="" />
+      {user.email ? (
+        <span>{user.email}</span>
       ) : (
-        <a
-          href={`${process.env.REACT_APP_API_URL}/auth/login/google`}
+        <Link
+          to="/create"
           className={classnames(
             style.book,
             headerScrolled && style["header-scrolled"]
           )}
         >
-          LOGIN
-        </a>
+          CREATE ACCOUNT
+        </Link>
       )}
     </div>
   );

@@ -1,5 +1,10 @@
 import axios from "axios";
-import { IJsonResponse, BASE_URL, IResultResponse } from "rest/common";
+import {
+  IJsonResponse,
+  BASE_URL,
+  IResultResponse,
+  commonAxiosConfig,
+} from "rest/common";
 
 export interface IUser {
   email: string;
@@ -7,20 +12,63 @@ export interface IUser {
   lastname: string;
   photo: string;
   role: string;
-  id?: string;
+  accessToken: string;
 }
 
-interface IMeResponse extends IResultResponse {
+export interface IUserCreate {
+  email: string;
+  firstname: string;
+  lastname: string;
+  password: string;
+  password2: string;
+  photo?: string;
+}
+
+export interface IUserLogin {
+  email: string;
+  password: string;
+}
+
+interface IUserResponse extends IResultResponse {
   user: IUser;
 }
 
 const api = {
-  getUser: () => {
+  me: () => {
     return axios
-      .get<null, IJsonResponse<IMeResponse>>(`${BASE_URL}/users/me`, {
-        withCredentials: true,
+      .get<null, IJsonResponse<IUserResponse>>(`${BASE_URL}/users/me`, {
+        ...commonAxiosConfig,
+        headers: {
+          userCheck: true,
+        },
       })
-      .then((res) => res.data);
+      .then((res) => {
+        return res.data;
+      });
+  },
+
+  login: (data: IUserLogin) => {
+    return axios
+      .post<null, IJsonResponse<IUserResponse>>(
+        `${BASE_URL}/users/login`,
+        data,
+        commonAxiosConfig
+      )
+      .then((res) => {
+        return res.data;
+      });
+  },
+
+  create: (data: IUserCreate) => {
+    return axios
+      .post<null, IJsonResponse<IUserResponse>>(
+        `${BASE_URL}/users/create`,
+        data,
+        commonAxiosConfig
+      )
+      .then((res) => {
+        return res.data;
+      });
   },
 };
 export default api;

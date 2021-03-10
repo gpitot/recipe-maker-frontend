@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./style.module.scss";
 interface IProps {
-  handleClick: () => void;
+  handleClick: (e: any) => void;
   text: string;
   disabled?: boolean;
 }

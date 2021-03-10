@@ -22,8 +22,8 @@ const AcceptChallenge = ({ id, accepted, player_2, user }: IAcceptProps) => {
   const [submitted, setSubmitted] = useState(false);
 
   if (accepted) return <span>Accepted</span>;
-  if (!user.id) return <span>Pending</span>;
-  if (player_2 !== user.id) return <span>Pending</span>;
+  if (!user.email) return <span>Pending</span>;
+  if (player_2 !== user.email) return <span>Pending</span>;
 
   const handleClick = () => {
     API.ladder.challengeAccept({ match_id: id }).then((res) => {
@@ -47,7 +47,6 @@ interface IProps {
 
 const Challenges = ({ matches }: IProps) => {
   const { user } = useContext(UserContext);
-  console.log(matches, "[gg]");
   const body = matches.map((match) => {
     const {
       id,

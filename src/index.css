@@ -9,6 +9,11 @@ body {
   background-color: #211551;
 }
 
+input {
+  font-family: "Russo One", sans-serif;
+  letter-spacing: 1px;
+}
+
 * {
   box-sizing: border-box;
 }

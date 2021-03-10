@@ -63,7 +63,7 @@ const Ranks = ({ ladderid }: IProps) => {
       rank + 1,
       <UserRow name={firstname} photo={photo} />,
       <>
-        {user && user.id !== player_id && (
+        {user && user.email !== player_id && (
           <Button
             disabled={challenged.includes(player_id)}
             handleClick={() => challengeUser(player_id)}

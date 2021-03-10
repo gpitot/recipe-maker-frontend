@@ -116,10 +116,7 @@ const api = {
         {
           player_2,
         },
-        {
-          withCredentials: true,
-          ...commonAxiosConfig,
-        }
+        commonAxiosConfig
       )
       .then((res) => {
         return res.data;
@@ -131,10 +128,7 @@ const api = {
       .put<null, IJsonResponse<IResultResponse>>(
         `${LADDER_URL}/challenge/accept`,
         data,
-        {
-          withCredentials: true,
-          ...commonAxiosConfig,
-        }
+        commonAxiosConfig
       )
       .then((res) => {
         return res.data;
@@ -146,10 +140,7 @@ const api = {
       .put<null, IJsonResponse<IResultResponse>>(
         `${LADDER_URL}/challenge/time`,
         data,
-        {
-          withCredentials: true,
-          ...commonAxiosConfig,
-        }
+        commonAxiosConfig
       )
       .then((res) => {
         return res.data;
@@ -165,10 +156,7 @@ const api = {
       .put<null, IJsonResponse<IResultResponse>>(
         `${LADDER_URL}/challenge/result`,
         data,
-        {
-          withCredentials: true,
-          ...commonAxiosConfig,
-        }
+        commonAxiosConfig
       )
       .then((res) => {
         return res.data;
@@ -180,10 +168,7 @@ const api = {
       .put<null, IJsonResponse<IResultResponse>>(
         `${LADDER_URL}/challenge/approve`,
         data,
-        {
-          withCredentials: true,
-          ...commonAxiosConfig,
-        }
+        commonAxiosConfig
       )
       .then((res) => {
         return res.data;
@@ -195,10 +180,7 @@ const api = {
       .post<null, IJsonResponse<IResultResponse>>(
         `${LADDER_URL}/signup`,
         data,
-        {
-          withCredentials: true,
-          ...commonAxiosConfig,
-        }
+        commonAxiosConfig
       )
       .then((res) => {
         return res.data;

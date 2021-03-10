@@ -25,10 +25,10 @@ const Signup = ({ players, ladder_id }: IProps) => {
   };
 
   const isAlreadySigned = () => {
-    if (!user.id) return false;
+    if (!user.email) return false;
     for (let i = 0; i < players.length; i += 1) {
       const p = players[i];
-      if (p.id === user.id) return true;
+      if (p.id === user.email) return true;
     }
     return false;
   };
