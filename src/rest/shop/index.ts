@@ -10,6 +10,7 @@ export interface IShop {
   price: string;
   discount: number;
   stock: number;
+  link: string;
 }
 export interface IShopResponse {
   result: Array<IShop>;
@@ -51,10 +52,12 @@ const api = {
       });
   },
 
-  addTransaction: () => {
+  addTransaction: (itemId: number) => {
     return axios
       .post<null, IJsonResponse<ITransactionsResponse>>(
-        `${BASE_URL}/shop/transactions`
+        `${BASE_URL}/shop/transactions`,
+        { itemId },
+        commonAxiosConfig
       )
       .then((res) => {
         return res.data;

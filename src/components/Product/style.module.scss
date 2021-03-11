@@ -8,7 +8,14 @@
   background: $base-light;
   padding: $unit * 2;
   border-radius: $unit;
-  margin:$unit * 2;
+  margin: $unit * 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .buyLink {
+    margin: $unit * 2 0;
+  }
 
   h5 {
     margin: $unit 0;

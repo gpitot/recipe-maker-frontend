@@ -25,7 +25,7 @@ const Base = ({ children }: IBase) => (
       <section className={style.area}>{children}</section>
     </section>
     <a
-      href="https://northmanlysquashtest2.simplybook.me/v2/#book"
+      href="https://northmanlysquashwrc.simplybook.me/v2/#book"
       target="_blank"
       rel="noreferrer"
       className={style.book}
