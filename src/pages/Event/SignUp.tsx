@@ -1,6 +1,6 @@
 import List from "components/List";
 import Register from "components/Register";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { IEvent } from "rest/events";
 import { IUserEvent } from "rest/user_events";
 import { timeIsAfter } from "utils/compareTime";
@@ -23,6 +23,8 @@ interface IProps {
 const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
   const { user } = useContext(UserContext);
 
+  const [loadingRemove, setLoadingRemove] = useState(false);
+
   const { enabled, open, start, spots } = event;
   if (userEvents === undefined || enabled === false) return null;
 
@@ -44,15 +46,24 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
   const hasStarted = timeIsAfter(start);
 
   const removeEntry = ({ id }: IUserEvent) => {
-    API.userEvents.deleteUserEvent({ id }).then((res) => {
-      if (res.success) {
-        toast.success("Successfuly removed yourself from this event");
-        const newEvents = [...userEvents].filter((event) => event.id !== id);
-        setUserEvents(newEvents);
-      } else {
+    setLoadingRemove(true);
+    API.userEvents
+      .deleteUserEvent({ id })
+      .then((res) => {
+        if (res.success) {
+          toast.success("Successfuly removed yourself from this event");
+          const newEvents = [...userEvents].filter((event) => event.id !== id);
+          setUserEvents(newEvents);
+        } else {
+          throw Error();
+        }
+      })
+      .catch(() => {
         toast.error("Could not remove yourself from this event");
-      }
-    });
+      })
+      .finally(() => {
+        setLoadingRemove(false);
+      });
   };
 
   let nameList = userEvents.map((event) => [
@@ -62,7 +73,7 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
         name={`${event.firstname} ${event.lastname}`}
         photo={event.photo}
       />
-      {user.id === event.user_id && (
+      {user.id === event.user_id && !loadingRemove && (
         <Close onClick={() => removeEntry(event)} />
       )}
       <Edit>
@@ -82,15 +93,6 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
   if (nameList.length === 0) {
     nameList.push([<div className={style.row}>No registrations yet.</div>]);
   }
-
-  console.log(
-    "isopen",
-    isOpen,
-    "hasstarted",
-    hasStarted,
-    "alreadyregistered",
-    !alreadyRegistered
-  );
 
   return (
     <div className={style.signup}>
