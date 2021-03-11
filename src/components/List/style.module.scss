@@ -4,14 +4,23 @@
 .table-outer {
   margin-top: $unit * 2;
 
+  .scrollerWrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .scroller {
+    position: relative;
+    width: 100%;
+    vertical-align: top;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
   table {
     width: 100%;
-    table-layout: fixed;
-
-    @media (min-width: $device-medium) {
-      display: table;
-      table-layout: initial;
-    }
   }
   th {
     background: $base-dark;

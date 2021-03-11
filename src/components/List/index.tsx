@@ -11,24 +11,29 @@ interface IProps {
 const List = ({ title, headers, body }: IProps) => (
   <Information styles={style["table-outer"]}>
     {title && <h3>{title}</h3>}
-    <table>
-      <thead>
-        <tr>
-          {headers.map((header) => (
-            <th key={header}>{header}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {body.map((row, idx) => (
-          <tr key={idx}>
-            {row.map((col, idx) => (
-              <td key={idx}>{col}</td>
+
+    <div className={style.scrollerWrapper}>
+      <div className={style.scroller}>
+        <table>
+          <thead>
+            <tr>
+              {headers.map((header) => (
+                <th key={header}>{header}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {body.map((row, idx) => (
+              <tr key={idx}>
+                {row.map((col, idx) => (
+                  <td key={idx}>{col}</td>
+                ))}
+              </tr>
             ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </Information>
 );
 
