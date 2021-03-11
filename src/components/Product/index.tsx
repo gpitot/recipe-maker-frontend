@@ -6,14 +6,7 @@ import Button from "components/Button";
 import API from "rest/api";
 import { toast } from "react-toastify";
 
-const Product = ({
-  id,
-  name,
-  image,
-  description,
-  price,
-  link,
-}: IShop) => {
+const Product = ({ id, name, image, description, price, link }: IShop) => {
   const [loading, setLoading] = useState(false);
   const [purchased, setPurchased] = useState(false);
 
