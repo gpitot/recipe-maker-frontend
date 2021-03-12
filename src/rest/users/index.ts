@@ -47,6 +47,17 @@ const api = {
       });
   },
 
+  get: (userid: string) => {
+    return axios
+      .get<null, IJsonResponse<IUserResponse>>(
+        `${BASE_URL}/users/user/${userid}`,
+        commonAxiosConfig
+      )
+      .then((res) => {
+        return res.data;
+      });
+  },
+
   login: (data: IUserLogin) => {
     return axios
       .post<null, IJsonResponse<IUserResponse>>(

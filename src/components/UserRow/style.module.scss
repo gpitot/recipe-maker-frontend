@@ -4,6 +4,10 @@
   display: flex;
   align-items: center;
   color: $base-blue;
+
+  &:hover {
+    color: $base-dark;
+  }
   img {
     max-width: 48px;
     max-height: 48px;
