@@ -3,15 +3,17 @@
 @import "styles/breakpoints";
 
 .date {
-  padding: $unit * 2;
-
   color: $base-light;
   display: inline-block;
-  border-radius: $unit;
   margin: 0 $unit;
 
-  border: solid 2px $base-dark;
   color: $base-dark;
+
+  &.hasBorder {
+    padding: $unit * 2;
+    border-radius: $unit;
+    border: solid 2px $base-dark;
+  }
 
   &.light {
     border: solid 2px $base-light;

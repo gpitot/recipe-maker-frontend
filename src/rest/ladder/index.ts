@@ -54,7 +54,8 @@ interface IRanksResponse extends IResultResponse {
 interface IGetMatchesProps {
   ladder_id?: number;
   player_id?: number;
-  challenges: boolean;
+  challenges?: boolean;
+  waitingForResult?: boolean;
 }
 
 interface IChallengeUserProps {
@@ -77,6 +78,7 @@ const api = {
     ladder_id,
     player_id,
     challenges = false,
+    waitingForResult = false,
   }: IGetMatchesProps) => {
     const matchUrl = new URL(`${LADDER_URL}/matches`);
     if (player_id) {
@@ -86,8 +88,25 @@ const api = {
       matchUrl.searchParams.set("ladder_id", ladder_id.toString());
     }
     matchUrl.searchParams.set("challenges", challenges.toString());
+    matchUrl.searchParams.set("waitingForResult", waitingForResult.toString());
     return axios
       .get<null, IJsonResponse<IMatchesResponse>>(matchUrl.toString())
+      .then((res) => {
+        return res.data;
+      });
+  },
+
+  getAwaitResults: () => {
+    return axios
+      .get<null, IJsonResponse<IMatchesResponse>>(`${LADDER_URL}/awaitresults`)
+      .then((res) => {
+        return res.data;
+      });
+  },
+
+  getAwaitApprovals: () => {
+    return axios
+      .get<null, IJsonResponse<IMatchesResponse>>(`${LADDER_URL}/awaitapprovals`)
       .then((res) => {
         return res.data;
       });

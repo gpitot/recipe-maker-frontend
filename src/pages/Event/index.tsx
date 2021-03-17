@@ -53,7 +53,7 @@ const Event = () => {
       <div className={style.eventArea}>
         <div className={style.titleArea}>
           <h1 className={style.title}>{name}</h1>
-          {enabled === true && <EventDate isLight={true} time={start} />}
+          {enabled === true && <EventDate isLight time={start} hasBorder />}
           <h5>{description}</h5>
           {enabled === false && (
             <h1 className={style.cancelled}>This event has been cancelled</h1>

@@ -68,41 +68,51 @@ const CreateUser = () => {
       <h1>Create an account</h1>
 
       <form>
-        <Input
-          label="Email address"
-          value={form["email"]}
-          handleChange={handleChange}
-          name="email"
-          type="email"
-        />
-        <Input
-          label="First name"
-          value={form["firstname"]}
-          handleChange={handleChange}
-          name="firstname"
-          type="text"
-        />
-        <Input
-          label="Last name"
-          value={form["lastname"]}
-          handleChange={handleChange}
-          name="lastname"
-          type="text"
-        />
-        <Input
-          label="Password"
-          value={form["password"]}
-          handleChange={handleChange}
-          name="password"
-          type="password"
-        />
-        <Input
-          label="Confirm password"
-          value={form["password2"]}
-          handleChange={handleChange}
-          name="password2"
-          type="password"
-        />
+        <div className={style.inputWrapper}>
+          <Input
+            label="Email address"
+            value={form["email"]}
+            handleChange={handleChange}
+            name="email"
+            type="email"
+          />
+        </div>
+        <div className={style.inputWrapper}>
+          <Input
+            label="First name"
+            value={form["firstname"]}
+            handleChange={handleChange}
+            name="firstname"
+            type="text"
+          />
+        </div>
+        <div className={style.inputWrapper}>
+          <Input
+            label="Last name"
+            value={form["lastname"]}
+            handleChange={handleChange}
+            name="lastname"
+            type="text"
+          />
+        </div>
+        <div className={style.inputWrapper}>
+          <Input
+            label="Password"
+            value={form["password"]}
+            handleChange={handleChange}
+            name="password"
+            type="password"
+          />
+        </div>
+        <div className={style.inputWrapper}>
+          <Input
+            label="Confirm password"
+            value={form["password2"]}
+            handleChange={handleChange}
+            name="password2"
+            type="password"
+          />
+        </div>
         <Button text="Create Account" handleClick={handleSubmit} />
       </form>
 

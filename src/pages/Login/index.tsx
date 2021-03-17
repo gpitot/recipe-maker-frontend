@@ -81,22 +81,24 @@ const Login = () => {
       <h1>Log in</h1>
 
       <form>
-        <Input
-          label="Email address"
-          value={form["email"]}
-          handleChange={handleChange}
-          name="email"
-          type="email"
-        />
-
-        <Input
-          label="Password"
-          value={form["password"]}
-          handleChange={handleChange}
-          name="password"
-          type="password"
-        />
-
+        <div className={style.inputWrapper}>
+          <Input
+            label="Email address"
+            value={form["email"]}
+            handleChange={handleChange}
+            name="email"
+            type="email"
+          />
+        </div>
+        <div className={style.inputWrapper}>
+          <Input
+            label="Password"
+            value={form["password"]}
+            handleChange={handleChange}
+            name="password"
+            type="password"
+          />
+        </div>
         <Button text="Log in" handleClick={handleSubmit} />
       </form>
 

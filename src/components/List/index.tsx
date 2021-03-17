@@ -6,9 +6,10 @@ interface IProps {
   headers: Array<string>;
   body: Array<Array<any>>;
   title?: string;
+  columnsInBuilt?: boolean;
 }
 
-const List = ({ title, headers, body }: IProps) => (
+const List = ({ title, headers, body, columnsInBuilt }: IProps) => (
   <Information styles={style["table-outer"]}>
     {title && <h3>{title}</h3>}
 
@@ -23,13 +24,18 @@ const List = ({ title, headers, body }: IProps) => (
             </tr>
           </thead>
           <tbody>
-            {body.map((row, idx) => (
-              <tr key={idx}>
-                {row.map((col, idx) => (
-                  <td key={idx}>{col}</td>
-                ))}
-              </tr>
-            ))}
+            {body.map((row, idx) => {
+              if (columnsInBuilt) {
+                return <tr key={idx}>{row}</tr>;
+              }
+              return (
+                <tr key={idx}>
+                  {row.map((col, idx) => (
+                    <td key={idx}>{col}</td>
+                  ))}
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
