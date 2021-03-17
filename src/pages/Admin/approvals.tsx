@@ -33,6 +33,7 @@ const ResultRow = ({
       .then(({ success }) => {
         if (success) {
           showFlag({
+            isAutoDismiss: true,
             title: "Approved result",
             icon: <SuccessIcon label="success" secondaryColor={G400} />,
             appearance: "success",
@@ -43,6 +44,7 @@ const ResultRow = ({
       })
       .catch((err) => {
         showFlag({
+          isAutoDismiss: true,
           title: "Could not approve result",
           icon: <ErrorIcon label="error" secondaryColor={R400} />,
 

@@ -29,12 +29,14 @@ const Signup = ({ players, ladder_id }: IProps) => {
       .then(({ success }) => {
         if (success) {
           showFlag({
+            isAutoDismiss: true,
             title: "Signed up to ladder",
             icon: <SuccessIcon label="success" secondaryColor={G400} />,
             appearance: "success",
           });
         } else {
           showFlag({
+            isAutoDismiss: true,
             title: "Could not sign up to ladder",
             icon: <ErrorIcon label="error" secondaryColor={R400} />,
 

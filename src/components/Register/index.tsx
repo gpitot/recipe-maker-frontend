@@ -37,6 +37,7 @@ const Register = ({
       .then(({ result, success, err }) => {
         if (success === true) {
           showFlag({
+            isAutoDismiss: true,
             title: "Registered succesfully",
             icon: <SuccessIcon label="success" secondaryColor={G400} />,
             appearance: "success",
@@ -53,6 +54,7 @@ const Register = ({
           console.log([...userEvents]);
         } else {
           showFlag({
+            isAutoDismiss: true,
             title: err,
             icon: <ErrorIcon label="error" secondaryColor={R400} />,
 

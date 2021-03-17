@@ -28,6 +28,7 @@ const EditSocial = ({ setOpen, event, userEvents, setUserEvents }: IProps) => {
       .then((res) => {
         if (res.success) {
           showFlag({
+            isAutoDismiss: true,
             title: "Removed user",
             icon: <SuccessIcon label="success" secondaryColor={G400} />,
             appearance: "success",
@@ -38,6 +39,7 @@ const EditSocial = ({ setOpen, event, userEvents, setUserEvents }: IProps) => {
           setUserEvents(newEvents);
         } else {
           showFlag({
+            isAutoDismiss: true,
             title: "Could not remove user",
             icon: <ErrorIcon label="error" secondaryColor={R400} />,
 
@@ -57,6 +59,7 @@ const EditSocial = ({ setOpen, event, userEvents, setUserEvents }: IProps) => {
       .then((res) => {
         if (res.success) {
           showFlag({
+            isAutoDismiss: true,
             title: `Paid status is now : ${!event.paid}`,
             icon: <SuccessIcon label="success" secondaryColor={G400} />,
             appearance: "success",
@@ -71,6 +74,7 @@ const EditSocial = ({ setOpen, event, userEvents, setUserEvents }: IProps) => {
           setUserEvents(newEvents);
         } else {
           showFlag({
+            isAutoDismiss: true,
             title: "Could not update paid status",
             icon: <ErrorIcon label="error" secondaryColor={R400} />,
 

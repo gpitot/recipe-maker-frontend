@@ -51,6 +51,7 @@ const Login = () => {
             setUser(res.user);
             window.localStorage.setItem("token", res.user.accessToken);
             showFlag({
+              isAutoDismiss: true,
               title: "Logged in",
               icon: <SuccessIcon label="success" secondaryColor={G400} />,
               appearance: "success",
@@ -59,6 +60,7 @@ const Login = () => {
             history.push(path);
           } else {
             showFlag({
+              isAutoDismiss: true,
               title: "Invalid login details",
               icon: <ErrorIcon label="error" secondaryColor={R400} />,
 
@@ -71,6 +73,7 @@ const Login = () => {
         });
     } else {
       showFlag({
+        isAutoDismiss: true,
         title: valid.err,
         icon: <ErrorIcon label="error" secondaryColor={R400} />,
 

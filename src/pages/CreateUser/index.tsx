@@ -42,6 +42,7 @@ const CreateUser = () => {
           setUser(res.user);
           window.localStorage.setItem("token", res.user.accessToken);
           showFlag({
+            isAutoDismiss: true,
             title: "Account created",
             icon: <SuccessIcon label="success" secondaryColor={G400} />,
             appearance: "success",
@@ -49,6 +50,7 @@ const CreateUser = () => {
           history.push("/");
         } else {
           showFlag({
+            isAutoDismiss: true,
             title: "That email address is already in use",
             icon: <ErrorIcon label="error" secondaryColor={R400} />,
 
@@ -58,6 +60,7 @@ const CreateUser = () => {
       });
     } else {
       showFlag({
+        isAutoDismiss: true,
         title: valid.err,
         icon: <ErrorIcon label="error" secondaryColor={R400} />,
 

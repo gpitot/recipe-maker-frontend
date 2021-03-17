@@ -34,6 +34,7 @@ const Profile = () => {
       .catch((err) => {
         console.log(err);
         showFlag({
+          isAutoDismiss: true,
           title: "This user does not exist",
           icon: <ErrorIcon label="error" secondaryColor={R400} />,
 

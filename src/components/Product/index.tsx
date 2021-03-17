@@ -21,6 +21,7 @@ const Product = ({ id, name, image, description, price, link }: IShop) => {
       .addTransaction(id)
       .then((res) => {
         showFlag({
+          isAutoDismiss: true,
           title: "Thank you for shopping with us",
           icon: <SuccessIcon label="success" secondaryColor={G400} />,
           appearance: "success",
@@ -29,6 +30,7 @@ const Product = ({ id, name, image, description, price, link }: IShop) => {
       })
       .catch(() => {
         showFlag({
+          isAutoDismiss: true,
           title: "Something went wrong, try again",
           icon: <ErrorIcon label="error" secondaryColor={R400} />,
 

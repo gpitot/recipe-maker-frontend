@@ -7,18 +7,15 @@ import InfoIcon from "@atlaskit/icon/glyph/info";
 import { useHistory } from "react-router";
 
 const AwaitingResultsNotification = () => {
-  const [results, setResults] = useState<Array<IMatches>>([]);
+  const [_, setResults] = useState<Array<IMatches>>([]);
   const { showFlag } = useFlags();
 
   const history = useHistory();
 
-  const handleClick = () => {
-    history.push("/competition/submit", {
-      results,
-    });
-  };
-
   useEffect(() => {
+    const handleClick = () => {
+      history.push("/competition/submit");
+    };
     API.ladder.getAwaitResults().then(({ success, result }) => {
       if (success) {
         if (result.length > 0) {

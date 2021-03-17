@@ -34,6 +34,7 @@ const AcceptChallenge = ({ id, accepted, player_2, user }: IAcceptProps) => {
     API.ladder.challengeAccept({ match_id: id }).then((res) => {
       if (res.success) {
         showFlag({
+          isAutoDismiss: true,
           title: "Challenge accepted",
           icon: <SuccessIcon label="success" secondaryColor={G400} />,
           appearance: "success",
@@ -41,6 +42,7 @@ const AcceptChallenge = ({ id, accepted, player_2, user }: IAcceptProps) => {
         setSubmitted(true);
       } else {
         showFlag({
+          isAutoDismiss: true,
           title: "Challenge could not be accepted",
           icon: <ErrorIcon label="error" secondaryColor={R400} />,
 

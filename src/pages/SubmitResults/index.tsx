@@ -43,6 +43,7 @@ const ResultRow = ({
     const { player_1_games, player_2_games } = games;
     if (player_1_games !== "3" && player_2_games !== "3") {
       showFlag({
+        isAutoDismiss: true,
         title: "One person must have won 3 games",
         icon: <ErrorIcon label="error" secondaryColor={R400} />,
 
@@ -52,6 +53,7 @@ const ResultRow = ({
     }
     if (player_1_games === "3" && player_2_games === "3") {
       showFlag({
+        isAutoDismiss: true,
         title: "Both people cannot have won 3 games",
         icon: <ErrorIcon label="error" secondaryColor={R400} />,
 
@@ -74,6 +76,7 @@ const ResultRow = ({
         .then(({ success }) => {
           if (success) {
             showFlag({
+              isAutoDismiss: true,
               title: "Result submitted!",
               icon: <SuccessIcon label="success" secondaryColor={G400} />,
               appearance: "success",
@@ -84,6 +87,7 @@ const ResultRow = ({
         })
         .catch(() => {
           showFlag({
+            isAutoDismiss: true,
             title: "Result could not be submitted",
             icon: <ErrorIcon label="error" secondaryColor={R400} />,
 

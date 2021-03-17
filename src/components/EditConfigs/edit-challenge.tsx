@@ -21,12 +21,14 @@ const EditChallenge = ({ setOpen, id, accepted }: IProps) => {
     API.ladder.challengeTime({ match_id: id, time }).then((res) => {
       if (res.success) {
         showFlag({
+          isAutoDismiss: true,
           title: "Updated challenge date",
           icon: <SuccessIcon label="success" secondaryColor={G400} />,
           appearance: "success",
         });
       } else {
         showFlag({
+          isAutoDismiss: true,
           title: "Updated challenge date",
           icon: <ErrorIcon label="error" secondaryColor={R400} />,
 

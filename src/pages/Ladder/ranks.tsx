@@ -49,6 +49,7 @@ const Ranks = ({ ladderid }: IProps) => {
         if (res.success) {
           //show flag
           showFlag({
+            isAutoDismiss: true,
             title: "Challenged player",
             icon: <SuccessIcon label="success" secondaryColor={G400} />,
             appearance: "success",
@@ -60,6 +61,7 @@ const Ranks = ({ ladderid }: IProps) => {
       .catch(() => {
         //error flag
         showFlag({
+          isAutoDismiss: true,
           title: "Could not challenge player",
           icon: <ErrorIcon label="error" secondaryColor={R400} />,
 

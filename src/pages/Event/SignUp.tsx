@@ -58,6 +58,7 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
       .then((res) => {
         if (res.success) {
           showFlag({
+            isAutoDismiss: true,
             title: "Successfuly removed yourself from this event",
             icon: <SuccessIcon label="success" secondaryColor={G400} />,
             appearance: "success",
@@ -70,6 +71,7 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
       })
       .catch(() => {
         showFlag({
+          isAutoDismiss: true,
           title: "Could not remove yourself from this event",
           icon: <ErrorIcon label="error" secondaryColor={R400} />,
 
