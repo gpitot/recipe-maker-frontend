@@ -28,6 +28,9 @@ const ResultRow = ({
     player_2_games: "0",
   });
 
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const { showFlag } = useFlags();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,6 +69,7 @@ const ResultRow = ({
 
   const handleSubmit = () => {
     if (validateGames()) {
+      setLoading(true);
       const { player_1_games, player_2_games } = games;
       API.ladder
         .challengeResult({
@@ -81,6 +85,7 @@ const ResultRow = ({
               icon: <SuccessIcon label="success" secondaryColor={G400} />,
               appearance: "success",
             });
+            setSubmitted(true);
           } else {
             throw Error();
           }
@@ -93,9 +98,14 @@ const ResultRow = ({
 
             appearance: "error",
           });
+        })
+        .finally(() => {
+          setLoading(false);
         });
     }
   };
+
+  if (submitted) return null;
 
   return (
     <>
@@ -136,7 +146,7 @@ const ResultRow = ({
         />
       </td>
       <td>
-        <Button text="Submit" handleClick={handleSubmit} />
+        <Button text="Submit" handleClick={handleSubmit} disabled={loading} />
       </td>
     </>
   );
