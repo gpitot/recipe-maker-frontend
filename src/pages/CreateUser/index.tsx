@@ -1,5 +1,9 @@
 import React, { useState, useContext } from "react";
-import { toast } from "react-toastify";
+import { useFlags } from "@atlaskit/flag";
+import SuccessIcon from "@atlaskit/icon/glyph/check-circle";
+import { G400 } from "@atlaskit/theme/colors";
+import ErrorIcon from "@atlaskit/icon/glyph/error";
+import { R400 } from "@atlaskit/theme/colors";
 import { Link, useHistory } from "react-router-dom";
 
 import { UserContext } from "contexts/UserContext";
@@ -21,6 +25,7 @@ const emptyUser = {
 
 const CreateUser = () => {
   const history = useHistory();
+  const { showFlag } = useFlags();
   const { setUser } = useContext(UserContext);
 
   const [loading, setLoading] = useState(false);
@@ -36,14 +41,28 @@ const CreateUser = () => {
         if (res.success) {
           setUser(res.user);
           window.localStorage.setItem("token", res.user.accessToken);
-          toast.success("Account created");
+          showFlag({
+            title: "Account created",
+            icon: <SuccessIcon label="success" secondaryColor={G400} />,
+            appearance: "success",
+          });
           history.push("/");
         } else {
-          toast.error("That email address is already in use");
+          showFlag({
+            title: "That email address is already in use",
+            icon: <ErrorIcon label="error" secondaryColor={R400} />,
+
+            appearance: "error",
+          });
         }
       });
     } else {
-      toast.error(valid.err);
+      showFlag({
+        title: valid.err,
+        icon: <ErrorIcon label="error" secondaryColor={R400} />,
+
+        appearance: "error",
+      });
     }
   };
 

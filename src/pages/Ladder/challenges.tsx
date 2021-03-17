@@ -6,7 +6,11 @@ import { UserContext } from "contexts/UserContext";
 import { IUser } from "rest/users";
 import Button from "components/Button";
 import API from "rest/api";
-import { toast } from "react-toastify";
+import { useFlags } from "@atlaskit/flag";
+import SuccessIcon from "@atlaskit/icon/glyph/check-circle";
+import { G400 } from "@atlaskit/theme/colors";
+import ErrorIcon from "@atlaskit/icon/glyph/error";
+import { R400 } from "@atlaskit/theme/colors";
 import Edit from "components/Edit";
 import EditChallenge from "components/EditConfigs/edit-challenge";
 import EventDate from "components/EventDate";
@@ -20,6 +24,7 @@ interface IAcceptProps {
 
 const AcceptChallenge = ({ id, accepted, player_2, user }: IAcceptProps) => {
   const [submitted, setSubmitted] = useState(false);
+  const { showFlag } = useFlags();
 
   if (accepted) return <span>Accepted</span>;
   if (!user.id) return <span>Pending</span>;
@@ -28,10 +33,19 @@ const AcceptChallenge = ({ id, accepted, player_2, user }: IAcceptProps) => {
   const handleClick = () => {
     API.ladder.challengeAccept({ match_id: id }).then((res) => {
       if (res.success) {
-        toast.success("Challenge accepted");
+        showFlag({
+          title: "Challenge accepted",
+          icon: <SuccessIcon label="success" secondaryColor={G400} />,
+          appearance: "success",
+        });
         setSubmitted(true);
       } else {
-        toast.error("Challenge could not be accepted");
+        showFlag({
+          title: "Challenge could not be accepted",
+          icon: <ErrorIcon label="error" secondaryColor={R400} />,
+
+          appearance: "error",
+        });
       }
     });
   };

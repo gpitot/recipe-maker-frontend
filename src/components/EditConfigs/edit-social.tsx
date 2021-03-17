@@ -1,8 +1,13 @@
 import React from "react";
 import API from "rest/api";
-import { toast } from "react-toastify";
 import { IUserEvent } from "rest/user_events";
 import Button from "components/Button";
+
+import { useFlags } from "@atlaskit/flag";
+import SuccessIcon from "@atlaskit/icon/glyph/check-circle";
+import { G400 } from "@atlaskit/theme/colors";
+import ErrorIcon from "@atlaskit/icon/glyph/error";
+import { R400 } from "@atlaskit/theme/colors";
 
 interface IProps {
   setOpen: (open: boolean) => void;
@@ -12,6 +17,8 @@ interface IProps {
 }
 
 const EditSocial = ({ setOpen, event, userEvents, setUserEvents }: IProps) => {
+  const { showFlag } = useFlags();
+
   const handleRemove = () => {
     API.userEvents
       .editUserEvent({
@@ -20,13 +27,22 @@ const EditSocial = ({ setOpen, event, userEvents, setUserEvents }: IProps) => {
       })
       .then((res) => {
         if (res.success) {
-          toast.success("Removed user");
+          showFlag({
+            title: "Removed user",
+            icon: <SuccessIcon label="success" secondaryColor={G400} />,
+            appearance: "success",
+          });
           const newEvents = [...userEvents].filter(
             (evt) => evt.id !== event.id
           );
           setUserEvents(newEvents);
         } else {
-          toast.error("Could not remove user");
+          showFlag({
+            title: "Could not remove user",
+            icon: <ErrorIcon label="error" secondaryColor={R400} />,
+
+            appearance: "error",
+          });
         }
       });
     setOpen(false);
@@ -40,7 +56,11 @@ const EditSocial = ({ setOpen, event, userEvents, setUserEvents }: IProps) => {
       })
       .then((res) => {
         if (res.success) {
-          toast.success(`Paid status is now : ${!event.paid}`);
+          showFlag({
+            title: `Paid status is now : ${!event.paid}`,
+            icon: <SuccessIcon label="success" secondaryColor={G400} />,
+            appearance: "success",
+          });
           const newEvents = [...userEvents];
           for (let i = 0; i < newEvents.length; i += 1) {
             if (newEvents[i].id === event.id) {
@@ -50,7 +70,12 @@ const EditSocial = ({ setOpen, event, userEvents, setUserEvents }: IProps) => {
           }
           setUserEvents(newEvents);
         } else {
-          toast.error("Could not update paid status");
+          showFlag({
+            title: "Could not update paid status",
+            icon: <ErrorIcon label="error" secondaryColor={R400} />,
+
+            appearance: "error",
+          });
         }
       });
     setOpen(false);

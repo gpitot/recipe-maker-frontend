@@ -5,14 +5,17 @@ import Matches from "pages/Ladder/matches";
 import Information from "components/Information";
 import API from "rest/api";
 import { IUser } from "rest/users";
-import { toast } from "react-toastify";
-
+import { useFlags } from "@atlaskit/flag";
+import ErrorIcon from "@atlaskit/icon/glyph/error";
+import { R400 } from "@atlaskit/theme/colors";
 interface ParamTypes {
   userid?: string;
 }
 
 const Profile = () => {
   //const history = useHistory();
+  const { showFlag } = useFlags();
+
   const { userid } = useParams<ParamTypes>();
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<IUser | null>(null);
@@ -30,7 +33,12 @@ const Profile = () => {
       })
       .catch((err) => {
         console.log(err);
-        toast.error("This user does not exist");
+        showFlag({
+          title: "This user does not exist",
+          icon: <ErrorIcon label="error" secondaryColor={R400} />,
+
+          appearance: "error",
+        });
       })
       .finally(() => {
         setLoading(false);

@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import API from "rest/api";
-import { toast } from "react-toastify";
+import { useFlags } from "@atlaskit/flag";
+import SuccessIcon from "@atlaskit/icon/glyph/check-circle";
+import { G400 } from "@atlaskit/theme/colors";
+import ErrorIcon from "@atlaskit/icon/glyph/error";
+import { R400 } from "@atlaskit/theme/colors";
+
 import Button from "components/Button";
 import { IMatches } from "rest/ladder";
 
@@ -8,15 +13,25 @@ interface IProps extends IMatches {
   setOpen: (open: boolean) => void;
 }
 
-const EditChallenge = ({ setOpen, id, match_date, accepted }: IProps) => {
+const EditChallenge = ({ setOpen, id, accepted }: IProps) => {
   const [time, setTime] = useState("");
+  const { showFlag } = useFlags();
 
   const handleUpdateChallengeTime = () => {
     API.ladder.challengeTime({ match_id: id, time }).then((res) => {
       if (res.success) {
-        toast.success("Updated challenge date");
+        showFlag({
+          title: "Updated challenge date",
+          icon: <SuccessIcon label="success" secondaryColor={G400} />,
+          appearance: "success",
+        });
       } else {
-        toast.error("Could not update challenge date");
+        showFlag({
+          title: "Updated challenge date",
+          icon: <ErrorIcon label="error" secondaryColor={R400} />,
+
+          appearance: "error",
+        });
       }
     });
     setOpen(false);

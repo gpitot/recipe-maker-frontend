@@ -6,7 +6,11 @@ import { IRanks } from "rest/ladder";
 import List from "components/List";
 import UserRow from "components/UserRow";
 import Button from "components/Button";
-import { toast } from "react-toastify";
+import { useFlags } from "@atlaskit/flag";
+import SuccessIcon from "@atlaskit/icon/glyph/check-circle";
+import { G400 } from "@atlaskit/theme/colors";
+import ErrorIcon from "@atlaskit/icon/glyph/error";
+import { R400 } from "@atlaskit/theme/colors";
 import Signup from "pages/Ladder/signup";
 
 interface IProps {
@@ -15,6 +19,7 @@ interface IProps {
 
 const Ranks = ({ ladderid }: IProps) => {
   const { user } = useContext(UserContext);
+  const { showFlag } = useFlags();
 
   const [loading, setLoading] = useState(true);
   const [ranks, setRanks] = useState<Array<IRanks>>([]);
@@ -43,14 +48,23 @@ const Ranks = ({ ladderid }: IProps) => {
       .then((res) => {
         if (res.success) {
           //show flag
-          toast.success("Challenged player");
+          showFlag({
+            title: "Challenged player",
+            icon: <SuccessIcon label="success" secondaryColor={G400} />,
+            appearance: "success",
+          });
         } else {
           throw Error();
         }
       })
       .catch(() => {
         //error flag
-        toast.error("Could not challenge player");
+        showFlag({
+          title: "Could not challenge player",
+          icon: <ErrorIcon label="error" secondaryColor={R400} />,
+
+          appearance: "error",
+        });
       });
   };
 

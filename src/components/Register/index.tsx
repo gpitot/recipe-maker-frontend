@@ -3,7 +3,11 @@ import React, { useContext } from "react";
 import style from "./style.module.scss";
 import { Button } from "@material-ui/core";
 import API from "rest/api";
-import { toast } from "react-toastify";
+import { useFlags } from "@atlaskit/flag";
+import SuccessIcon from "@atlaskit/icon/glyph/check-circle";
+import { G400 } from "@atlaskit/theme/colors";
+import ErrorIcon from "@atlaskit/icon/glyph/error";
+import { R400 } from "@atlaskit/theme/colors";
 import { IUserEvent } from "rest/user_events";
 import { UserContext } from "contexts/UserContext";
 
@@ -23,7 +27,7 @@ const Register = ({
   setUserEvents,
 }: IProps) => {
   const { user } = useContext(UserContext);
-  console.log(user);
+  const { showFlag } = useFlags();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,7 +36,11 @@ const Register = ({
       .addUserEvent({ event_id: eventId })
       .then(({ result, success, err }) => {
         if (success === true) {
-          toast.success("Registered succesfully");
+          showFlag({
+            title: "Registered succesfully",
+            icon: <SuccessIcon label="success" secondaryColor={G400} />,
+            appearance: "success",
+          });
           setUserEvents([
             ...userEvents,
             {
@@ -44,7 +52,12 @@ const Register = ({
           ]);
           console.log([...userEvents]);
         } else {
-          toast.error(err);
+          showFlag({
+            title: err,
+            icon: <ErrorIcon label="error" secondaryColor={R400} />,
+
+            appearance: "error",
+          });
         }
       });
   };

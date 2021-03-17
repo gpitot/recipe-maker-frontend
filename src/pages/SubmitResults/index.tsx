@@ -7,7 +7,11 @@ import API from "rest/api";
 import { IMatches } from "rest/ladder";
 import Information from "components/Information";
 import Button from "components/Button";
-import { toast } from "react-toastify";
+import { useFlags } from "@atlaskit/flag";
+import SuccessIcon from "@atlaskit/icon/glyph/check-circle";
+import { G400 } from "@atlaskit/theme/colors";
+import ErrorIcon from "@atlaskit/icon/glyph/error";
+import { R400 } from "@atlaskit/theme/colors";
 
 const ResultRow = ({
   id,
@@ -24,6 +28,8 @@ const ResultRow = ({
     player_2_games: "0",
   });
 
+  const { showFlag } = useFlags();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setGames({
       ...games,
@@ -36,11 +42,21 @@ const ResultRow = ({
     //both cannot be 3
     const { player_1_games, player_2_games } = games;
     if (player_1_games !== "3" && player_2_games !== "3") {
-      toast.error("One person must have won 3 games.");
+      showFlag({
+        title: "One person must have won 3 games",
+        icon: <ErrorIcon label="error" secondaryColor={R400} />,
+
+        appearance: "error",
+      });
       return false;
     }
     if (player_1_games === "3" && player_2_games === "3") {
-      toast.error("Both people cannot have won 3 games.");
+      showFlag({
+        title: "Both people cannot have won 3 games",
+        icon: <ErrorIcon label="error" secondaryColor={R400} />,
+
+        appearance: "error",
+      });
       return false;
     }
     return true;
@@ -57,13 +73,22 @@ const ResultRow = ({
         })
         .then(({ success }) => {
           if (success) {
-            toast.success("Result submitted!");
+            showFlag({
+              title: "Result submitted!",
+              icon: <SuccessIcon label="success" secondaryColor={G400} />,
+              appearance: "success",
+            });
           } else {
             throw Error();
           }
         })
         .catch(() => {
-          toast.error("Result could not be submitted");
+          showFlag({
+            title: "Result could not be submitted",
+            icon: <ErrorIcon label="error" secondaryColor={R400} />,
+
+            appearance: "error",
+          });
         });
     }
   };

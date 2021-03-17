@@ -1,5 +1,9 @@
 import React, { useState, useContext } from "react";
-import { toast } from "react-toastify";
+import { useFlags } from "@atlaskit/flag";
+import SuccessIcon from "@atlaskit/icon/glyph/check-circle";
+import { G400 } from "@atlaskit/theme/colors";
+import ErrorIcon from "@atlaskit/icon/glyph/error";
+import { R400 } from "@atlaskit/theme/colors";
 import { useHistory, Link } from "react-router-dom";
 
 import { UserContext } from "contexts/UserContext";
@@ -19,6 +23,7 @@ const emptyUser = {
 
 const Login = () => {
   const history = useHistory();
+  const { showFlag } = useFlags();
 
   const url = new URL(window.location.href);
   const params = new URLSearchParams(url.search);
@@ -45,18 +50,32 @@ const Login = () => {
           if (res.success) {
             setUser(res.user);
             window.localStorage.setItem("token", res.user.accessToken);
-            toast.success("Logged in");
+            showFlag({
+              title: "Logged in",
+              icon: <SuccessIcon label="success" secondaryColor={G400} />,
+              appearance: "success",
+            });
 
             history.push(path);
           } else {
-            toast.error("Invalid login details");
+            showFlag({
+              title: "Invalid login details",
+              icon: <ErrorIcon label="error" secondaryColor={R400} />,
+
+              appearance: "error",
+            });
           }
         })
         .finally(() => {
           setLoading(false);
         });
     } else {
-      toast.error(valid.err);
+      showFlag({
+        title: valid.err,
+        icon: <ErrorIcon label="error" secondaryColor={R400} />,
+
+        appearance: "error",
+      });
     }
   };
 

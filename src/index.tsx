@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Contexts from "contexts/index";
 import reportWebVitals from "./reportWebVitals";
-import "@atlaskit/css-reset/dist/bundle.css";
 import "./index.css";
 
 ReactDOM.render(

@@ -1,7 +1,11 @@
 import React, { useState, useContext } from "react";
 import API from "rest/api";
 import { IRanks } from "rest/ladder";
-import { toast } from "react-toastify";
+import { useFlags } from "@atlaskit/flag";
+import SuccessIcon from "@atlaskit/icon/glyph/check-circle";
+import { G400 } from "@atlaskit/theme/colors";
+import ErrorIcon from "@atlaskit/icon/glyph/error";
+import { R400 } from "@atlaskit/theme/colors";
 import { UserContext } from "contexts/UserContext";
 import Button from "components/Button";
 import style from "./style.module.scss";
@@ -12,6 +16,8 @@ interface IProps {
 }
 
 const Signup = ({ players, ladder_id }: IProps) => {
+  const { showFlag } = useFlags();
+
   const { user } = useContext(UserContext);
 
   const [loading, setLoading] = useState(false);
@@ -22,9 +28,18 @@ const Signup = ({ players, ladder_id }: IProps) => {
       .signUp({ ladder_id })
       .then(({ success }) => {
         if (success) {
-          toast.success("Signed up to ladder");
+          showFlag({
+            title: "Signed up to ladder",
+            icon: <SuccessIcon label="success" secondaryColor={G400} />,
+            appearance: "success",
+          });
         } else {
-          toast.error("Could not sign up");
+          showFlag({
+            title: "Could not sign up to ladder",
+            icon: <ErrorIcon label="error" secondaryColor={R400} />,
+
+            appearance: "error",
+          });
         }
       })
       .finally(() => {

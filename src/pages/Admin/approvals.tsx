@@ -7,7 +7,11 @@ import API from "rest/api";
 import { IMatches } from "rest/ladder";
 import Information from "components/Information";
 import Button from "components/Button";
-import { toast } from "react-toastify";
+import { useFlags } from "@atlaskit/flag";
+import SuccessIcon from "@atlaskit/icon/glyph/check-circle";
+import { G400 } from "@atlaskit/theme/colors";
+import ErrorIcon from "@atlaskit/icon/glyph/error";
+import { R400 } from "@atlaskit/theme/colors";
 
 const ResultRow = ({
   id,
@@ -21,18 +25,29 @@ const ResultRow = ({
   player_2_games,
   match_date,
 }: IMatches) => {
+  const { showFlag } = useFlags();
+
   const handleSubmit = () => {
     API.ladder
       .challengeApprove({ match_id: id })
       .then(({ success }) => {
         if (success) {
-          toast.success("Approved result");
+          showFlag({
+            title: "Approved result",
+            icon: <SuccessIcon label="success" secondaryColor={G400} />,
+            appearance: "success",
+          });
         } else {
           throw Error();
         }
       })
       .catch((err) => {
-        toast.error("Could not approve result");
+        showFlag({
+          title: "Could not approve result",
+          icon: <ErrorIcon label="error" secondaryColor={R400} />,
+
+          appearance: "error",
+        });
       });
   };
 

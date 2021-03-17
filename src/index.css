@@ -21,3 +21,8 @@ input {
 .sq-payment-form {
   max-width: 100%;
 }
+
+.atlaskit-portal {
+  font-size: 14px;
+  font-weight:200;
+}

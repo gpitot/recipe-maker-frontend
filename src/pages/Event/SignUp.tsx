@@ -8,7 +8,11 @@ import style from "./style.module.scss";
 import { UserContext } from "contexts/UserContext";
 import API from "rest/api";
 import UserRow from "components/UserRow";
-import { toast } from "react-toastify";
+import { useFlags } from "@atlaskit/flag";
+import SuccessIcon from "@atlaskit/icon/glyph/check-circle";
+import { G400 } from "@atlaskit/theme/colors";
+import ErrorIcon from "@atlaskit/icon/glyph/error";
+import { R400 } from "@atlaskit/theme/colors";
 import Edit from "components/Edit";
 import EditSocial from "components/EditConfigs/edit-social";
 import Paid from "components/Paid";
@@ -21,6 +25,8 @@ interface IProps {
 }
 
 const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
+  const { showFlag } = useFlags();
+
   const { user } = useContext(UserContext);
 
   const [loadingRemove, setLoadingRemove] = useState(false);
@@ -51,7 +57,11 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
       .deleteUserEvent({ id })
       .then((res) => {
         if (res.success) {
-          toast.success("Successfuly removed yourself from this event");
+          showFlag({
+            title: "Successfuly removed yourself from this event",
+            icon: <SuccessIcon label="success" secondaryColor={G400} />,
+            appearance: "success",
+          });
           const newEvents = [...userEvents].filter((event) => event.id !== id);
           setUserEvents(newEvents);
         } else {
@@ -59,7 +69,12 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
         }
       })
       .catch(() => {
-        toast.error("Could not remove yourself from this event");
+        showFlag({
+          title: "Could not remove yourself from this event",
+          icon: <ErrorIcon label="error" secondaryColor={R400} />,
+
+          appearance: "error",
+        });
       })
       .finally(() => {
         setLoadingRemove(false);
