@@ -106,7 +106,9 @@ const api = {
 
   getAwaitApprovals: () => {
     return axios
-      .get<null, IJsonResponse<IMatchesResponse>>(`${LADDER_URL}/awaitapprovals`)
+      .get<null, IJsonResponse<IMatchesResponse>>(
+        `${LADDER_URL}/awaitapprovals`
+      )
       .then((res) => {
         return res.data;
       });
