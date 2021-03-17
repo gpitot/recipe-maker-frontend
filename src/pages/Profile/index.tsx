@@ -44,7 +44,7 @@ const Profile = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, [userid]);
+  }, [userid, showFlag]);
 
   if (loading || !user) return null;
 

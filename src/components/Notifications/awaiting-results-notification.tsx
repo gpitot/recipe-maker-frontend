@@ -7,7 +7,7 @@ import InfoIcon from "@atlaskit/icon/glyph/info";
 import { useHistory } from "react-router";
 
 const AwaitingResultsNotification = () => {
-  const [_, setResults] = useState<Array<IMatches>>([]);
+  const [, setResults] = useState<Array<IMatches>>([]);
   const { showFlag } = useFlags();
 
   const history = useHistory();

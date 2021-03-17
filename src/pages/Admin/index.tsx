@@ -1,5 +1,5 @@
 import Approvals from "pages/Admin/approvals";
-import React, { useEffect } from "react";
+import React from "react";
 import AdminControl from "components/AdminControl";
 
 const Admin = () => {
