@@ -8,7 +8,6 @@
 }
 
 .base {
-  background: $base-blue;
   min-height: 520px;
   padding-bottom: 60px;
 
@@ -40,10 +39,6 @@
   @media (min-width: $device-medium) {
     font-size: 3rem;
   }
-}
-
-.background {
-  background: $base-blue;
 }
 
 .area {

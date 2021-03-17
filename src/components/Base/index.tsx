@@ -23,7 +23,8 @@ const Base = ({ children }: IBase) => (
       <section className={style.area}>{children}</section>
     </section>
     <a
-      href="https://northmanlysquashwrc.simplybook.me/v2/#book"
+      //href="https://northmanlysquashwrc.simplybook.me/v2/#book"
+      href="http://www.tennisvenues.com.au/booking/warringah-recreation-centre-squash"
       target="_blank"
       rel="noreferrer"
       className={style.book}

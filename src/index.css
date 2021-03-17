@@ -7,6 +7,12 @@ body {
   font-family: "Russo One", sans-serif;
   letter-spacing: 1px;
   background-color: #211551;
+  background: linear-gradient(
+    135deg,
+    rgba(33, 21, 81, 1) 0%,
+    rgba(32, 70, 137, 1) 100%
+  );
+  min-height: 100vh;
 }
 
 input {
@@ -24,5 +30,5 @@ input {
 
 .atlaskit-portal {
   font-size: 14px;
-  font-weight:200;
+  font-weight: 200;
 }
