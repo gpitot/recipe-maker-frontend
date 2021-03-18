@@ -17,6 +17,7 @@ import style from "./style.module.scss";
 
 const emptyUser = {
   email: "",
+  phone: "",
   firstname: "",
   lastname: "",
   password: "",
@@ -56,6 +57,7 @@ const CreateUser = () => {
 
             appearance: "error",
           });
+          setLoading(false);
         }
       });
     } else {
@@ -97,6 +99,15 @@ const CreateUser = () => {
             handleChange={handleChange}
             name="email"
             type="email"
+          />
+        </div>
+        <div className={style.inputWrapper}>
+          <Input
+            label="Phone"
+            value={form["phone"]}
+            handleChange={handleChange}
+            name="phone"
+            type="text"
           />
         </div>
         <div className={style.inputWrapper}>

@@ -22,6 +22,7 @@ export interface IUserCreate {
   password: string;
   password2: string;
   photo?: string;
+  phone: string;
 }
 
 export interface IUserLogin {
