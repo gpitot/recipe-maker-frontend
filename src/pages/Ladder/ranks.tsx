@@ -55,7 +55,13 @@ const Ranks = ({ ladderid }: IProps) => {
             appearance: "success",
           });
         } else {
-          throw Error();
+          showFlag({
+            isAutoDismiss: true,
+            title: res.err,
+            icon: <ErrorIcon label="error" secondaryColor={R400} />,
+
+            appearance: "error",
+          });
         }
       })
       .catch(() => {

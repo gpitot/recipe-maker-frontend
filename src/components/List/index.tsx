@@ -23,20 +23,22 @@ const List = ({ title, headers, body, columnsInBuilt }: IProps) => (
               ))}
             </tr>
           </thead>
-          <tbody>
-            {body.map((row, idx) => {
-              if (columnsInBuilt) {
-                return <tr key={idx}>{row}</tr>;
-              }
-              return (
-                <tr key={idx}>
-                  {row.map((col, idx) => (
-                    <td key={idx}>{col}</td>
-                  ))}
-                </tr>
-              );
-            })}
-          </tbody>
+          {body.length > 0 && (
+            <tbody>
+              {body.map((row, idx) => {
+                if (columnsInBuilt) {
+                  return <tr key={idx}>{row}</tr>;
+                }
+                return (
+                  <tr key={idx}>
+                    {row.map((col, idx) => (
+                      <td key={idx}>{col}</td>
+                    ))}
+                  </tr>
+                );
+              })}
+            </tbody>
+          )}
         </table>
       </div>
     </div>

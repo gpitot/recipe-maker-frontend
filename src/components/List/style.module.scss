@@ -1,6 +1,8 @@
 @import "styles/colors";
 @import "styles/sizes";
 @import "styles/breakpoints";
+@import "styles/animations";
+
 .table-outer {
   margin-top: $unit * 2;
 
@@ -25,6 +27,10 @@
   th {
     background: $base-dark;
     color: $base-light;
+  }
+
+  tbody {
+    animation: fadeIn 200ms ease, expandHorizontal 200ms ease-in-out;
   }
 
   td,
