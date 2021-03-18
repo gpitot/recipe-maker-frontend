@@ -60,6 +60,7 @@ const Notifications = () => {
             description,
             actions,
             onDismissed: () => acknowledgeFlag(id),
+            isAutoDismiss: true,
           });
         }
       );
