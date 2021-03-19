@@ -13,13 +13,21 @@
   font-family: "Russo One";
   letter-spacing: 1px;
   transition: all 300ms ease;
+  text-decoration: none;
+  display: inline-block;
 
-  &:hover:enabled {
+  &:hover {
     background: $base-light;
     color: $base-dark;
   }
 
+  &:hover:disabled {
+    background: gray;
+    color: $base-light;
+  }
+
   &:disabled {
     background: gray;
+    color: $base-light;
   }
 }

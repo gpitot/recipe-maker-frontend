@@ -16,6 +16,7 @@ import CreateUser from "pages/CreateUser";
 import Profile from "pages/Profile";
 import Admin from "pages/Admin";
 import Notifications from "components/Notifications";
+import DinnerParty from "pages/Custom/DinnerParty";
 
 const Routes = () => (
   <Router>
@@ -68,6 +69,11 @@ const Routes = () => (
 
         <Route path="/admin">
           <Admin />
+        </Route>
+
+        {/* custom routes */}
+        <Route path="/special-event/dinner-party">
+          <DinnerParty />
         </Route>
       </Switch>
     </Base>
