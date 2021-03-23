@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { UserContext } from "contexts/UserContext";
+import { LadderContext } from "contexts/LadderContext";
 
 import API from "rest/api";
 import { IRanks } from "rest/ladder";
@@ -19,6 +20,7 @@ interface IProps {
 
 const Ranks = ({ ladderid }: IProps) => {
   const { user } = useContext(UserContext);
+  const { loadRanks } = useContext(LadderContext);
   const { showFlag } = useFlags();
 
   const [loading, setLoading] = useState(true);
@@ -26,17 +28,15 @@ const Ranks = ({ ladderid }: IProps) => {
   const [challenged, setChallenged] = useState<Array<number>>([]);
 
   useEffect(() => {
-    API.ladder
-      .getRanks({
-        ladder_id: ladderid,
+    if (!loading) return;
+    loadRanks(ladderid)
+      .then((ranks) => {
+        setRanks(ranks);
       })
-      .then((res) => {
-        if (res.success) {
-          setRanks(res.result);
-          setLoading(false);
-        }
+      .finally(() => {
+        setLoading(false);
       });
-  }, [ladderid]);
+  }, [loading, loadRanks, ladderid]);
 
   const challengeUser = (player_id: number) => {
     setChallenged([...challenged, player_id]);
