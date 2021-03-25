@@ -7,8 +7,6 @@ import { G400 } from "@atlaskit/theme/colors";
 import ErrorIcon from "@atlaskit/icon/glyph/error";
 import { R400 } from "@atlaskit/theme/colors";
 import { UserContext } from "contexts/UserContext";
-import { LadderContext } from "contexts/LadderContext";
-
 import Button from "components/Button";
 import style from "./style.module.scss";
 
@@ -19,7 +17,6 @@ interface IProps {
 
 const Signup = ({ players, ladder_id }: IProps) => {
   const { showFlag } = useFlags();
-  const { updateRanks } = useContext(LadderContext);
 
   const { user } = useContext(UserContext);
 

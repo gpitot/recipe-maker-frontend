@@ -28,14 +28,15 @@ const Ranks = ({ ladderid }: IProps) => {
   const [challenged, setChallenged] = useState<Array<number>>([]);
 
   useEffect(() => {
+    if (!loading) return;
     loadRanks(ladderid)
-      .then(({ data }) => {
-        setRanks(data);
+      .then((ranks) => {
+        setRanks(ranks);
       })
       .finally(() => {
         setLoading(false);
       });
-  }, [loadRanks, ladderid]);
+  }, [loading, loadRanks, ladderid]);
 
   const challengeUser = (player_id: number) => {
     setChallenged([...challenged, player_id]);

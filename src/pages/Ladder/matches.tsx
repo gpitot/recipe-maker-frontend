@@ -18,6 +18,8 @@ const Matches = ({ ladderid, challenges, player_id }: IProps) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!loading) return;
+    console.log("[g] useeffect called");
     if (player_id) {
       API.ladder
         .getMatches({
@@ -36,14 +38,14 @@ const Matches = ({ ladderid, challenges, player_id }: IProps) => {
     if (ladderid) {
       if (challenges) {
         loadChallenges(ladderid)
-          .then(({ data }) => {
-            setMatches(data);
+          .then((matches) => {
+            setMatches(matches);
           })
           .finally(() => setLoading(false));
       } else {
         loadResults(ladderid)
-          .then(({ data }) => {
-            setMatches(data);
+          .then((matches) => {
+            setMatches(matches);
           })
           .finally(() => setLoading(false));
       }
