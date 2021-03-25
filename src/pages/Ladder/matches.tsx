@@ -1,6 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
-import { LadderContext } from "contexts/LadderContext";
-
+import React, { useEffect, useState } from "react";
 import API from "rest/api";
 import { IMatches } from "rest/ladder";
 
@@ -13,44 +11,21 @@ interface IProps {
   player_id?: number;
 }
 const Matches = ({ ladderid, challenges, player_id }: IProps) => {
-  const { loadChallenges, loadResults } = useContext(LadderContext);
   const [matches, setMatches] = useState<Array<IMatches>>([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!loading) return;
-    console.log("[g] useeffect called");
-    if (player_id) {
-      API.ladder
-        .getMatches({
-          ladder_id: ladderid,
-          challenges,
-          player_id,
-        })
-        .then((res) => {
-          if (res.success) {
-            setMatches(res.result);
-          }
-        })
-        .finally(() => setLoading(false));
-      return;
-    }
-    if (ladderid) {
-      if (challenges) {
-        loadChallenges(ladderid)
-          .then((matches) => {
-            setMatches(matches);
-          })
-          .finally(() => setLoading(false));
-      } else {
-        loadResults(ladderid)
-          .then((matches) => {
-            setMatches(matches);
-          })
-          .finally(() => setLoading(false));
-      }
-    }
-  }, [loading, loadChallenges, loadResults, challenges, ladderid, player_id]);
+    API.ladder
+      .getMatches({
+        ladder_id: ladderid,
+        challenges,
+        player_id,
+      })
+      .then((res) => {
+        if (res.success) {
+          setMatches(res.result);
+        }
+      });
+  }, [challenges, ladderid, player_id]);
 
   return (
     <>
