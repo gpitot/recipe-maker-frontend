@@ -2,133 +2,225 @@ import React, { useCallback, createContext, useState } from "react";
 import API from "rest/api";
 import { IRanks, IMatches } from "rest/ladder";
 
+interface IMatchState {
+  [key: number]: IMatchObject;
+}
+
+interface IMatchObject {
+  data: Array<IMatches>;
+  loading: boolean;
+  lastLoaded: number;
+}
+
+interface IRanksState {
+  [key: number]: IRanksObject;
+}
+
+interface IRanksObject {
+  data: Array<IRanks>;
+  loading: boolean;
+  lastLoaded: number;
+}
+
+const DATA_REFRESH_INTERVAL = 60000; // 1 minute
+
 const defaultLadderContext = {
-  loadRanks: (ladderId: number): Promise<Array<IRanks>> => Promise.resolve([]),
-  loadChallenges: (ladderId: number): Promise<Array<IMatches>> =>
-    Promise.resolve([]),
-  loadResults: (ladderId: number): Promise<Array<IMatches>> =>
-    Promise.resolve([]),
-  updateLadder: (ladderId: number, key: LadderKey, values: object): void =>
-    undefined,
+  loadRanks: (ladderId: number): Promise<IRanksObject> =>
+    Promise.resolve({
+      data: [],
+      loading: false,
+      lastLoaded: 0,
+    }),
+  loadChallenges: (ladderId: number): Promise<IMatchObject> =>
+    Promise.resolve({
+      data: [],
+      loading: false,
+      lastLoaded: 0,
+    }),
+  loadResults: (ladderId: number): Promise<IMatchObject> =>
+    Promise.resolve({
+      data: [],
+      loading: false,
+      lastLoaded: 0,
+    }),
+
+  updateRanks: (
+    ladderId: number,
+    data: Array<IRanks>,
+    loading = false
+  ): IRanksObject => ({
+    data: [],
+    loading: false,
+    lastLoaded: 0,
+  }),
+
+  updateChallenges: (
+    ladderId: number,
+    data: Array<IMatches>,
+    loading = false
+  ): IMatchObject => ({
+    data: [],
+    loading: false,
+    lastLoaded: 0,
+  }),
+
+  updateResults: (
+    ladderId: number,
+    data: Array<IMatches>,
+    loading = false
+  ): IMatchObject => ({
+    data: [],
+    loading: false,
+    lastLoaded: 0,
+  }),
 };
-
-interface ILaddersState {
-  [key: number]: {
-    name: string;
-    description: string;
-    ranks: Array<IRanks> | null;
-    challenges: Array<IMatches> | null;
-    results: Array<IMatches> | null;
-  };
-}
-
-interface IDataState {
-  [ladderId: number]: {
-    data: Array<IRanks>;
-    loading: boolean;
-    lastLoaded: number;
-  };
-}
-
-type LadderKey = "ranks" | "challenges" | "results";
 
 const LadderContext = createContext(defaultLadderContext);
 
 const LadderProvider = ({ children }: { children: React.ReactNode }) => {
-  const [ladders, setLadders] = useState<ILaddersState>({});
+  const [ranks, setRanks] = useState<IRanksState>({});
+  const [challenges, setChallenges] = useState<IMatchState>({});
+  const [results, setResults] = useState<IMatchState>({});
 
-  const [ranks, setRanks] = useState<IDataState>({});
-  const [challenges, setChallenges] = useState<IDataState>({});
-  const [matches, setMatches] = useState<IDataState>({});
+  const updateRanks = (
+    ladderId: number,
+    data: Array<IRanks>,
+    loading = false
+  ): IRanksObject => {
+    const lastLoaded = Date.now();
+    setRanks({
+      ...ranks,
+      [ladderId]: {
+        data,
+        loading,
+        lastLoaded,
+      },
+    });
+    return {
+      data,
+      loading,
+      lastLoaded,
+    };
+  };
 
-  const updateLadder = useCallback(
-    (ladderId: number, key: LadderKey, values: object): void => {
-      setLadders({
-        ...ladders,
-        [ladderId]: {
-          ...ladders[ladderId],
-          [key]: values,
-        },
-      });
-    },
-    [ladders]
-  );
+  const updateChallenges = (
+    ladderId: number,
+    data: Array<IMatches>,
+    loading = false
+  ): IMatchObject => {
+    const lastLoaded = Date.now();
+    setChallenges({
+      ...challenges,
+      [ladderId]: {
+        data,
+        loading,
+        lastLoaded,
+      },
+    });
+    return {
+      data,
+      loading,
+      lastLoaded,
+    };
+  };
 
-  const loadRanks = useCallback(
-    (ladderId: number): Promise<Array<IRanks>> => {
-      return new Promise((resolve, reject) => {
-        try {
-          const ranks = ladders[ladderId].ranks as Array<IRanks>;
-          if (ranks !== undefined) {
-            return resolve(ranks);
+  const updateResults = (
+    ladderId: number,
+    data: Array<IMatches>,
+    loading = false
+  ): IMatchObject => {
+    const lastLoaded = Date.now();
+    setResults({
+      ...results,
+      [ladderId]: {
+        data,
+        loading,
+        lastLoaded,
+      },
+    });
+    return {
+      data,
+      loading,
+      lastLoaded,
+    };
+  };
+
+  const loadRanks = (ladderId: number): Promise<IRanksObject> => {
+    return new Promise((resolve, reject) => {
+      let oldData: Array<IRanks> = [];
+      if (ranks[ladderId]) {
+        const { data, loading, lastLoaded } = ranks[ladderId];
+        oldData = data;
+        if (loading) return resolve(ranks[ladderId]);
+
+        if (Date.now() - lastLoaded < DATA_REFRESH_INTERVAL) {
+          return resolve(ranks[ladderId]);
+        }
+      }
+
+      updateRanks(ladderId, oldData, true);
+      //api
+      API.ladder
+        .getRanks({
+          ladder_id: ladderId,
+        })
+        .then(({ success, result }) => {
+          if (success) {
+            return resolve(updateRanks(ladderId, result));
           }
-        } catch (e) {}
+        })
+        .catch(() => {
+          reject();
+        });
+    });
+  };
 
-        //api
-        API.ladder
-          .getRanks({
-            ladder_id: ladderId,
-          })
-          .then(({ success, result }) => {
-            if (success) {
-              updateLadder(ladderId, "ranks", result);
-              return resolve(result);
-            }
-          })
-          .catch(() => {
-            reject();
-          });
-      });
-    },
-    [updateLadder, ladders]
-  );
+  const loadMatches = (
+    ladderId: number,
+    matchType: boolean
+  ): Promise<IMatchObject> => {
+    return new Promise((resolve, reject) => {
+      let oldData: Array<IMatches> = [];
 
-  const loadMatches = useCallback(
-    (ladderId: number, challenges: boolean): Promise<Array<IMatches>> => {
-      return new Promise((resolve, reject) => {
-        try {
-          const matches = ladders[ladderId].challenges as Array<IMatches>;
-          if (matches !== undefined) {
-            return resolve(matches);
+      const matches = matchType ? challenges : results;
+
+      const updateMatches = matchType ? updateChallenges : updateResults;
+
+      if (matches[ladderId]) {
+        const { data, loading, lastLoaded } = matches[ladderId];
+        oldData = data;
+        if (loading) return resolve(matches[ladderId]);
+
+        if (Date.now() - lastLoaded < DATA_REFRESH_INTERVAL) {
+          return resolve(matches[ladderId]);
+        }
+      }
+
+      updateMatches(ladderId, oldData, true);
+      //api
+      API.ladder
+        .getMatches({
+          ladder_id: ladderId,
+          challenges: matchType,
+        })
+        .then(({ success, result }) => {
+          if (success) {
+            return resolve(updateMatches(ladderId, result));
           }
-        } catch (e) {}
+        })
+        .catch(() => {
+          reject();
+        });
+    });
+  };
 
-        const matchType = challenges ? "challenges" : "results";
+  const loadChallenges = (ladderId: number) => {
+    return loadMatches(ladderId, true);
+  };
 
-        //api
-        API.ladder
-          .getMatches({
-            ladder_id: ladderId,
-            challenges,
-          })
-          .then(({ success, result }) => {
-            if (success) {
-              updateLadder(ladderId, matchType, result);
-              return resolve(result);
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-            reject();
-          });
-      });
-    },
-    [updateLadder, ladders]
-  );
-
-  const loadChallenges = useCallback(
-    (ladderId: number) => {
-      return loadMatches(ladderId, true);
-    },
-    [loadMatches]
-  );
-
-  const loadResults = useCallback(
-    (ladderId: number) => {
-      return loadMatches(ladderId, false);
-    },
-    [loadMatches]
-  );
+  const loadResults = (ladderId: number) => {
+    return loadMatches(ladderId, false);
+  };
 
   return (
     <LadderContext.Provider
@@ -136,7 +228,9 @@ const LadderProvider = ({ children }: { children: React.ReactNode }) => {
         loadRanks,
         loadChallenges,
         loadResults,
-        updateLadder,
+        updateRanks,
+        updateChallenges,
+        updateResults,
       }}
     >
       {children}
