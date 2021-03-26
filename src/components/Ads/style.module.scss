@@ -1,0 +1,10 @@
+@import "styles/sizes";
+@import "styles/colors";
+
+.gap {
+  margin-top: $unit * 2;
+  text-align: center;
+  color: $base-light;
+  text-decoration: underline;
+  background: $base-dark;
+}

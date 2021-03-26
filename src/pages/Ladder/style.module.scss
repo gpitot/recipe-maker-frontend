@@ -1,7 +1,8 @@
 @import "styles/sizes";
-
+@import "styles/colors";
 .signup {
-  margin: 0 $unit * 2;
-  display:flex;
+  margin: $unit * 2;
+  margin-bottom: 0;
+  display: flex;
   flex-direction: column;
 }

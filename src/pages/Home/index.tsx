@@ -9,6 +9,7 @@ import { IMatches } from "rest/ladder";
 import { IEvent } from "rest/events";
 import BoxLink from "components/BoxLink";
 import Information from "components/Information";
+import LadderLeagueAd from "components/Ads/ladder-league";
 
 import style from "./style.module.scss";
 
@@ -64,11 +65,14 @@ const Home = () => {
           body={upcomingList}
         />
       ) : (
-        <Information styles={style.gap}>
-          <h3>
-            Challenge an opponent to a <a href="/competition">ladder match</a>
-          </h3>
-        </Information>
+        <>
+          <Information styles={style.gap}>
+            <h3>
+              Challenge an opponent to a <a href="/competition">ladder match</a>
+            </h3>
+          </Information>
+          <LadderLeagueAd />
+        </>
       )}
       {events.map((event) => (
         <BoxLink {...event} link={"/event"} key={event.id} />

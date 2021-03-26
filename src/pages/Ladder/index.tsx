@@ -3,7 +3,7 @@ import { useParams, Redirect } from "react-router-dom";
 
 import Ranks from "pages/Ladder/ranks";
 import Matches from "pages/Ladder/matches";
-
+import LadderLeagueAd from "components/Ads/ladder-league";
 interface ParamTypes {
   ladderid: string;
 }
@@ -20,6 +20,7 @@ const Ladder = () => {
 
   return (
     <>
+      <LadderLeagueAd />
       <Ranks ladderid={id} />
       <Matches ladderid={id} challenges={true} />
       <Matches ladderid={id} challenges={false} />
