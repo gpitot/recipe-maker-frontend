@@ -12,6 +12,7 @@ import Information from "components/Information";
 import LadderLeagueAd from "components/Ads/ladder-league";
 
 import style from "./style.module.scss";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [upcomingMatches, setUpcomingMatches] = useState<Array<IMatches>>([]);
@@ -58,29 +59,28 @@ const Home = () => {
 
   return (
     <>
-      {upcomingList.length > 0 ? (
+      {upcomingList.length > 0 && (
         <List
           title="Upcoming matches"
           headers={["Challenger", "Opponent", "Time"]}
           body={upcomingList}
         />
-      ) : (
-        <>
-          <Information styles={style.gap}>
-            <h3>
-              Challenge an opponent to a <a href="/competition">ladder match</a>
-            </h3>
-          </Information>
-          <LadderLeagueAd />
-        </>
       )}
+
+      <Information styles={style.gap}>
+        <h3>
+          Challenge an opponent to a <Link to="/competition">ladder match</Link>
+        </h3>
+      </Information>
+      <LadderLeagueAd />
+
       {events.map((event) => (
         <BoxLink {...event} link={"/event"} key={event.id} />
       ))}
 
       <Information styles={style.gap}>
         <h3>
-          Browse our <a href="/shop">shop</a>
+          Browse our <Link to="/shop">shop</Link>
         </h3>
       </Information>
     </>

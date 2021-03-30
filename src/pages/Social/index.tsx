@@ -4,6 +4,7 @@ import BoxLink from "components/BoxLink";
 import API from "rest/api";
 import { IEvent } from "rest/events";
 import Information from "components/Information";
+import { Link } from "react-router-dom";
 
 const Social = () => {
   const [loading, setLoading] = useState(true);
@@ -23,7 +24,7 @@ const Social = () => {
       <Information>
         <h3>There are no upcoming events</h3>
         <h3>
-          Challenge an opponent to a <a href="/competition">ladder match</a>{" "}
+          Challenge an opponent to a <Link to="/competition">ladder match</Link>{" "}
           instead?
         </h3>
       </Information>
