@@ -184,7 +184,7 @@ const SubmitResults = () => {
   return (
     <List
       title="Results"
-      headers={["Challenger", "Opponent", "Result", "Date", "Submit"]}
+      headers={["Challenger", "Opponent", "Date", "Result", "Submit"]}
       body={body}
       columnsInBuilt
     />
