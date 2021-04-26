@@ -37,19 +37,19 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
   let registeredUsers = 0;
   let alreadyRegistered = false;
   for (let i = 0; i < userEvents.length; i += 1) {
-    const { enabled, id } = userEvents[i];
+    const { enabled, user_id } = userEvents[i];
     if (enabled) {
       registeredUsers += 1;
     }
 
-    if (enabled && user.id === id) {
+    if (enabled && user.id === user_id) {
       alreadyRegistered = true;
     }
   }
   const isFull = spots <= registeredUsers;
 
   const isOpen = !timeIsAfter(open);
-  const hasStarted = timeIsAfter(start);
+  const hasNotStarted = timeIsAfter(start);
 
   const removeEntry = ({ id }: IUserEvent) => {
     setLoadingRemove(true);
@@ -113,7 +113,7 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
 
   return (
     <div className={style.signup}>
-      {isOpen && hasStarted && !alreadyRegistered && (
+      {isOpen && hasNotStarted && !alreadyRegistered && (
         <Register
           registerCTA={"Sign up for this event"}
           eventId={event.id}
