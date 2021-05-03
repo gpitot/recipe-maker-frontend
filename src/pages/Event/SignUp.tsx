@@ -113,15 +113,17 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
 
   return (
     <div className={style.signup}>
-      {isOpen && hasNotStarted && !alreadyRegistered && (
-        <Register
-          registerCTA={"Sign up for this event"}
-          eventId={event.id}
-          isFull={isFull}
-          userEvents={userEvents}
-          setUserEvents={setUserEvents}
-        />
-      )}
+      <Register
+        registerCTA={"Sign up for this event"}
+        eventId={event.id}
+        isFull={isFull}
+        isOpen={isOpen}
+        alreadyRegistered={alreadyRegistered}
+        hasNotStarted={hasNotStarted}
+        userEvents={userEvents}
+        setUserEvents={setUserEvents}
+      />
+
       <List headers={[event.name]} body={nameList} />
     </div>
   );
