@@ -15,6 +15,9 @@ interface IProps {
   registerCTA: string;
   eventId: number;
   isFull: boolean;
+  isOpen: boolean;
+  hasNotStarted: boolean;
+  alreadyRegistered: boolean;
   userEvents: Array<IUserEvent>;
   setUserEvents: (userEvents: Array<IUserEvent>) => void;
 }
@@ -23,6 +26,9 @@ const Register = ({
   registerCTA,
   eventId,
   isFull,
+  isOpen,
+  alreadyRegistered,
+  hasNotStarted,
   userEvents,
   setUserEvents,
 }: IProps) => {
@@ -66,6 +72,18 @@ const Register = ({
 
   if (isFull) {
     return <Information>This event is full</Information>;
+  }
+
+  if (!isOpen) {
+    return <Information>This event is not yet open</Information>;
+  }
+
+  if (!hasNotStarted) {
+    return <Information>This event has already started</Information>;
+  }
+
+  if (alreadyRegistered) {
+    return null;
   }
 
   return (

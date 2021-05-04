@@ -36,7 +36,6 @@ const Event = () => {
 
     API.userEvents.getUserEvents(eventid).then((res) => {
       if (res.success) {
-        console.log(res.result);
         setUserEvents(res.result);
       }
     });
