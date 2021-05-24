@@ -16,7 +16,7 @@ import CreateUser from "pages/CreateUser";
 import Profile from "pages/Profile";
 import Admin from "pages/Admin";
 import Notifications from "components/Notifications";
-import DinnerParty from "pages/Custom/DinnerParty";
+import ResetPassword from "pages/ResetPassword";
 
 const Routes = () => (
   <Router>
@@ -71,9 +71,8 @@ const Routes = () => (
           <Admin />
         </Route>
 
-        {/* custom routes */}
-        <Route path="/special-event/dinner-party">
-          <DinnerParty />
+        <Route path="/reset-password">
+          <ResetPassword />
         </Route>
       </Switch>
     </Base>

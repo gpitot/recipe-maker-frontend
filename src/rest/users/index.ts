@@ -30,8 +30,23 @@ export interface IUserLogin {
   password: string;
 }
 
+export interface IUserResetPassword {
+  password: string;
+  token: string;
+}
+
+export interface IUserGenerateReset {
+  user_id: number;
+}
+
 interface IUserResponse extends IResultResponse {
   user: IUser;
+}
+
+interface IGenerateTokenResponse extends IResultResponse {
+  result: {
+    token: string;
+  };
 }
 
 const api = {
@@ -75,6 +90,30 @@ const api = {
     return axios
       .post<null, IJsonResponse<IUserResponse>>(
         `${BASE_URL}/users/create`,
+        data,
+        commonAxiosConfig
+      )
+      .then((res) => {
+        return res.data;
+      });
+  },
+
+  resetPassword: (data: IUserResetPassword) => {
+    return axios
+      .post<null, IJsonResponse<IResultResponse>>(
+        `${BASE_URL}/users/reset`,
+        data,
+        commonAxiosConfig
+      )
+      .then((res) => {
+        return res.data;
+      });
+  },
+
+  generateReset: (data: IUserGenerateReset) => {
+    return axios
+      .post<null, IJsonResponse<IGenerateTokenResponse>>(
+        `${BASE_URL}/users/generate-reset`,
         data,
         commonAxiosConfig
       )

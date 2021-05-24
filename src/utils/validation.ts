@@ -78,4 +78,4 @@ const validateAccountLogin = ({ email, password }: IUserLogin) => {
   };
 };
 
-export { validateAccountCreate, validateAccountLogin };
+export { validateAccountCreate, validateAccountLogin , validatePassword};
