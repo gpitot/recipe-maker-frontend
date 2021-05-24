@@ -18,6 +18,7 @@ import EditSocial from "components/EditConfigs/edit-social";
 import Paid from "components/Paid";
 
 import { ReactComponent as Close } from "icons/times-circle-solid.svg";
+import ManualRegistration from "components/ManualRegistration";
 interface IProps {
   event: IEvent;
   userEvents?: Array<IUserEvent>;
@@ -125,6 +126,8 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
       />
 
       <List headers={[event.name]} body={nameList} />
+
+      <ManualRegistration event_id={event.id} />
     </div>
   );
 };

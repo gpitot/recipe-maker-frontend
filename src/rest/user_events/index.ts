@@ -70,6 +70,18 @@ const api = {
         return res.data;
       });
   },
+
+  addUserEventManually: (event: Pick<IUserEvent, "event_id" | "user_id">) => {
+    return axios
+      .post<null, IJsonResponse<IUserEventAddedResponse>>(
+        `${URL}/manual-entry`,
+        event,
+        commonAxiosConfig
+      )
+      .then((res) => {
+        return res.data;
+      });
+  },
 };
 
 export default api;
