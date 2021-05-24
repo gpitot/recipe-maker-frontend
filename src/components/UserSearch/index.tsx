@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import AdminControl from "components/AdminControl";
 import Input from "components/Input";
 import { ISearchUser } from "rest/users";
@@ -15,22 +15,31 @@ const UserSearch = ({ onSelect }: IProps) => {
   const [users, setUsers] = useState<Array<ISearchUser>>([]);
   const [selected, setSelected] = useState<ISearchUser>();
 
-  const handleSearch = (value: string) => {
+  const handleSearch = useCallback((value: string) => {
     API.users.search(value).then((res) => {
       if (res.success) {
         setUsers(res.result);
       }
     });
-  };
+  }, []);
 
-  const debouncedSearch = useCallback(debounce(handleSearch, 250), []);
+  const debouncedSearch = useMemo(
+    () =>
+      debounce((val) => {
+        handleSearch(val);
+      }, 250),
+    [handleSearch]
+  );
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setText(value);
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { value } = e.target;
+      setText(value);
 
-    debouncedSearch(value);
-  };
+      debouncedSearch(value);
+    },
+    [debouncedSearch]
+  );
 
   const handleSelect = (user: ISearchUser) => {
     setSelected(user);
