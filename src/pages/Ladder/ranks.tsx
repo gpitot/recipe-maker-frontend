@@ -12,7 +12,7 @@ import { G400 } from "@atlaskit/theme/colors";
 import ErrorIcon from "@atlaskit/icon/glyph/error";
 import { R400 } from "@atlaskit/theme/colors";
 import Signup from "pages/Ladder/signup";
-
+import style from "./style.module.scss";
 interface IProps {
   ladderid: number;
 }
@@ -80,23 +80,36 @@ const Ranks = ({ ladderid }: IProps) => {
   //   return <Redirect to="/" />;
   // }
 
+  let userRankIndex = ranks.length;
+  for (let i = 0; i < ranks.length; i += 1) {
+    if (ranks[i].id === user.id) {
+      userRankIndex = i;
+      break;
+    }
+  }
+
+  const renderChanllengeState = (index: number, id: number) => {
+    if (index === userRankIndex) return null;
+
+    if (index >= userRankIndex - 5)
+      return (
+        <Button
+          disabled={challenged.includes(id)}
+          handleClick={() => challengeUser(id)}
+          text={"Challenge"}
+        />
+      );
+
+    return <img src="/assets/padlock.png" className={style.padlock} />;
+  };
+
   const body = ranks.map(({ id, firstname, photo }, rank) => {
     return [
       rank + 1,
       <UserRow id={id} name={firstname} photo={photo} />,
-      <>
-        {user && user.id !== id && (
-          <Button
-            disabled={challenged.includes(id)}
-            handleClick={() => challengeUser(id)}
-            text={"Challenge"}
-          />
-        )}
-      </>,
+      <>{renderChanllengeState(rank, id)}</>,
     ];
   });
-
-  console.log("ranks loading : ", loading);
 
   return (
     <>
