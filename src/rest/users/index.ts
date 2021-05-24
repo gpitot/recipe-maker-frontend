@@ -49,6 +49,17 @@ interface IGenerateTokenResponse extends IResultResponse {
   };
 }
 
+export interface ISearchUser {
+  id: number;
+  email: string;
+  phone: string;
+  firstname: string;
+  lastname: string;
+}
+interface ISearchUserResponse extends IResultResponse {
+  result: Array<ISearchUser>;
+}
+
 const api = {
   me: () => {
     return axios
@@ -115,6 +126,17 @@ const api = {
       .post<null, IJsonResponse<IGenerateTokenResponse>>(
         `${BASE_URL}/users/generate-reset`,
         data,
+        commonAxiosConfig
+      )
+      .then((res) => {
+        return res.data;
+      });
+  },
+
+  search: (query: string) => {
+    return axios
+      .get<null, IJsonResponse<ISearchUserResponse>>(
+        `${BASE_URL}/users/search?q=${query}`,
         commonAxiosConfig
       )
       .then((res) => {

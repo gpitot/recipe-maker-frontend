@@ -100,7 +100,7 @@ const Ranks = ({ ladderid }: IProps) => {
         />
       );
 
-    return <img src="/assets/padlock.png" className={style.padlock} />;
+    return <img src="/assets/padlock.png" className={style.padlock} alt="locked challenge" />;
   };
 
   const body = ranks.map(({ id, firstname, photo }, rank) => {

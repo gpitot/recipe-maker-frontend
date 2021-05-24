@@ -1,0 +1,28 @@
+@import "styles/colors";
+@import "styles/sizes";
+@import "styles/breakpoints";
+
+.area {
+  margin: $unit * 2 0;
+  max-width: 300px;
+
+  input {
+    margin-bottom: 0;
+  }
+
+  .options {
+    border: solid 1px $base-light;
+
+    .option {
+      padding: $unit;
+      border-bottom: solid 1px $base-light;
+      background:$base-dark;
+      color:$base-light;
+      cursor: pointer;
+
+      &:hover {
+          background:$base-blue;
+      }
+    }
+  }
+}

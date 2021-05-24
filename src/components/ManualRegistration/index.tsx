@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Input from "components/Input";
 import Button from "components/Button";
 import API from "rest/api";
 import AdminControl from "components/AdminControl";
@@ -9,28 +8,23 @@ import SuccessIcon from "@atlaskit/icon/glyph/check-circle";
 import { G400 } from "@atlaskit/theme/colors";
 import ErrorIcon from "@atlaskit/icon/glyph/error";
 import { R400 } from "@atlaskit/theme/colors";
+import UserSearch from "components/UserSearch";
+import { ISearchUser } from "rest/users";
 
 const ManualRegistration = ({ event_id }: { event_id: number }) => {
-  const [text, setText] = useState("");
+  const [user, setUser] = useState<ISearchUser>();
 
   const { showFlag } = useFlags();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setText(value);
-  };
-
   const handleClick = () => {
-    const id = parseInt(text);
-
+    if (!user) return;
     API.userEvents
       .addUserEventManually({
         event_id,
-        user_id: id,
+        user_id: user.id,
       })
       .then((res) => {
         if (res.success) {
-          setText("");
           showFlag({
             isAutoDismiss: true,
             title: "Added user to event",
@@ -51,15 +45,13 @@ const ManualRegistration = ({ event_id }: { event_id: number }) => {
       });
   };
 
+  const handleSelect = (user: ISearchUser) => {
+    setUser(user);
+  };
+
   return (
     <div className={style.area}>
-      <Input
-        label="Register User ID"
-        value={text}
-        handleChange={handleChange}
-        name="userID"
-        type="text"
-      />
+      <UserSearch onSelect={handleSelect} />
       <Button text="Register user" handleClick={handleClick} />
     </div>
   );
