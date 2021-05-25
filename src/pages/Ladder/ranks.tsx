@@ -88,7 +88,7 @@ const Ranks = ({ ladderid }: IProps) => {
     }
   }
 
-  const renderChanllengeState = (index: number, id: number) => {
+  const renderChallengeState = (index: number, id: number) => {
     if (index === userRankIndex) return null;
 
     if (index >= userRankIndex - 5)
@@ -100,21 +100,49 @@ const Ranks = ({ ladderid }: IProps) => {
         />
       );
 
-    return <img src="/assets/padlock.png" className={style.padlock} alt="locked challenge" />;
+    return (
+      <img
+        src="/assets/padlock.png"
+        className={style.padlock}
+        alt="locked challenge"
+      />
+    );
+  };
+
+  const renderLadderLeague = (rank: number) => {
+    const visualRank = rank + 1;
+    let className = undefined;
+    if (visualRank <= 3) {
+      className = style.gold;
+    } else if (visualRank <= 8) {
+      className = style.silver;
+    } else if (visualRank <= 13) {
+      className = style.bronze;
+    }
+    return <td className={className}>#{visualRank}</td>;
   };
 
   const body = ranks.map(({ id, firstname, photo }, rank) => {
     return [
-      rank + 1,
-      <UserRow id={id} name={firstname} photo={photo} />,
-      <>{renderChanllengeState(rank, id)}</>,
+      <>
+        {renderLadderLeague(rank)}
+        <td>
+          <UserRow id={id} name={firstname} photo={photo} />
+        </td>
+        <td>{renderChallengeState(rank, id)}</td>
+      </>,
     ];
   });
 
   return (
     <>
       {!loading && <Signup ladder_id={ladderid} players={ranks} />}
-      <List title="Ranks" headers={["Rank", "Player", ""]} body={body} />
+      <List
+        title="Ranks"
+        headers={["Rank", "Player", ""]}
+        body={body}
+        columnsInBuilt={true}
+      />
     </>
   );
 };
