@@ -8,6 +8,7 @@ import { IUser } from "rest/users";
 import { useFlags } from "@atlaskit/flag";
 import ErrorIcon from "@atlaskit/icon/glyph/error";
 import { R400 } from "@atlaskit/theme/colors";
+import SocialHistory from "pages/Profile/social-history";
 interface ParamTypes {
   userid?: string;
 }
@@ -22,8 +23,12 @@ const Profile = () => {
 
   useEffect(() => {
     setLoading(true);
+    if (userid === undefined) return;
+    const user_id = parseInt(userid);
+    if (user_id === undefined) return;
+
     API.users
-      .get(userid as string)
+      .get(user_id)
       .then(({ success, user, err }) => {
         if (success) {
           setUser(user);
@@ -53,6 +58,7 @@ const Profile = () => {
       <Information>
         <h1>{user.firstname}'s Profile</h1>
       </Information>
+      <SocialHistory user_id={user.id} />
       <Matches challenges={true} player_id={user.id} />
       <Matches challenges={false} player_id={user.id} />
     </>

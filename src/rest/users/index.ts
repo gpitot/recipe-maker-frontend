@@ -74,7 +74,7 @@ const api = {
       });
   },
 
-  get: (userid: string) => {
+  get: (userid: number) => {
     return axios
       .get<null, IJsonResponse<IUserResponse>>(
         `${BASE_URL}/users/user/${userid}`,

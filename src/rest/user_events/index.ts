@@ -24,8 +24,18 @@ export interface IUserEventResponse extends IResultResponse {
   result: Array<IUserEvent>;
 }
 
+export interface IUserEventHistory {
+  id: number;
+  name: string;
+  start: string;
+}
+
 interface IUserEventAddedResponse extends IResultResponse {
   result: IUserEvent;
+}
+
+interface IUserEventHistoryResponse extends IResultResponse {
+  result: Array<IUserEventHistory>;
 }
 
 const api = {
@@ -81,6 +91,14 @@ const api = {
       .then((res) => {
         return res.data;
       });
+  },
+
+  getUserHistory: (user_id: number) => {
+    return axios
+      .get<null, IJsonResponse<IUserEventHistoryResponse>>(
+        `${URL}/user-history/${user_id}`
+      )
+      .then((res) => res.data);
   },
 };
 
