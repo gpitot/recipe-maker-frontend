@@ -8,10 +8,10 @@ const StreakIncentive = () => (
   <div className={style.streak}>
     <Information styles={classnames(style.gap, style["no-underline"])}>
       <h3 className={style["streak-info"]}>
-        Play <Streak streak={3} />
+        Play <Streak streak={3} /> weeks
       </h3>
       <h3 className={style["streak-heading"]}>
-        weeks in a row and get the 4th free!
+        in a row and get the 4th free!
       </h3>
     </Information>
   </div>
