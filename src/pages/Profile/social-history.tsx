@@ -14,7 +14,7 @@ const SocialHistory = ({ user_id }: { user_id: number }) => {
         setEvents(res.result);
       }
     });
-  }, []);
+  }, [user_id]);
 
   if (events.length === 0) return null;
 

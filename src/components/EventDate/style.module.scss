@@ -5,7 +5,7 @@
 .date {
   color: $base-light;
   display: inline-block;
-  margin: 0 $unit;
+  margin: 0;
 
   color: $base-dark;
 
@@ -18,5 +18,9 @@
   &.light {
     border: solid 2px $base-light;
     color: $base-light;
+  }
+
+  @media (min-width: $device-medium) {
+    margin: 0 $unit;
   }
 }

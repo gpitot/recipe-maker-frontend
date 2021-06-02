@@ -55,6 +55,7 @@ const Register = ({
               firstname: user.firstname,
               lastname: user.lastname,
               photo: user.photo,
+              streak: user.streak,
             },
           ]);
           console.log([...userEvents]);

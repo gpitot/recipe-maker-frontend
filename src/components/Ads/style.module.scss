@@ -1,10 +1,18 @@
 @import "styles/sizes";
 @import "styles/colors";
+@import "styles/breakpoints";
 
 .gap {
   margin-top: $unit * 2;
   text-align: center;
   color: $base-light;
   text-decoration: underline;
-  background: $base-dark;
+  background: $base-advert;
+}
+
+.streak {
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom:$unit * 2;
 }

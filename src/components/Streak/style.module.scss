@@ -1,0 +1,61 @@
+@import "styles/colors";
+@import "styles/sizes";
+@import "styles/breakpoints";
+
+.streak {
+  position: relative;
+  min-width: 64px;
+  padding: $unit * 3;
+  margin-right: $unit;
+  mask-image: url("/icons/star.png");
+  mask-size: 100%;
+  mask-repeat: no-repeat;
+  mask-position: 0 -7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  font-size: 14px;
+
+  &.s-0 {
+    background: #4959ff;
+  }
+  &.s-1 {
+    background: #6b56f1;
+  }
+  &.s-2 {
+    background: #9150d6;
+  }
+  &.s-3 {
+    background: #b347b3;
+  }
+  &.s-4 {
+    background: #c83f95;
+  }
+  &.s-5 {
+    background: #d13b85;
+  }
+  &.s-6 {
+    background: #d93676;
+  }
+  &.s-7 {
+    background: #e13166;
+  }
+  &.s-8 {
+    background: #e72d59;
+  }
+  &.s-9 {
+    background: #ed2749;
+  }
+  &.s-10 {
+    background: #f32039;
+  }
+  &.s-11 {
+    background: #f81727;
+  }
+  &.s-12 {
+    background: #fe0306;
+  }
+}

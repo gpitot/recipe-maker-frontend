@@ -24,11 +24,24 @@ const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const updateStreak = (currentUser: IUser) => {
+      API.users.getMyStreak().then((res) => {
+        if (res.success) {
+          setUser({
+            ...currentUser,
+            streak: res.result.streak,
+          });
+        }
+      });
+    };
     API.users
       .me()
       .then((res) => {
         if (res.success) {
           setUser(res.user);
+
+          //update user streak
+          updateStreak(res.user);
         }
       })
       .finally(() => {

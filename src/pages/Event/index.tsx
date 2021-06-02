@@ -7,6 +7,7 @@ import style from "./style.module.scss";
 
 import SignupSheet from "./SignUp";
 import EventDate from "components/EventDate";
+import StreakIncentive from "components/Ads/streak-incentive";
 
 interface ParamTypes {
   eventid?: string;
@@ -17,9 +18,8 @@ const Event = () => {
   const { eventid } = useParams<ParamTypes>();
 
   const [event, setEvent] = useState<IEvent | undefined>(undefined);
-  const [userEvents, setUserEvents] = useState<Array<IUserEvent> | undefined>(
-    undefined
-  );
+  const [userEvents, setUserEvents] =
+    useState<Array<IUserEvent> | undefined>(undefined);
 
   useEffect(() => {
     if (eventid === undefined) return;
@@ -59,6 +59,7 @@ const Event = () => {
           )}
         </div>
       </div>
+      <StreakIncentive />
       <SignupSheet
         event={event}
         userEvents={userEvents}

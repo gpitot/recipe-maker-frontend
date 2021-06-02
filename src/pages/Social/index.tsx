@@ -5,6 +5,7 @@ import API from "rest/api";
 import { IEvent } from "rest/events";
 import Information from "components/Information";
 import { Link } from "react-router-dom";
+import LadderLeagueAd2 from "components/Ads/ladder-league-2";
 
 const Social = () => {
   const [loading, setLoading] = useState(true);
@@ -32,6 +33,7 @@ const Social = () => {
 
   return (
     <>
+      <LadderLeagueAd2 />
       {events.map((event) => (
         <BoxLink {...event} key={event.id} link={"/event"} />
       ))}

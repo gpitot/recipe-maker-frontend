@@ -19,6 +19,7 @@ import Paid from "components/Paid";
 
 import { ReactComponent as Close } from "icons/times-circle-solid.svg";
 import ManualRegistration from "components/ManualRegistration";
+import Streak from "components/Streak";
 interface IProps {
   event: IEvent;
   userEvents?: Array<IUserEvent>;
@@ -86,13 +87,14 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
 
   let nameList = userEvents.map((event) => [
     <div className={style.row}>
+      <Streak streak={event.streak} />
       <UserRow
         id={event.user_id}
-        name={`${event.firstname} ${event.lastname}`}
+        name={`${event.firstname}`}
         photo={event.photo}
       />
       {user.id === event.user_id && !loadingRemove && (
-        <Close onClick={() => removeEntry(event)} />
+        <Close onClick={() => removeEntry(event)} className={style.remove} />
       )}
       <Edit>
         {(setOpen) => (

@@ -18,6 +18,7 @@ export interface IUserEvent {
   receipt: string;
   enabled: boolean;
   photo: string;
+  streak: number;
 }
 
 export interface IUserEventResponse extends IResultResponse {
@@ -48,7 +49,7 @@ const api = {
   },
 
   editUserEvent: (
-    event: Pick<IUserEvent, "id" | "event_id" | "paid" | "enabled">
+    event: Pick<IUserEvent, "id" | "event_id" | "paid" | "enabled" | "user_id">
   ) => {
     return axios
       .put<null, IJsonResponse<IResultResponse>>(URL, event, commonAxiosConfig)

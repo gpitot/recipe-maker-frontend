@@ -12,6 +12,7 @@ export interface IUser {
   lastname: string;
   photo: string;
   role: string;
+  streak: number;
   accessToken: string;
 }
 
@@ -55,9 +56,18 @@ export interface ISearchUser {
   phone: string;
   firstname: string;
   lastname: string;
+  streak: number;
 }
 interface ISearchUserResponse extends IResultResponse {
   result: Array<ISearchUser>;
+}
+
+export interface IStreakUser {
+  streak: number;
+}
+
+interface IStreakUserResponse extends IResultResponse {
+  result: IStreakUser;
 }
 
 const api = {
@@ -137,6 +147,17 @@ const api = {
     return axios
       .get<null, IJsonResponse<ISearchUserResponse>>(
         `${BASE_URL}/users/search?q=${query}`,
+        commonAxiosConfig
+      )
+      .then((res) => {
+        return res.data;
+      });
+  },
+
+  getMyStreak: () => {
+    return axios
+      .get<null, IJsonResponse<IStreakUserResponse>>(
+        `${BASE_URL}/users/streak`,
         commonAxiosConfig
       )
       .then((res) => {
