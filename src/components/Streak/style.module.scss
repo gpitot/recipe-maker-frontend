@@ -4,7 +4,8 @@
 
 .streak {
   position: relative;
-  min-width: 64px;
+  width: 44px;
+  height: 44px;
   padding: $unit * 3;
   margin-right: $unit;
   mask-image: url("/icons/star.png");
