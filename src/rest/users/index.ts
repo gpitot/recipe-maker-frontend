@@ -14,6 +14,8 @@ export interface IUser {
   role: string;
   streak: number;
   accessToken: string;
+  phone?: string;
+  email?: string;
 }
 
 export interface IUserCreate {

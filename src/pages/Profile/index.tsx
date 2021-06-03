@@ -65,6 +65,8 @@ const Profile = () => {
     <>
       <Information>
         <h1>{user.firstname}'s Profile</h1>
+        {user.email && <h5>{user.email}</h5>}
+        {user.phone && <h5>{user.phone}</h5>}
       </Information>
       <Matches challenges={true} player_id={user.id} />
       <Matches challenges={false} player_id={user.id} />
