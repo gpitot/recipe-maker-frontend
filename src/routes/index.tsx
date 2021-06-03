@@ -15,12 +15,10 @@ import Login from "pages/Login";
 import CreateUser from "pages/CreateUser";
 import Profile from "pages/Profile";
 import Admin from "pages/Admin";
-import Notifications from "components/Notifications";
 import ResetPassword from "pages/ResetPassword";
 
 const Routes = () => (
   <Router>
-    <Notifications />
     <Base>
       <Switch>
         <Route exact path="/">

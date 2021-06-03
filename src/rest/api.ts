@@ -5,7 +5,6 @@ import userEvents from "rest/user_events";
 import ladder from "rest/ladder";
 import users from "rest/users";
 import shop from "rest/shop";
-import notifications from "rest/notifications";
 
 // Add a response interceptor
 axios.interceptors.response.use(
@@ -40,7 +39,6 @@ const API = {
   ladder,
   users,
   shop,
-  notifications,
 };
 
 export default API;
