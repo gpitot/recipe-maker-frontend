@@ -4,6 +4,7 @@ import API from "rest/api";
 import List from "components/List";
 import { Link } from "react-router-dom";
 import EventDate from "components/EventDate";
+import SocialAd from "components/Ads/social";
 
 const SocialHistory = ({ user_id }: { user_id: number }) => {
   const [events, setEvents] = useState<IUserEventHistory[]>([]);
@@ -16,7 +17,7 @@ const SocialHistory = ({ user_id }: { user_id: number }) => {
     });
   }, [user_id]);
 
-  if (events.length === 0) return null;
+  if (events.length === 0) return <SocialAd />;
 
   const body = events.map(({ id, name, start }) => [
     <Link to={`/event/${id}`}>{name}</Link>,

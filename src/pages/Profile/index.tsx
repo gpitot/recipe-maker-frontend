@@ -23,9 +23,17 @@ const Profile = () => {
 
   useEffect(() => {
     setLoading(true);
-    if (userid === undefined) return;
-    const user_id = parseInt(userid);
-    if (user_id === undefined) return;
+    const user_id = parseInt(userid as string);
+    if (Number.isNaN(user_id)) {
+      showFlag({
+        isAutoDismiss: true,
+        title: "This user does not exist",
+        icon: <ErrorIcon label="error" secondaryColor={R400} />,
+
+        appearance: "error",
+      });
+      return;
+    }
 
     API.users
       .get(user_id)
@@ -58,9 +66,9 @@ const Profile = () => {
       <Information>
         <h1>{user.firstname}'s Profile</h1>
       </Information>
-      <SocialHistory user_id={user.id} />
       <Matches challenges={true} player_id={user.id} />
       <Matches challenges={false} player_id={user.id} />
+      <SocialHistory user_id={user.id} />
     </>
   );
 };

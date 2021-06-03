@@ -27,6 +27,8 @@ const Matches = ({ ladderid, challenges, player_id }: IProps) => {
       });
   }, [challenges, ladderid, player_id]);
 
+  if (matches.length === 0) return null;
+
   return (
     <>
       {challenges ? (
