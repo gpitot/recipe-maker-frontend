@@ -4,6 +4,7 @@ import EventDate from "components/EventDate";
 import List from "components/List";
 
 import API from "rest/api";
+import { ReminderType } from "rest/notifications";
 import { IMatches } from "rest/ladder";
 import Information from "components/Information";
 import Button from "components/Button";
@@ -14,40 +15,40 @@ import ErrorIcon from "@atlaskit/icon/glyph/error";
 import { R400 } from "@atlaskit/theme/colors";
 
 const ResultRow = ({
-  id,
   player_1,
   player_1_firstname,
   player_1_photo,
-  player_1_games,
   player_2,
   player_2_firstname,
   player_2_photo,
-  player_2_games,
   match_date,
 }: IMatches) => {
   const { showFlag } = useFlags();
 
   const handleSubmit = () => {
-    API.ladder
-      .challengeApprove({ match_id: id })
-      .then(({ success }) => {
-        if (success) {
+    API.notifications
+      .remindPlayers({
+        player_1,
+        player_2,
+        reminderType: ReminderType["pending-result"],
+      })
+      .then((res) => {
+        if (res.success) {
           showFlag({
             isAutoDismiss: true,
-            title: "Approved result",
+            title: "Reminder sent",
             icon: <SuccessIcon label="success" secondaryColor={G400} />,
             appearance: "success",
           });
-        } else {
-          throw Error();
+          return;
         }
+        throw Error;
       })
-      .catch((err) => {
+      .catch(() => {
         showFlag({
           isAutoDismiss: true,
-          title: "Could not approve result",
+          title: "Could not send reminders",
           icon: <ErrorIcon label="error" secondaryColor={R400} />,
-
           appearance: "error",
         });
       });
@@ -73,22 +74,19 @@ const ResultRow = ({
         <EventDate time={match_date} />
       </td>
       <td>
-        {player_1_games} : {player_2_games}
-      </td>
-      <td>
-        <Button text="Approve" handleClick={handleSubmit} />
+        <Button text="Remind" handleClick={handleSubmit} />
       </td>
     </>
   );
 };
 
-const Approvals = () => {
+const PendingResults = () => {
   const [matches, setMatches] = useState<Array<IMatches>>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     API.ladder
-      .adminGetApprovals()
+      .adminGetPendingResults()
       .then(({ success, result }) => {
         if (success) {
           setMatches(result);
@@ -104,7 +102,7 @@ const Approvals = () => {
   if (matches.length === 0)
     return (
       <Information>
-        <h3>You have no approvals to enter.</h3>
+        <h3>There are no pending results.</h3>
       </Information>
     );
 
@@ -112,12 +110,12 @@ const Approvals = () => {
 
   return (
     <List
-      title="Pending approvals"
-      headers={["Challenger", "Opponent", "Date", "Result", "Approve"]}
+      title="Pending results"
+      headers={["Challenger", "Opponent", "Date", ""]}
       body={body}
       columnsInBuilt
     />
   );
 };
 
-export default Approvals;
+export default PendingResults;

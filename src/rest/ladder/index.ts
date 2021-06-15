@@ -96,18 +96,47 @@ const api = {
       });
   },
 
-  getAwaitResults: (userid : number) => {
+  getAwaitResults: (userid: number) => {
     return axios
-      .get<null, IJsonResponse<IMatchesResponse>>(`${LADDER_URL}/awaitresults/${userid}`)
+      .get<null, IJsonResponse<IMatchesResponse>>(
+        `${LADDER_URL}/awaitresults/${userid}`
+      )
       .then((res) => {
         return res.data;
       });
   },
 
-  getAwaitApprovals: () => {
+  adminGetApprovals: () => {
     return axios
       .get<null, IJsonResponse<IMatchesResponse>>(
-        `${LADDER_URL}/awaitapprovals`
+        `${LADDER_URL}/admin/approvals`
+      )
+      .then((res) => {
+        return res.data;
+      });
+  },
+  adminGetPendingAccepted: () => {
+    return axios
+      .get<null, IJsonResponse<IMatchesResponse>>(
+        `${LADDER_URL}/admin/pending-accepted`
+      )
+      .then((res) => {
+        return res.data;
+      });
+  },
+  adminGetPendingPlaying: () => {
+    return axios
+      .get<null, IJsonResponse<IMatchesResponse>>(
+        `${LADDER_URL}/admin/pending-playing`
+      )
+      .then((res) => {
+        return res.data;
+      });
+  },
+  adminGetPendingResults: () => {
+    return axios
+      .get<null, IJsonResponse<IMatchesResponse>>(
+        `${LADDER_URL}/admin/pending-results`
       )
       .then((res) => {
         return res.data;
