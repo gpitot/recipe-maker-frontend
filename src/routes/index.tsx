@@ -5,7 +5,6 @@ import Home from "pages/Home";
 import Social from "pages/Social";
 import Competition from "pages/Competition";
 import Ladder from "pages/Ladder";
-import SubmitResults from "pages/SubmitResults";
 import Event from "pages/Event";
 
 import Shop from "pages/Shop";
@@ -36,10 +35,6 @@ const Routes = () => (
 
         <Route path="/competition/ladder/:ladderid">
           <Ladder />
-        </Route>
-
-        <Route path="/competition/submit">
-          <SubmitResults />
         </Route>
 
         <Route path="/coaching">

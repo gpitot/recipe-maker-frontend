@@ -96,9 +96,9 @@ const api = {
       });
   },
 
-  getAwaitResults: () => {
+  getAwaitResults: (userid : number) => {
     return axios
-      .get<null, IJsonResponse<IMatchesResponse>>(`${LADDER_URL}/awaitresults`)
+      .get<null, IJsonResponse<IMatchesResponse>>(`${LADDER_URL}/awaitresults/${userid}`)
       .then((res) => {
         return res.data;
       });

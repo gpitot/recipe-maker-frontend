@@ -9,6 +9,8 @@ import { useFlags } from "@atlaskit/flag";
 import ErrorIcon from "@atlaskit/icon/glyph/error";
 import { R400 } from "@atlaskit/theme/colors";
 import SocialHistory from "pages/Profile/social-history";
+import SubmitResults from "pages/SubmitResults";
+
 interface ParamTypes {
   userid?: string;
 }
@@ -68,6 +70,7 @@ const Profile = () => {
         {user.email && <h5>{user.email}</h5>}
         {user.phone && <h5>{user.phone}</h5>}
       </Information>
+      <SubmitResults id={user.id} />
       <Matches challenges={true} player_id={user.id} />
       <Matches challenges={false} player_id={user.id} />
       <SocialHistory user_id={user.id} />

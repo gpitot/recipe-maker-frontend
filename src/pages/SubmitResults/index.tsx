@@ -152,13 +152,13 @@ const ResultRow = ({
   );
 };
 
-const SubmitResults = () => {
+const SubmitResults = ({ id }: { id: number }) => {
   const [matches, setMatches] = useState<Array<IMatches>>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     API.ladder
-      .getAwaitResults()
+      .getAwaitResults(id)
       .then(({ success, result }) => {
         if (success) {
           console.log(result);
@@ -172,18 +172,13 @@ const SubmitResults = () => {
 
   if (loading) return null;
 
-  if (matches.length === 0)
-    return (
-      <Information>
-        <h3>You have no results to enter.</h3>
-      </Information>
-    );
+  if (matches.length === 0) return null;
 
   const body = matches.map((match) => [<ResultRow {...match} />]);
 
   return (
     <List
-      title="Results"
+      title="Pending results"
       headers={["Challenger", "Opponent", "Date", "Result", "Submit"]}
       body={body}
       columnsInBuilt
