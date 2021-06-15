@@ -7,29 +7,43 @@ import ErrorIcon from "@atlaskit/icon/glyph/error";
 import { R400 } from "@atlaskit/theme/colors";
 
 import Button from "components/Button";
+import Input from "components/Input";
 import { IMatches } from "rest/ladder";
 
 interface IProps extends IMatches {
   setOpen: (open: boolean) => void;
 }
 
-const EditChallenge = ({ setOpen, id, accepted }: IProps) => {
-  const [time, setTime] = useState("");
+const EditChallenge = ({
+  setOpen,
+  id,
+  accepted,
+  player_1_games,
+  player_2_games,
+  match_date,
+}: IProps) => {
+  const [match, setMatch] = useState({
+    match_id: id,
+    accepted,
+    player_1_games,
+    player_2_games,
+    match_date,
+  });
   const { showFlag } = useFlags();
 
-  const handleUpdateChallengeTime = () => {
-    API.ladder.challengeTime({ match_id: id, time }).then((res) => {
+  const handleUpdate = () => {
+    API.ladder.challengeAdminEdit(match).then((res) => {
       if (res.success) {
         showFlag({
           isAutoDismiss: true,
-          title: "Updated challenge date",
+          title: "Updated challenge",
           icon: <SuccessIcon label="success" secondaryColor={G400} />,
           appearance: "success",
         });
       } else {
         showFlag({
           isAutoDismiss: true,
-          title: "Updated challenge date",
+          title: "Could not update challenge",
           icon: <ErrorIcon label="error" secondaryColor={R400} />,
 
           appearance: "error",
@@ -40,23 +54,55 @@ const EditChallenge = ({ setOpen, id, accepted }: IProps) => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTime(e.target.value);
+    const value =
+      e.target.type === "checkbox" ? e.target.checked : e.target.value;
+    setMatch({
+      ...match,
+      [e.target.name]: value,
+    });
   };
 
-  if (accepted !== true) return <p>match must first be accepted</p>;
+  const matchInPast =
+    match.match_date && parseInt(match.match_date) < Date.now();
+
   return (
     <>
       <li>
-        <input
-          type="text"
-          placeholder="epoch time"
-          value={time}
-          onChange={handleChange}
-        ></input>
-        <Button
-          handleClick={handleUpdateChallengeTime}
-          text="Add booking time"
+        <Input
+          type="checkbox"
+          label="Accepted"
+          checked={match.accepted}
+          name="accepted"
+          handleChange={handleChange}
         />
+        {match.accepted && (
+          <Input
+            type="text"
+            label="Match date"
+            value={match.match_date || ""}
+            name="match_date"
+            handleChange={handleChange}
+          />
+        )}
+        {match.accepted && matchInPast && (
+          <>
+            <Input
+              type="number"
+              label="Player 1 games"
+              value={match.player_1_games || ""}
+              name="player_1_games"
+              handleChange={handleChange}
+            />
+            <Input
+              type="number"
+              label="Player 2 games"
+              value={match.player_2_games || ""}
+              name="player_2_games"
+              handleChange={handleChange}
+            />
+          </>
+        )}
+        <Button handleClick={handleUpdate} text="Update match details" />
       </li>
     </>
   );

@@ -198,6 +198,24 @@ const api = {
       });
   },
 
+  challengeAdminEdit: (data: {
+    match_id: number;
+    accepted: boolean;
+    player_1_games: number;
+    player_2_games: number;
+    match_date: string;
+  }) => {
+    return axios
+      .put<null, IJsonResponse<IResultResponse>>(
+        `${LADDER_URL}/challenge/edit`,
+        data,
+        commonAxiosConfig
+      )
+      .then((res) => {
+        return res.data;
+      });
+  },
+
   signUp: (data: { ladder_id: number }) => {
     return axios
       .post<null, IJsonResponse<IResultResponse>>(
