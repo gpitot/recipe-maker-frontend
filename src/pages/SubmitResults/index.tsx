@@ -5,7 +5,6 @@ import List from "components/List";
 
 import API from "rest/api";
 import { IMatches } from "rest/ladder";
-import Information from "components/Information";
 import Button from "components/Button";
 import { useFlags } from "@atlaskit/flag";
 import SuccessIcon from "@atlaskit/icon/glyph/check-circle";
@@ -168,7 +167,7 @@ const SubmitResults = ({ id }: { id: number }) => {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [id]);
 
   if (loading) return null;
 
