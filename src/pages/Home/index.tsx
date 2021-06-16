@@ -59,6 +59,8 @@ const Home = () => {
 
   return (
     <>
+      <LadderLeagueAd />
+
       {upcomingList.length > 0 && (
         <List
           title="Upcoming matches"
@@ -66,13 +68,6 @@ const Home = () => {
           body={upcomingList}
         />
       )}
-
-      <Information styles={style.gap}>
-        <h3>
-          Challenge an opponent to a <Link to="/competition">ladder match</Link>
-        </h3>
-      </Information>
-      <LadderLeagueAd />
 
       {events.map((event) => (
         <BoxLink {...event} link={"/event"} key={event.id} />
