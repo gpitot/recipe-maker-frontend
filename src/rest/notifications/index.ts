@@ -18,6 +18,18 @@ export interface IReminder {
   reminderType: ReminderType;
 }
 
+export interface IRemindersSent {
+  user_id: number;
+  message: string;
+  notification_date: string;
+  firstname: string;
+  lastname: string;
+}
+
+interface IRemindersSentResponse extends IResultResponse {
+  result: Array<IRemindersSent>;
+}
+
 const api = {
   remindPlayers: (data: IReminder) => {
     return axios
@@ -25,6 +37,16 @@ const api = {
         `${BASE_URL}/notifications`,
         data,
         commonAxiosConfig
+      )
+      .then((res) => {
+        return res.data;
+      });
+  },
+
+  getRemindersSent: () => {
+    return axios
+      .get<null, IJsonResponse<IRemindersSentResponse>>(
+        `${BASE_URL}/notifications`
       )
       .then((res) => {
         return res.data;

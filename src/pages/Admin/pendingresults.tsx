@@ -13,6 +13,7 @@ import SuccessIcon from "@atlaskit/icon/glyph/check-circle";
 import { G400 } from "@atlaskit/theme/colors";
 import ErrorIcon from "@atlaskit/icon/glyph/error";
 import { R400 } from "@atlaskit/theme/colors";
+import style from "./style.module.scss";
 
 const ResultRow = ({
   player_1,
@@ -101,7 +102,7 @@ const PendingResults = () => {
 
   if (matches.length === 0)
     return (
-      <Information>
+      <Information styles={style.gap}>
         <h3>There are no pending results.</h3>
       </Information>
     );

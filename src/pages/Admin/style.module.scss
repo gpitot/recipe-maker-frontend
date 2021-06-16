@@ -7,6 +7,15 @@
   color: $base-light;
 
   input {
-      margin-bottom:$unit;
+    margin-bottom: $unit;
   }
+}
+
+.message {
+  font-size: 10px;
+}
+
+.gap {
+  margin: $unit * 2;
+  margin-bottom: 0;
 }

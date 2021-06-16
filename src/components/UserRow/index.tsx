@@ -4,7 +4,7 @@ import style from "./style.module.scss";
 interface IProps {
   id: number;
   name: string;
-  photo: string;
+  photo?: string;
 }
 
 const UserRow = ({ id, name, photo }: IProps) => (
