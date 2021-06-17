@@ -1,0 +1,13 @@
+@import "styles/colors";
+@import "styles/sizes";
+
+.gap {
+  margin: $unit * 2;
+  margin-bottom: 0;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  margin: $unit;
+}

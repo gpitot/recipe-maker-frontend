@@ -8,7 +8,7 @@ import Ladder from "pages/Ladder";
 import Event from "pages/Event";
 
 import Shop from "pages/Shop";
-import Coaching from "pages/Coaching";
+import Faq from "pages/FAQ";
 import LoginError from "pages/LoginError";
 import Login from "pages/Login";
 import CreateUser from "pages/CreateUser";
@@ -37,8 +37,8 @@ const Routes = () => (
           <Ladder />
         </Route>
 
-        <Route path="/coaching">
-          <Coaching />
+        <Route path="/faq">
+          <Faq />
         </Route>
         <Route path="/shop">
           <Shop />

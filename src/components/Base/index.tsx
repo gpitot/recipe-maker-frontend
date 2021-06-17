@@ -14,9 +14,9 @@ const Base = ({ children }: IBase) => (
     <Header />
     <CTAMenu>
       <h2>PLAY AT MANLY</h2>
-      <Link to="/social">PLAY SOCIALLY</Link>
-      <Link to="/competition">COMPETE AGAINST OTHERS</Link>
-      <Link to="/coaching">IMPROVE YOUR PLAY</Link>
+      <Link to="/competition">LADDER LEAGUE</Link>
+      <Link to="/social">MONDAY SOCIAL</Link>
+      <Link to="/faq">CONTACT US</Link>
       <Link to="/shop">SHOP</Link>
     </CTAMenu>
     <section className={style.background}>

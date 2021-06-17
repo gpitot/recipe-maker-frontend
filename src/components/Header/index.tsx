@@ -52,10 +52,10 @@ const Header = () => {
               className={classnames(style.items, dropdownShown && style.open)}
               onClick={hideHeader}
             >
-              <Link to="/social">SOCIAL</Link>
-              <Link to="/competition">COMPETITION</Link>
-              <Link to="/coaching">COACHING</Link>
+              <Link to="/social">MONDAY SOCIAL</Link>
+              <Link to="/competition">LADDER LEAGUE</Link>
               <Link to="/shop">SHOP</Link>
+              <Link to="/faq">FAQ</Link>
             </div>
           </div>
 

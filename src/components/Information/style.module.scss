@@ -10,3 +10,14 @@
   margin: 0 $unit * 2;
   animation: fadeIn 400ms ease;
 }
+
+.notExpanded {
+  max-height: 190px;
+  overflow: hidden;
+}
+
+.expandBtn {
+  color: $base-advert;
+  text-decoration: underline;
+  cursor: pointer;
+}
