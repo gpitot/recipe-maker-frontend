@@ -8,9 +8,10 @@ import style from "./style.module.scss";
 
 interface IProps {
   onSelect: (user: ISearchUser) => void;
+  onClear?: () => void;
 }
 
-const UserSearch = ({ onSelect }: IProps) => {
+const UserSearch = ({ onSelect, onClear }: IProps) => {
   const [text, setText] = useState("");
   const [users, setUsers] = useState<Array<ISearchUser>>([]);
   const [selected, setSelected] = useState<ISearchUser>();
@@ -50,6 +51,9 @@ const UserSearch = ({ onSelect }: IProps) => {
     setSelected(undefined);
     setText("");
     setUsers([]);
+    if (onClear) {
+      onClear();
+    }
   };
 
   if (selected) {

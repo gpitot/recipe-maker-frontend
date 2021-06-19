@@ -19,3 +19,9 @@
   margin: $unit * 2;
   margin-bottom: 0;
 }
+
+.remindersTable {
+  max-height: 400px;
+  overflow-y: scroll;
+  margin-top: $unit * 2;
+}
