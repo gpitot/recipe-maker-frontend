@@ -38,8 +38,12 @@ export interface IUserResetPassword {
   token: string;
 }
 
-export interface IUserGenerateReset {
+export interface IAdminGenerateUserPasswordReset {
   user_id: number;
+}
+
+export interface IUserGenerateUserPasswordReset {
+  email: string;
 }
 
 interface IUserResponse extends IResultResponse {
@@ -133,10 +137,22 @@ const api = {
       });
   },
 
-  generateReset: (data: IUserGenerateReset) => {
+  adminGenerateReset: (data: IAdminGenerateUserPasswordReset) => {
     return axios
       .post<null, IJsonResponse<IGenerateTokenResponse>>(
         `${BASE_URL}/users/generate-reset`,
+        data,
+        commonAxiosConfig
+      )
+      .then((res) => {
+        return res.data;
+      });
+  },
+
+  userGenerateReset: (data: IUserGenerateUserPasswordReset) => {
+    return axios
+      .post<null, IJsonResponse<IResultResponse>>(
+        `${BASE_URL}/users/user-generate-reset`,
         data,
         commonAxiosConfig
       )

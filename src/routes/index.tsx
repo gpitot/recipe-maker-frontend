@@ -15,6 +15,7 @@ import CreateUser from "pages/CreateUser";
 import Profile from "pages/Profile";
 import Admin from "pages/Admin";
 import ResetPassword from "pages/ResetPassword";
+import ForgotPassword from "pages/ForgotPassword";
 
 const Routes = () => (
   <Router>
@@ -54,6 +55,10 @@ const Routes = () => (
 
         <Route path="/create">
           <CreateUser />
+        </Route>
+
+        <Route path="/forgot-password">
+          <ForgotPassword />
         </Route>
 
         <Route path="/loginerror">

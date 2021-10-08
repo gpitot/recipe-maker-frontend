@@ -127,6 +127,10 @@ const Login = () => {
       <Link to="/create" className={style.login}>
         Need to make an account? Create one here here
       </Link>
+
+      <Link to="/forgot-password" className={style.login}>
+        Forgot your password? Reset it here
+      </Link>
     </Information>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useFlags } from "@atlaskit/flag";
 import SuccessIcon from "@atlaskit/icon/glyph/check-circle";
 import { G400 } from "@atlaskit/theme/colors";
@@ -6,48 +6,57 @@ import ErrorIcon from "@atlaskit/icon/glyph/error";
 import { R400 } from "@atlaskit/theme/colors";
 import { useHistory, Link } from "react-router-dom";
 
-import { validatePassword } from "utils/validation";
+import { UserContext } from "contexts/UserContext";
+import { validateEmail } from "utils/validation";
 import API from "rest/api";
+import { IUserGenerateUserPasswordReset } from "rest/users";
 import Information from "components/Information";
 import Input from "components/Input";
 import Button from "components/Button";
 import style from "pages/CreateUser/style.module.scss";
 
-const Login = () => {
-  const { showFlag } = useFlags();
+const emptyUser = {
+  email: "",
+} as IUserGenerateUserPasswordReset;
+
+const ForgotPassword = () => {
   const history = useHistory();
+  const { showFlag } = useFlags();
 
   const url = new URL(window.location.href);
   const params = new URLSearchParams(url.search);
-  const token = params.get("token");
+  const redirect = params.get("redirect");
+  const path = redirect ? redirect : "/";
+  const { user, setUser } = useContext(UserContext);
 
   const [loading, setLoading] = useState(false);
-  const [password, setPassword] = useState("");
+  const [form, setForm] = useState<IUserGenerateUserPasswordReset>(emptyUser);
+
+  if (user.id) {
+    history.push(path);
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const valid = validatePassword(password);
+    const valid = validateEmail(form.email);
 
-    if (valid && token) {
+    if (valid) {
       setLoading(true);
       API.users
-        .resetPassword({ password, token })
+        .userGenerateReset(form)
         .then((res) => {
           if (res.success) {
-            setPassword("");
             showFlag({
               isAutoDismiss: true,
-              title: "Reset password",
+              title: "Send reset link to your phone",
               icon: <SuccessIcon label="success" secondaryColor={G400} />,
               appearance: "success",
             });
-            history.push("/login");
           } else {
             showFlag({
               isAutoDismiss: true,
-              title: "Could not reset password",
+              title: "You do not have a phone number linked",        
               icon: <ErrorIcon label="error" secondaryColor={R400} />,
-
               appearance: "error",
             });
           }
@@ -58,49 +67,55 @@ const Login = () => {
     } else {
       showFlag({
         isAutoDismiss: true,
-        title: "Password must be more than 5 chars long",
+        title: "Please enter a valid email address",
         icon: <ErrorIcon label="error" secondaryColor={R400} />,
-
         appearance: "error",
       });
     }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setPassword(value);
+    const { name, value } = e.target;
+    setForm({
+      ...form,
+      [name]: value,
+    });
   };
 
   if (loading) {
     return (
       <Information>
-        <h1>Resetting...</h1>
+        <h1>Sending a reset link to your phone...</h1>
       </Information>
     );
   }
 
   return (
     <Information>
-      <h1>Reset your password</h1>
+      <h1>Reset password</h1>
 
       <form>
         <div className={style.inputWrapper}>
           <Input
-            label="Password"
-            value={password}
+            label="Email address"
+            value={form["email"]}
             handleChange={handleChange}
-            name="password"
-            type="password"
+            name="email"
+            type="email"
           />
         </div>
-        <Button text="Reset" handleClick={handleSubmit} />
+        <Button text="Send reset link to my phone" handleClick={handleSubmit} />
       </form>
 
       <Link to="/create" className={style.login}>
         Need to make an account? Create one here here
       </Link>
+
+      <Link to="/login" className={style.login}>
+        Already have an account? Log in here
+      </Link>
     </Information>
   );
 };
 
-export default Login;
+export default ForgotPassword;

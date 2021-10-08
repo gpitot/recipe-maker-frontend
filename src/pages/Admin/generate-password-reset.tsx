@@ -20,7 +20,7 @@ const GeneratePasswordReset = () => {
   const handleClick = () => {
     if (!user) return;
     API.users
-      .generateReset({
+      .adminGenerateReset({
         user_id: user.id,
       })
       .then((res) => {

@@ -1,6 +1,6 @@
 import { IUserCreate, IUserLogin } from "rest/users";
 
-const validateEmail = (email: string): boolean => {
+export const validateEmail = (email: string): boolean => {
   return email.includes("@");
 };
 
