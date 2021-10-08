@@ -27,7 +27,7 @@ const ForgotPassword = () => {
   const params = new URLSearchParams(url.search);
   const redirect = params.get("redirect");
   const path = redirect ? redirect : "/";
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState<IUserGenerateUserPasswordReset>(emptyUser);
