@@ -20,6 +20,8 @@ import Paid from "components/Paid";
 import { ReactComponent as Close } from "icons/times-circle-solid.svg";
 import ManualRegistration from "components/ManualRegistration";
 import Streak from "components/Streak";
+import VaccineStatus from "components/VaccineStatus";
+
 interface IProps {
   event: IEvent;
   userEvents?: Array<IUserEvent>;
@@ -93,6 +95,7 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
         name={`${event.firstname}`}
         photo={event.photo}
       />
+      <VaccineStatus vaccinated={event.vaccinated}/>
       {user.id === event.user_id && !loadingRemove && (
         <Close onClick={() => removeEntry(event)} className={style.remove} />
       )}

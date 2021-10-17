@@ -16,6 +16,7 @@ export interface IUser {
   accessToken: string;
   phone?: string;
   email?: string;
+  vaccinated?: boolean;
 }
 
 export interface IUserCreate {
@@ -182,5 +183,17 @@ const api = {
         return res.data;
       });
   },
+
+  editUser : (user : IUser) => {
+    return axios
+        .put<null, IJsonResponse<IResultResponse>>(
+            `${BASE_URL}/users/`,
+            {user},
+            commonAxiosConfig
+        )
+        .then((res) => {
+          return res.data;
+        });
+  }
 };
 export default api;
