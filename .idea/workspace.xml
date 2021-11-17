@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e317ff9-0d99-49fb-8332-8d60be6299ad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/pages/Admin2/Parameter.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Admin2/Prebuilt.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin2/Prebuilt.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Admin2/Results.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin2/Results.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Admin2/available-apis.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin2/available-apis.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Admin2/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin2/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rest/admin/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rest/admin/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +89,7 @@
       <workItem from="1636168634897" duration="8033000" />
       <workItem from="1636321921635" duration="429000" />
       <workItem from="1636344943664" duration="6834000" />
+      <workItem from="1637123727050" duration="210000" />
     </task>
     <task id="LOCAL-00001" summary="add vaccinated status">
       <created>1634510086290</created>
@@ -135,6 +131,7 @@
     <MESSAGE value="remove vaccination toggle - now 1 click only" />
     <MESSAGE value="admin api" />
     <MESSAGE value="begin admin new panel" />
-    <option name="LAST_COMMIT_MESSAGE" value="begin admin new panel" />
+    <MESSAGE value="modal on challenge accept to warn share phone" />
+    <option name="LAST_COMMIT_MESSAGE" value="modal on challenge accept to warn share phone" />
   </component>
 </project>
