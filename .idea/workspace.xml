@@ -2,15 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e317ff9-0d99-49fb-8332-8d60be6299ad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/pages/Admin2/Prebuilt.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Admin2/Results.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Admin2/available-apis.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Admin2/style.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/frontend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/frontend.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Admin2/Parameter.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin2/Prebuilt.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin2/Prebuilt.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin2/Results.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin2/Results.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin2/available-apis.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin2/available-apis.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Admin2/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin2/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rest/admin/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rest/admin/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rest/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rest/api.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,19 +80,6 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -107,6 +92,8 @@
       <workItem from="1634506773102" duration="3319000" />
       <workItem from="1635745291313" duration="2313000" />
       <workItem from="1636168634897" duration="8033000" />
+      <workItem from="1636321921635" duration="429000" />
+      <workItem from="1636344943664" duration="6834000" />
     </task>
     <task id="LOCAL-00001" summary="add vaccinated status">
       <created>1634510086290</created>
