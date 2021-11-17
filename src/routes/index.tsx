@@ -17,6 +17,7 @@ import LoginError from "pages/LoginError";
 import Login from "pages/Login";
 import CreateUser from "pages/CreateUser";
 import Profile from "pages/Profile";
+import OldAdmin from "pages/Admin";
 import Admin from "pages/Admin2";
 import ResetPassword from "pages/ResetPassword";
 import ForgotPassword from "pages/ForgotPassword";
@@ -25,7 +26,10 @@ const Routes = () => (
   <Router>
     <Switch>
       <Route path="/admin">
-        <Admin />
+        <>
+          <Admin />
+          <OldAdmin />
+        </>
       </Route>
       <Base>
         <Route exact path="/">
