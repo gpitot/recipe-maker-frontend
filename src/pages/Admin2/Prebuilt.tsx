@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import style from "./style.module.scss";
-import availableApis, { ApiConfig, Param, ParamType } from "./available-apis";
+import availableApis, { ApiConfig } from "./available-apis";
 import Parameter from "./Parameter";
 
 interface IProps {

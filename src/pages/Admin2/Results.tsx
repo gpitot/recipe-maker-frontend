@@ -16,7 +16,7 @@ const Results = ({ columns, rows, loading }: IProps) => {
 
   useEffect(() => {
     setCurrentRows(rows);
-  }, rows);
+  }, [rows]);
 
   const handleSelect = (idx: number) => {
     const current = [...currentRows];
