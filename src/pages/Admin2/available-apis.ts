@@ -27,7 +27,7 @@ export interface ApiConfig {
   params: Param[];
 }
 
-export default [
+const availableAPIs = [
   {
     key: "getSocialSignups",
     category: ApiCategory.social,
@@ -67,3 +67,4 @@ export default [
     ],
   },
 ];
+export default availableAPIs;
