@@ -1,5 +1,10 @@
 import React from "react";
-import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import Base from "components/Base";
 import Home from "pages/Home";
 import Social from "pages/Social";
@@ -12,14 +17,17 @@ import LoginError from "pages/LoginError";
 import Login from "pages/Login";
 import CreateUser from "pages/CreateUser";
 import Profile from "pages/Profile";
-import Admin from "pages/Admin";
+import Admin from "pages/Admin2";
 import ResetPassword from "pages/ResetPassword";
 import ForgotPassword from "pages/ForgotPassword";
 
 const Routes = () => (
   <Router>
-    <Base>
-      <Switch>
+    <Switch>
+      <Route path="/admin">
+        <Admin />
+      </Route>
+      <Base>
         <Route exact path="/">
           <Home />
         </Route>
@@ -30,7 +38,7 @@ const Routes = () => (
           <Event />
         </Route>
         <Route exact path="/competition">
-          <Redirect to={"/competition/ladder/1"}/>
+          <Redirect to={"/competition/ladder/1"} />
         </Route>
 
         <Route path="/competition/ladder/:ladderid">
@@ -64,15 +72,11 @@ const Routes = () => (
           <LoginError />
         </Route>
 
-        <Route path="/admin">
-          <Admin />
-        </Route>
-
         <Route path="/reset-password">
           <ResetPassword />
         </Route>
-      </Switch>
-    </Base>
+      </Base>
+    </Switch>
   </Router>
 );
 
