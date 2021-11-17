@@ -27,12 +27,12 @@ const api = {
       });
   },
 
-  getPotentialSocials: (mode: "RECENT" | "FREEBIE") => {
+  getPotentialSocials: (mode: "RECENT" | "FREEBIE" = "FREEBIE") => {
     return axios
       .get<
         null,
         IJsonResponse<Pick<IUser, "id" | "firstname" | "lastname" | "phone">>
-      >(`${BASE_URL}/admin/potential-socials`)
+      >(`${BASE_URL}/admin/potential-socials?mode=${mode}`)
       .then((res) => {
         return res.data;
       });

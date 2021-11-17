@@ -10,19 +10,19 @@ const Admin = () => {
 
   const [loading, setLoading] = useState(false);
 
-  const getResults = (
-    api: Function,
-    params: any[] | object,
-    columns: string[]
-  ) => {
+  const getResults = (api: Function, params: any[], columns: string[]) => {
     setLoading(true);
     setColumns(columns);
-    // @ts-ignore
-    api
-      .apply(params)
+    api(...params)
+      // @ts-ignore
       .then((res) => {
-        console.log(res);
-        setRows(res.result);
+        // @ts-ignore
+        const rows = res.result.map((row) => ({
+          ...row,
+          isChecked: false,
+        }));
+
+        setRows(rows);
       })
       .finally(() => {
         setLoading(false);

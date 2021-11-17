@@ -11,9 +11,11 @@ export enum ParamType {
 }
 
 export interface Param {
+  id: string;
   type: ParamType;
   label: string;
   values?: string[];
+  value: string | number;
 }
 
 export interface ApiConfig {
@@ -34,13 +36,33 @@ export default [
     columns: ["count", "id", "firstname", "lastname"],
     params: [
       {
+        id: "order",
         type: ParamType.option,
         label: "Order",
         values: ["ASC", "DESC"],
+        value: "ASC",
       },
       {
+        id: "limit",
         label: "Limit",
         type: ParamType.number,
+        value: 10,
+      },
+    ],
+  },
+  {
+    key: "getPotentialSocials",
+    category: ApiCategory.social,
+    label: "Get potential social signups",
+    api: API.admin.getPotentialSocials,
+    columns: ["id", "firstname", "lastname", "phone"],
+    params: [
+      {
+        id: "mode",
+        type: ParamType.option,
+        label: "Mode",
+        values: ["FREEBIE", "RECENT"],
+        value: "FREEBIE",
       },
     ],
   },

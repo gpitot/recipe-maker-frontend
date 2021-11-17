@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import style from "./style.module.scss";
 import availableApis, { ApiConfig, Param, ParamType } from "./available-apis";
+import Parameter from "./Parameter";
 
 interface IProps {
   onGeneration: (api: Function, params: any[], columns: string[]) => void;
@@ -15,8 +16,17 @@ const intialSelectedState = {
 const Prebuilt = ({ onGeneration }: IProps) => {
   const [selected, setSelected] = useState<ApiConfig>(intialSelectedState);
 
-  const handleGeneration = () => {
-    onGeneration(selected.api, [], selected.columns);
+  const handleGeneration = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    const formValues = Array.from(form.elements)
+      .map((el) => {
+        const element = el as HTMLInputElement;
+        return element.value;
+      })
+      .slice(1);
+
+    onGeneration(selected.api, formValues, selected.columns);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -31,30 +41,25 @@ const Prebuilt = ({ onGeneration }: IProps) => {
     setSelected(intialSelectedState);
   };
 
-  const buildParams = (param: Param) => {
-    return (
-      <label>{param.label}</label>
-      // {
-      //     param.type === ParamType.string && <input type={"text"}
-      // }
-    );
-  };
-
   return (
-    <section className={style.prebuilt}>
+    <form className={style.prebuilt} onSubmit={handleGeneration}>
       <select onChange={handleChange} value={selected.key}>
         <option value={""}>Pick an API</option>
         {availableApis.map((api) => (
-          <option value={api.key}>{api.label}</option>
+          <option value={api.key} key={api.key}>
+            {api.label}
+          </option>
         ))}
       </select>
 
-      {selected.params.map(buildParams)}
+      {selected.params.map((param) => (
+        <Parameter param={param} key={param.id} />
+      ))}
 
-      <button disabled={selected.key === ""} onClick={handleGeneration}>
+      <button disabled={selected.key === ""} type={"submit"}>
         Generate
       </button>
-    </section>
+    </form>
   );
 };
 export default Prebuilt;
