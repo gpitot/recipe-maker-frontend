@@ -30,3 +30,11 @@
 .bronze {
   background: #e8701b;
 }
+
+.accept-challenge-buttons {
+  display: flex;
+  justify-content: flex-end;
+  button {
+    margin-left: $unit;
+  }
+}

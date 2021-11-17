@@ -61,8 +61,8 @@ export interface ISearchUser {
   id: number;
   email: string;
   phone: string;
-  firstname: string;
-  lastname: string;
+  firstname: Pick<IUser, "firstname">;
+  lastname: Pick<IUser, "lastname">;
   streak: number;
 }
 interface ISearchUserResponse extends IResultResponse {
@@ -184,16 +184,16 @@ const api = {
       });
   },
 
-  editUser : (user : IUser) => {
+  editUser: (user: IUser) => {
     return axios
-        .put<null, IJsonResponse<IResultResponse>>(
-            `${BASE_URL}/users/`,
-            {user},
-            commonAxiosConfig
-        )
-        .then((res) => {
-          return res.data;
-        });
-  }
+      .put<null, IJsonResponse<IResultResponse>>(
+        `${BASE_URL}/users/`,
+        { user },
+        commonAxiosConfig
+      )
+      .then((res) => {
+        return res.data;
+      });
+  },
 };
 export default api;

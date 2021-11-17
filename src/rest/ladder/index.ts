@@ -5,6 +5,7 @@ import {
   commonAxiosConfig,
   IResultResponse,
 } from "rest/common";
+import { IUser } from "../users";
 
 export interface ILadders extends IResultResponse {
   id: number;
@@ -28,11 +29,11 @@ export interface IMatches {
   player_2_paid: boolean;
   approved: boolean;
   accepted: boolean;
-  player_1_firstname: string;
-  player_1_lastname: string;
+  player_1_firstname: Pick<IUser, "firstname">;
+  player_1_lastname: Pick<IUser, "lastname">;
   player_1_photo: string;
-  player_2_firstname: string;
-  player_2_lastname: string;
+  player_2_firstname: Pick<IUser, "firstname">;
+  player_2_lastname: Pick<IUser, "lastname">;
   player_2_photo: string;
 }
 
