@@ -3,6 +3,7 @@ import classnames from "classnames";
 import { Link } from "react-router-dom";
 import style from "./style.module.scss";
 import User from "components/User";
+import AdminNav from "components/Header/admin-nav";
 
 const HEADER_OFFSET = 96;
 
@@ -29,7 +30,6 @@ const Header = () => {
     setDropdownShown(!dropdownShown);
   };
   const hideHeader = () => {
-    console.log("hide header");
     setDropdownShown(false);
   };
 
@@ -56,6 +56,7 @@ const Header = () => {
               <Link to="/competition">LADDER LEAGUE</Link>
               <Link to="/shop">SHOP</Link>
               <Link to="/faq">FAQ</Link>
+              <AdminNav />
             </div>
           </div>
 

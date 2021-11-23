@@ -25,13 +25,13 @@ import ForgotPassword from "pages/ForgotPassword";
 const Routes = () => (
   <Router>
     <Switch>
-      <Route path="/admin">
-        <>
-          <Admin />
-          <OldAdmin />
-        </>
-      </Route>
       <Base>
+        <Route path="/admin">
+          <>
+            <Admin />
+            <OldAdmin />
+          </>
+        </Route>
         <Route exact path="/">
           <Home />
         </Route>
