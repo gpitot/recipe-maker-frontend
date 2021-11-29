@@ -47,7 +47,7 @@ const AcceptChallenge = ({
     setIsOpen(false);
   };
 
-  const handleSubmit = () => {
+  const handleAccept = () => {
     setIsOpen(false);
     setSubmitted(true);
     API.ladder.challengeAccept({ match_id: id }).then((res) => {
@@ -71,13 +71,44 @@ const AcceptChallenge = ({
     });
   };
 
+  const handleDecline = () => {
+    setSubmitted(true);
+    API.ladder.challengeDecline({ match_id: id }).then((res) => {
+      if (res.success) {
+        showFlag({
+          isAutoDismiss: true,
+          title: "Challenge declined",
+          icon: <SuccessIcon label="success" secondaryColor={G400} />,
+          appearance: "success",
+        });
+      } else {
+        showFlag({
+          isAutoDismiss: true,
+          title: "Challenge could not be declined",
+          icon: <ErrorIcon label="error" secondaryColor={R400} />,
+
+          appearance: "error",
+        });
+        setSubmitted(false);
+      }
+    });
+  };
+
   return (
     <>
-      <Button
-        disabled={submitted}
-        text={"Accept"}
-        handleClick={handleOpenModal}
-      />
+      <div className={style["accept-challenge-buttons"]}>
+        <Button
+          disabled={submitted}
+          text={"Decline"}
+          handleClick={handleDecline}
+          primary={false}
+        />
+        <Button
+          disabled={submitted}
+          text={"Accept"}
+          handleClick={handleOpenModal}
+        />
+      </div>
       {isOpen && (
         <Modal setOpen={setIsOpen}>
           <h4>
@@ -85,8 +116,12 @@ const AcceptChallenge = ({
             {player_1_firstname}
           </h4>
           <div className={style["accept-challenge-buttons"]}>
-            <Button text={"cancel"} handleClick={handleCloseModal} />
-            <Button text={"Accept"} handleClick={handleSubmit} />
+            <Button
+              text={"cancel"}
+              handleClick={handleCloseModal}
+              primary={false}
+            />
+            <Button text={"Accept"} handleClick={handleAccept} />
           </div>
         </Modal>
       )}

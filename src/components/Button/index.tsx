@@ -1,11 +1,13 @@
 import React from "react";
 import style from "./style.module.scss";
+import classnames from "classnames";
 interface IProps {
   handleClick?: (e: any) => void;
   text: string;
   disabled?: boolean;
   type?: "button" | "link";
   href?: string;
+  primary?: boolean;
 }
 
 const Button = ({
@@ -14,6 +16,7 @@ const Button = ({
   handleClick,
   text,
   href,
+  primary = true,
 }: IProps) => {
   if (type === "link") {
     return (
@@ -28,8 +31,10 @@ const Button = ({
     );
   }
 
+  const classes = classnames(style.button, !primary && style.secondary);
+
   return (
-    <button className={style.button} disabled={disabled} onClick={handleClick}>
+    <button className={classes} disabled={disabled} onClick={handleClick}>
       {text}
     </button>
   );

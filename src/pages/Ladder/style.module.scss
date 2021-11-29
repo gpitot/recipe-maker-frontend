@@ -33,8 +33,8 @@
 
 .accept-challenge-buttons {
   display: flex;
-  justify-content: flex-end;
-  button {
-    margin-left: $unit;
+  justify-content: center;
+  button:first-child {
+    margin-right: $unit;
   }
 }

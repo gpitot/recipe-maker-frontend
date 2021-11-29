@@ -188,6 +188,18 @@ const api = {
       });
   },
 
+  challengeDecline: (data: { match_id: number }) => {
+    return axios
+      .put<null, IJsonResponse<IResultResponse>>(
+        `${LADDER_URL}/challenge/decline`,
+        data,
+        commonAxiosConfig
+      )
+      .then((res) => {
+        return res.data;
+      });
+  },
+
   challengeTime: (data: { match_id: number; time: string }) => {
     return axios
       .put<null, IJsonResponse<IResultResponse>>(

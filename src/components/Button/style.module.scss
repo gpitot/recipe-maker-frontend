@@ -16,6 +16,10 @@
   text-decoration: none;
   display: inline-block;
 
+  &.secondary {
+    background: $base-dark-secondary;
+  }
+
   &:hover {
     background: $base-light;
     color: $base-dark;
