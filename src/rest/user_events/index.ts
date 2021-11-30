@@ -19,7 +19,7 @@ export interface IUserEvent {
   enabled: boolean;
   photo: string;
   streak: number;
-  vaccinated : boolean;
+  vaccinated: boolean;
 }
 
 export interface IUserEventResponse extends IResultResponse {

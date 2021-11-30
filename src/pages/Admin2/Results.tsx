@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import style from "./style.module.scss";
+import List from "components/List";
 
 interface IProps {
   loading: boolean;
@@ -37,46 +37,45 @@ const Results = ({ columns, rows, loading }: IProps) => {
     setAllSelected(!allSelected);
   };
 
+  if (currentRows.length === 0) return null;
+
+  const headers = [
+    <th onClick={handleToggleAll}>
+      {allSelected ? "Deselect all" : "Select all"}
+    </th>,
+    ...columns.map((column) => <th key={column}>{column}</th>),
+  ];
+
+  const body = loading
+    ? [[<td>Loading</td>]]
+    : currentRows.map((row, rowIndex) => [
+        <>
+          <td>
+            <input
+              type={"checkbox"}
+              checked={row.isChecked}
+              onChange={() => handleSelect(rowIndex)}
+            />
+          </td>
+          {columns.map(
+            (
+              column,
+              index // @ts-ignore
+            ) => (
+              <td key={index}>{row[column]}</td>
+            )
+          )}
+        </>,
+      ]);
+
   return (
-    <table className={style.results}>
-      <thead>
-        <tr>
-          <th onClick={handleToggleAll}>
-            {allSelected ? "Deselect all" : "Select all"}
-          </th>
-          {columns.map((column) => (
-            <th key={column}>{column}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {loading ? (
-          <tr>
-            <td>Loading</td>
-          </tr>
-        ) : (
-          currentRows.map((row, rowIndex) => (
-            <tr key={rowIndex}>
-              <td>
-                <input
-                  type={"checkbox"}
-                  checked={row.isChecked}
-                  onChange={() => handleSelect(rowIndex)}
-                />
-              </td>
-              {columns.map(
-                (
-                  column,
-                  index // @ts-ignore
-                ) => (
-                  <td key={index}>{row[column]}</td>
-                )
-              )}
-            </tr>
-          ))
-        )}
-      </tbody>
-    </table>
+    <List
+      title={"Results"}
+      headers={headers}
+      body={body}
+      columnsInBuilt={true}
+      headersInBuilt={true}
+    />
   );
 };
 export default Results;

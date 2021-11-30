@@ -53,7 +53,9 @@ const GeneratePasswordReset = () => {
   return (
     <div className={style.area}>
       <UserSearch onSelect={handleSelect} />
-      {token && <div>https://northmanlysquash.com/reset-password?token={token}</div>}
+      {token && (
+        <div>https://northmanlysquash.com/reset-password?token={token}</div>
+      )}
       <Button text="Generate token" handleClick={handleClick} />
     </div>
   );

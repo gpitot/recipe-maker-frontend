@@ -1,39 +1,5 @@
-@import "styles/colors";
-@import "styles/sizes";
-@import "styles/breakpoints";
-
-.admin {
-  background: $base-light;
-  width: 100%;
-  min-height: 100vh;
-  padding: $unit * 4;
-
+.form {
   display: flex;
-  justify-content: center;
-
-  .inner {
-    max-width: 1500px;
-    width: 100%;
-    margin-top: 150px;
-  }
-
-  .query {
-  }
-
-  .prebuilt {
-  }
-
-  .results {
-    border: solid 1px $base-blue;
-    min-height: 300px;
-    width: 100%;
-    margin-top: $unit * 2;
-
-    td,
-    th {
-      border: solid 1px $base-blue;
-      font-size: 12px;
-      padding: $unit;
-    }
-  }
+  flex-direction: column;
+  margin: 0 40px;
 }

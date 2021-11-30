@@ -47,8 +47,6 @@ const api = {
         `${BASE_URL}/events`,
         event,
         commonAxiosConfig
-
-          
       )
       .then((res) => {
         return res.data;

@@ -95,7 +95,7 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
         name={`${event.firstname}`}
         photo={event.photo}
       />
-      <VaccineStatus vaccinated={event.vaccinated}/>
+      <VaccineStatus vaccinated={event.vaccinated} />
       {user.id === event.user_id && !loadingRemove && (
         <Close onClick={() => removeEntry(event)} className={style.remove} />
       )}

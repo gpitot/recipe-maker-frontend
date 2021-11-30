@@ -6,7 +6,7 @@ export interface IJsonResponse<T> {
 
 export interface IResultResponse {
   success: boolean;
-  err? : string;
+  err?: string;
 }
 
 export const commonAxiosConfig = {

@@ -3,13 +3,20 @@ import React from "react";
 import style from "./style.module.scss";
 
 interface IProps {
-  headers: Array<string>;
+  headers: Array<any>;
   body: Array<Array<any>>;
   title?: string;
   columnsInBuilt?: boolean;
+  headersInBuilt?: boolean;
 }
 
-const List = ({ title, headers, body, columnsInBuilt }: IProps) => (
+const List = ({
+  title,
+  headers,
+  body,
+  columnsInBuilt,
+  headersInBuilt,
+}: IProps) => (
   <Information styles={style["table-outer"]}>
     {title && <h3>{title}</h3>}
 
@@ -18,9 +25,11 @@ const List = ({ title, headers, body, columnsInBuilt }: IProps) => (
         <table>
           <thead>
             <tr>
-              {headers.map((header) => (
-                <th key={header}>{header}</th>
-              ))}
+              {headersInBuilt
+                ? headers
+                : headers.map((header) => (
+                    <th key={header as string}>{header}</th>
+                  ))}
             </tr>
           </thead>
           {body.length > 0 && (

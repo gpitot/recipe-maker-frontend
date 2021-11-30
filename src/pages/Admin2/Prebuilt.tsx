@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import style from "./style.module.scss";
 import availableApis, { ApiConfig } from "./available-apis";
 import Parameter from "./Parameter";
+import Button from "../../components/Button";
 
 interface IProps {
   onGeneration: (api: Function, params: any[], columns: string[]) => void;
@@ -42,7 +43,7 @@ const Prebuilt = ({ onGeneration }: IProps) => {
   };
 
   return (
-    <form className={style.prebuilt} onSubmit={handleGeneration}>
+    <form className={style.form} onSubmit={handleGeneration}>
       <select onChange={handleChange} value={selected.key}>
         <option value={""}>Pick an API</option>
         {availableApis.map((api) => (
@@ -56,9 +57,11 @@ const Prebuilt = ({ onGeneration }: IProps) => {
         <Parameter param={param} key={param.id} />
       ))}
 
-      <button disabled={selected.key === ""} type={"submit"}>
-        Generate
-      </button>
+      <Button
+        text={"Generate"}
+        disabled={selected.key === ""}
+        type={"submit"}
+      />
     </form>
   );
 };

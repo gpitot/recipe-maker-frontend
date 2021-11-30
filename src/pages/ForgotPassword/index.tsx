@@ -55,7 +55,7 @@ const ForgotPassword = () => {
           } else {
             showFlag({
               isAutoDismiss: true,
-              title: "You do not have a phone number linked",        
+              title: "You do not have a phone number linked",
               icon: <ErrorIcon label="error" secondaryColor={R400} />,
               appearance: "error",
             });

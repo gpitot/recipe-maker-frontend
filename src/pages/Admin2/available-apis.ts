@@ -27,6 +27,15 @@ export interface ApiConfig {
   params: Param[];
 }
 
+export enum MessageKeys {
+  "social-freebie-reminder" = "social-freebie-reminder",
+  "social-recent-user" = "social-recent-user",
+}
+export const MessageKeyList = [
+  MessageKeys["social-freebie-reminder"],
+  MessageKeys["social-recent-user"],
+];
+
 const availableAPIs = [
   {
     key: "getSocialSignups",

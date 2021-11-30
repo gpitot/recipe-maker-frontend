@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import AdminControl from "components/AdminControl";
 import Results from "./Results";
-import style from "./style.module.scss";
 import Prebuilt from "./Prebuilt";
+import GroupMessage from "./group-message";
+import Information from "components/Information";
 
 const Admin = () => {
   const [columns, setColumns] = useState<string[]>([]);
@@ -30,12 +31,11 @@ const Admin = () => {
   };
 
   return (
-    <div className={style.admin}>
-      <div className={style.inner}>
-        <Prebuilt onGeneration={getResults} />
-        <Results columns={columns} rows={rows} loading={loading} />
-      </div>
-    </div>
+    <Information>
+      <Prebuilt onGeneration={getResults} />
+      <Results columns={columns} rows={rows} loading={loading} />
+      <GroupMessage />
+    </Information>
   );
 };
 

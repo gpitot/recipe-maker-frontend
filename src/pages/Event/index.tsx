@@ -18,8 +18,9 @@ const Event = () => {
   const { eventid } = useParams<ParamTypes>();
 
   const [event, setEvent] = useState<IEvent | undefined>(undefined);
-  const [userEvents, setUserEvents] =
-    useState<Array<IUserEvent> | undefined>(undefined);
+  const [userEvents, setUserEvents] = useState<Array<IUserEvent> | undefined>(
+    undefined
+  );
 
   useEffect(() => {
     if (eventid === undefined) return;

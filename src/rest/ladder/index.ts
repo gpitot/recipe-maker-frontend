@@ -56,7 +56,8 @@ interface IGetMatchesProps {
   ladder_id?: number;
   player_id?: number;
   challenges?: boolean;
-  waitingForResult?: boolean;
+  limit?: number;
+  offset?: number;
 }
 
 interface IChallengeUserProps {
@@ -79,7 +80,8 @@ const api = {
     ladder_id,
     player_id,
     challenges = false,
-    waitingForResult = false,
+    limit,
+    offset,
   }: IGetMatchesProps) => {
     const matchUrl = new URL(`${LADDER_URL}/matches`);
     if (player_id) {
@@ -89,7 +91,13 @@ const api = {
       matchUrl.searchParams.set("ladder_id", ladder_id.toString());
     }
     matchUrl.searchParams.set("challenges", challenges.toString());
-    matchUrl.searchParams.set("waitingForResult", waitingForResult.toString());
+    if (limit) {
+      matchUrl.searchParams.set("limit", limit.toString());
+    }
+    if (offset) {
+      matchUrl.searchParams.set("offset", offset.toString());
+    }
+
     return axios
       .get<null, IJsonResponse<IMatchesResponse>>(matchUrl.toString())
       .then((res) => {

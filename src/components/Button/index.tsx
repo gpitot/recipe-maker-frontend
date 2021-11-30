@@ -5,13 +5,13 @@ interface IProps {
   handleClick?: (e: any) => void;
   text: string;
   disabled?: boolean;
-  type?: "button" | "link";
+  type?: "link" | "submit";
   href?: string;
   primary?: boolean;
 }
 
 const Button = ({
-  type = "button",
+  type,
   disabled = false,
   handleClick,
   text,
@@ -34,7 +34,12 @@ const Button = ({
   const classes = classnames(style.button, !primary && style.secondary);
 
   return (
-    <button className={classes} disabled={disabled} onClick={handleClick}>
+    <button
+      className={classes}
+      disabled={disabled}
+      onClick={handleClick}
+      type={type}
+    >
       {text}
     </button>
   );
