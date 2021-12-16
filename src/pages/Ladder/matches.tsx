@@ -1,37 +1,29 @@
-import React, { useEffect, useState } from "react";
-import API from "rest/api";
-import { IMatches } from "rest/ladder";
+import React, { useEffect } from "react";
+
+import { useMatchesStore } from "../../store/matches";
 
 import Challenges from "pages/Ladder/challenges";
 import Results from "pages/Ladder/results";
 
 interface IProps {
   ladderid?: number;
-  challenges: boolean;
+  isChallenge: boolean;
   player_id?: number;
 }
-const Matches = ({ ladderid, challenges, player_id }: IProps) => {
-  const [matches, setMatches] = useState<Array<IMatches>>([]);
+const Matches = ({ ladderid, isChallenge, player_id }: IProps) => {
+  const [{ challenges, results }, resultActions] = useMatchesStore();
 
   useEffect(() => {
-    API.ladder
-      .getMatches({
-        ladder_id: ladderid,
-        challenges,
-        player_id,
-      })
-      .then((res) => {
-        if (res.success) {
-          setMatches(res.result);
-        }
-      });
-  }, [challenges, ladderid, player_id]);
+    resultActions.initialLoad({ ladder_id: ladderid, player_id, isChallenge });
+  }, [resultActions, ladderid, isChallenge, player_id]);
+
+  const matches = isChallenge ? challenges : results;
 
   if (matches.length === 0) return null;
 
   return (
     <>
-      {challenges ? (
+      {isChallenge ? (
         <Challenges matches={matches} />
       ) : (
         <Results matches={matches} />

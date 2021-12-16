@@ -71,8 +71,8 @@ const Profile = () => {
         <ProfileAdminInfo {...user} />
       </Information>
       <SubmitResults id={user.id} />
-      <Matches challenges={true} player_id={user.id} />
-      <Matches challenges={false} player_id={user.id} />
+      <Matches isChallenge={true} player_id={user.id} />
+      <Matches isChallenge={false} player_id={user.id} />
       <SocialHistory user_id={user.id} />
     </>
   );

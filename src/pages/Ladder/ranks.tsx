@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from "react";
 import { UserContext } from "contexts/UserContext";
 
 import API from "rest/api";
-import { IRanks } from "rest/ladder";
 import List from "components/List";
 import UserRow from "components/UserRow";
 import Button from "components/Button";
@@ -13,6 +12,7 @@ import ErrorIcon from "@atlaskit/icon/glyph/error";
 import { R400 } from "@atlaskit/theme/colors";
 import Signup from "pages/Ladder/signup";
 import style from "./style.module.scss";
+import { useRanksStore } from "../../store/ranks";
 interface IProps {
   ladderid: number;
 }
@@ -21,22 +21,13 @@ const Ranks = ({ ladderid }: IProps) => {
   const { user } = useContext(UserContext);
   const { showFlag } = useFlags();
 
-  const [loading, setLoading] = useState(true);
-  const [ranks, setRanks] = useState<Array<IRanks>>([]);
   const [challenged, setChallenged] = useState<Array<number>>([]);
 
+  const [{ ranks, loading }, actions] = useRanksStore();
+
   useEffect(() => {
-    API.ladder
-      .getRanks({
-        ladder_id: ladderid,
-      })
-      .then((res) => {
-        if (res.success) {
-          setRanks(res.result);
-          setLoading(false);
-        }
-      });
-  }, [ladderid]);
+    actions.initialLoad(ladderid);
+  }, [ladderid, actions]);
 
   const challengeUser = (player_id: number) => {
     setChallenged([...challenged, player_id]);

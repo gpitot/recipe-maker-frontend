@@ -6,17 +6,17 @@ import EventDate from "components/EventDate";
 
 import API from "rest/api";
 import { IMatches } from "rest/ladder";
-import { IEvent } from "rest/events";
 import BoxLink from "components/BoxLink";
 import Information from "components/Information";
 import LadderLeagueAd from "components/Ads/ladder-league-3";
 
 import style from "./style.module.scss";
 import { Link } from "react-router-dom";
+import { useEventsStore } from "../../store/events";
 
 const Home = () => {
   const [upcomingMatches, setUpcomingMatches] = useState<Array<IMatches>>([]);
-  const [events, setEvent] = useState<Array<IEvent>>([]);
+  const [{ events }, actions] = useEventsStore();
 
   useEffect(() => {
     API.ladder.getUpcoming().then(({ result, success }) => {
@@ -25,12 +25,8 @@ const Home = () => {
       }
     });
 
-    API.events.getEvents().then(({ result, success }) => {
-      if (success) {
-        setEvent(result);
-      }
-    });
-  }, []);
+    actions.initialLoad();
+  }, [actions]);
 
   const upcomingList = upcomingMatches.map((match) => {
     const {

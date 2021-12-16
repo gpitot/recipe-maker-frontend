@@ -22,8 +22,8 @@ const Ladder = () => {
     <>
       <LadderLeagueAd />
       <Ranks ladderid={id} />
-      <Matches ladderid={id} challenges={false} />
-      <Matches ladderid={id} challenges={true} />
+      <Matches ladderid={id} isChallenge={false} />
+      <Matches ladderid={id} isChallenge={true} />
     </>
   );
 };
