@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0e317ff9-0d99-49fb-8332-8d60be6299ad" name="Default Changelist" comment="">
+    <list default="true" id="0e317ff9-0d99-49fb-8332-8d60be6299ad" name="Default Changelist" comment="better highlights on rank">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/EditConfigs/edit-challenge.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EditConfigs/edit-challenge.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Ladder/challenges.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Ladder/challenges.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Ladder/matches.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Ladder/matches.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rest/ladder/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rest/ladder/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +80,11 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/assets" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -90,6 +100,9 @@
       <workItem from="1636321921635" duration="429000" />
       <workItem from="1636344943664" duration="6834000" />
       <workItem from="1637123727050" duration="210000" />
+      <workItem from="1638240192138" duration="2969000" />
+      <workItem from="1639613269843" duration="4092000" />
+      <workItem from="1639618967739" duration="1518000" />
     </task>
     <task id="LOCAL-00001" summary="add vaccinated status">
       <created>1634510086290</created>
@@ -132,6 +145,7 @@
     <MESSAGE value="admin api" />
     <MESSAGE value="begin admin new panel" />
     <MESSAGE value="modal on challenge accept to warn share phone" />
-    <option name="LAST_COMMIT_MESSAGE" value="modal on challenge accept to warn share phone" />
+    <MESSAGE value="better highlights on rank" />
+    <option name="LAST_COMMIT_MESSAGE" value="better highlights on rank" />
   </component>
 </project>
