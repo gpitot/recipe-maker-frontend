@@ -9,7 +9,7 @@ import { IMatches } from "rest/ladder";
 import { IEvent } from "rest/events";
 import BoxLink from "components/BoxLink";
 import Information from "components/Information";
-import LadderLeagueAd from "components/Ads/ladder-league";
+import LadderLeagueAd from "components/Ads/ladder-league-3";
 
 import style from "./style.module.scss";
 import { Link } from "react-router-dom";

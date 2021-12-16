@@ -7,6 +7,7 @@ const LadderLeagueAd2 = () => (
   <Link to="/competition">
     <Information styles={style.gap}>
       <h3>Want to play more competitively? Sign up to the ladder league</h3>
+      <h5>Find out more here</h5>
     </Information>
   </Link>
 );

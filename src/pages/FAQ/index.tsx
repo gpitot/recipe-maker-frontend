@@ -1,10 +1,21 @@
 import React from "react";
 import Information from "components/Information";
 import style from "./style.module.scss";
+import { Link } from "react-router-dom";
 
 const Faq = () => {
   return (
     <>
+      <Information styles={style.gap}>
+        <img
+          src="/assets/ladder-benefits.png"
+          alt="Ladder league benefits"
+          className={style.centralImage}
+        />
+        Based on your rank in the league you get higher discounts on Monday's.
+        Challenge someone <Link to={"/competition"}>here</Link>.
+      </Information>
+
       <Information styles={style.gap} readMore>
         <h2>Monday Night Social</h2>
         <p>Our Monday Night Social Hit is made up of three sessions.</p>

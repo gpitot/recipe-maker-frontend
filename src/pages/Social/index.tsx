@@ -5,7 +5,7 @@ import API from "rest/api";
 import { IEvent } from "rest/events";
 import Information from "components/Information";
 import { Link } from "react-router-dom";
-import LadderLeagueAd2 from "components/Ads/ladder-league-2";
+import LadderLeagueAd2 from "components/Ads/ladder-league-3";
 
 const Social = () => {
   const [loading, setLoading] = useState(true);

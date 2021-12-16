@@ -11,3 +11,10 @@
   height: 32px;
   margin: $unit;
 }
+
+.centralImage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: $unit * 3;
+}
