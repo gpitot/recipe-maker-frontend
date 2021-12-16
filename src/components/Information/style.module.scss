@@ -9,6 +9,10 @@
   color: $base-blue;
   margin: 0 $unit * 2;
   animation: fadeIn 400ms ease;
+
+  img {
+    max-width: 100%;
+  }
 }
 
 .notExpanded {
