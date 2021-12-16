@@ -146,33 +146,41 @@ const Challenges = ({ matches }: IProps) => {
       accepted,
       match_date,
     } = match;
+    const challengeStyle = match_date || accepted ? style.win : style.lose;
     return [
-      <UserRow
-        id={player_1}
-        name={player_1_firstname}
-        photo={player_1_photo}
-      />,
-      <UserRow
-        id={player_2}
-        name={player_2_firstname}
-        photo={player_2_photo}
-      />,
       <>
-        {match_date ? (
-          <EventDate time={match_date} />
-        ) : (
-          <AcceptChallenge
-            id={id}
-            accepted={accepted}
-            player_2={player_2}
-            user={user}
-            player_1_firstname={player_1_firstname}
+        <td>
+          <UserRow
+            id={player_1}
+            name={player_1_firstname}
+            photo={player_1_photo}
           />
-        )}
+        </td>
+        <td>
+          <UserRow
+            id={player_2}
+            name={player_2_firstname}
+            photo={player_2_photo}
+          />
+        </td>
 
-        <Edit>
-          {(setOpen) => <EditChallenge setOpen={setOpen} {...match} />}
-        </Edit>
+        <td className={challengeStyle}>
+          {match_date ? (
+            <EventDate time={match_date} />
+          ) : (
+            <AcceptChallenge
+              id={id}
+              accepted={accepted}
+              player_2={player_2}
+              user={user}
+              player_1_firstname={player_1_firstname}
+            />
+          )}
+
+          <Edit>
+            {(setOpen) => <EditChallenge setOpen={setOpen} {...match} />}
+          </Edit>
+        </td>
       </>,
     ];
   });
@@ -182,6 +190,7 @@ const Challenges = ({ matches }: IProps) => {
       title="Upcoming challenges"
       headers={["Challenger", "Opponent", "Accepted"]}
       body={body}
+      columnsInBuilt={true}
     />
   );
 };

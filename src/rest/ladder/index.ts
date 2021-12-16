@@ -29,6 +29,7 @@ export interface IMatches {
   player_2_paid: boolean;
   approved: boolean;
   accepted: boolean;
+  declined: boolean;
   player_1_firstname: Pick<IUser, "firstname">;
   player_1_lastname: Pick<IUser, "lastname">;
   player_1_photo: string;
@@ -255,6 +256,7 @@ const api = {
     player_2_games: number;
     match_date: string;
   }) => {
+    console.log(data);
     return axios
       .put<null, IJsonResponse<IResultResponse>>(
         `${LADDER_URL}/challenge/edit`,

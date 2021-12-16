@@ -18,6 +18,7 @@ const EditChallenge = ({
   setOpen,
   id,
   accepted,
+  declined,
   player_1_games,
   player_2_games,
   match_date,
@@ -28,6 +29,7 @@ const EditChallenge = ({
     player_1_games,
     player_2_games,
     match_date,
+    declined,
   });
   const { showFlag } = useFlags();
 
@@ -73,6 +75,13 @@ const EditChallenge = ({
           label="Accepted"
           checked={match.accepted}
           name="accepted"
+          handleChange={handleChange}
+        />
+        <Input
+          type="checkbox"
+          label="Declined"
+          checked={match.declined}
+          name="declined"
           handleChange={handleChange}
         />
         {match.accepted && (
