@@ -89,12 +89,10 @@ const Ranks = ({ ladderid }: IProps) => {
   }
 
   const renderChallengeState = (index: number, id: number) => {
-    if (index === userRankIndex) return null;
-
     if (index >= userRankIndex - 5)
       return (
         <Button
-          disabled={challenged.includes(id)}
+          disabled={challenged.includes(id) || index === userRankIndex}
           handleClick={() => challengeUser(id)}
           text={"Challenge"}
         />
@@ -112,11 +110,11 @@ const Ranks = ({ ladderid }: IProps) => {
   const renderLadderLeague = (rank: number) => {
     const visualRank = rank + 1;
     let className = undefined;
-    if (visualRank <= 3) {
+    if (visualRank <= 1) {
       className = style.gold;
-    } else if (visualRank <= 8) {
+    } else if (visualRank <= 3) {
       className = style.silver;
-    } else if (visualRank <= 13) {
+    } else if (visualRank <= 10) {
       className = style.bronze;
     }
     return <td className={className}>#{visualRank}</td>;

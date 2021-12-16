@@ -28,6 +28,7 @@
   &:hover:disabled {
     background: gray;
     color: $base-light;
+    cursor: not-allowed;
   }
 
   &:disabled {
