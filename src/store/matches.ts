@@ -3,18 +3,13 @@ import API from "rest/api";
 import { IMatches } from "../rest/ladder";
 
 type State = {
-  challenges: Array<IMatches>;
-  loadingChallenges: boolean;
-
-  results: Array<IMatches>;
-  loadingResults: boolean;
+  matches: {
+    [key: string]: Array<IMatches>;
+  };
 };
 
 const initialState: State = {
-  challenges: [],
-  loadingChallenges: true,
-  results: [],
-  loadingResults: true,
+  matches: {},
 };
 
 interface IInitialLoad {
@@ -23,6 +18,14 @@ interface IInitialLoad {
   player_id?: number;
 }
 
+export const translateParamsToKey = ({
+  ladder_id,
+  isChallenge,
+  player_id,
+}: IInitialLoad) => {
+  return `${ladder_id ? ladder_id : 0}:${player_id}:${isChallenge ? 1 : 0}`;
+};
+
 const Store = createStore({
   initialState,
   actions: {
@@ -30,9 +33,8 @@ const Store = createStore({
     initialLoad:
       ({ ladder_id, isChallenge, player_id }: IInitialLoad) =>
       ({ getState, setState }) => {
-        if (!getState().loadingChallenges && isChallenge) return;
-        if (!getState().loadingResults && !isChallenge) return;
-
+        const key = translateParamsToKey({ ladder_id, isChallenge, player_id });
+        if (getState().matches[key]) return;
         API.ladder
           .getMatches({
             ladder_id,
@@ -41,17 +43,12 @@ const Store = createStore({
           })
           .then((res) => {
             if (res.success) {
-              if (isChallenge) {
-                setState({
-                  challenges: res.result,
-                  loadingChallenges: false,
-                });
-              } else {
-                setState({
-                  results: res.result,
-                  loadingResults: false,
-                });
-              }
+              setState({
+                matches: {
+                  ...getState().matches,
+                  [key]: res.result,
+                },
+              });
             }
           });
       },
