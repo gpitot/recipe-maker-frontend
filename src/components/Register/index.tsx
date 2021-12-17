@@ -1,7 +1,7 @@
 import Information from "components/Information";
 import React, { useContext } from "react";
 import style from "./style.module.scss";
-import { Button } from "@material-ui/core";
+import Button from "components/Button";
 import API from "rest/api";
 import { useFlags } from "@atlaskit/flag";
 import SuccessIcon from "@atlaskit/icon/glyph/check-circle";
@@ -44,7 +44,7 @@ const Register = ({
         if (success === true) {
           showFlag({
             isAutoDismiss: true,
-            title: "Registered succesfully",
+            title: "Registered successfully",
             icon: <SuccessIcon label="success" secondaryColor={G400} />,
             appearance: "success",
           });
@@ -58,7 +58,6 @@ const Register = ({
               streak: user.streak,
             },
           ]);
-          console.log([...userEvents]);
         } else {
           showFlag({
             isAutoDismiss: true,
@@ -90,14 +89,7 @@ const Register = ({
   return (
     <form className={style.register} onSubmit={handleSubmit}>
       <Information>
-        <Button
-          type="submit"
-          color="primary"
-          variant="contained"
-          className={style.button}
-        >
-          {registerCTA}
-        </Button>
+        <Button type="submit" text={registerCTA} extraClasses={style.button} />
       </Information>
     </form>
   );

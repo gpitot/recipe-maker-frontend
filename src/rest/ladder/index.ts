@@ -254,7 +254,7 @@ const api = {
     accepted: boolean;
     player_1_games: number;
     player_2_games: number;
-    match_date: string;
+    match_date: number;
   }) => {
     console.log(data);
     return axios

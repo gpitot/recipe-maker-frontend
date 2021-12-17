@@ -37,14 +37,6 @@
 }
 
 .button {
-  color: $base-light;
-  background: $base-dark;
-  font-weight: 800;
-  margin: $unit 0;
   padding: $unit * 2;
   width: 100%;
-
-  &:hover {
-    background: $base-blue;
-  }
 }

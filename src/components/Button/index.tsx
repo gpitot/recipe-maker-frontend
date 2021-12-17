@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./style.module.scss";
 import classnames from "classnames";
+import { ClassValue } from "classnames/types";
 interface IProps {
   handleClick?: (e: any) => void;
   text: string;
@@ -8,6 +9,7 @@ interface IProps {
   type?: "link" | "submit";
   href?: string;
   primary?: boolean;
+  extraClasses?: ClassValue;
 }
 
 const Button = ({
@@ -17,6 +19,7 @@ const Button = ({
   text,
   href,
   primary = true,
+  extraClasses,
 }: IProps) => {
   if (type === "link") {
     return (
@@ -31,7 +34,11 @@ const Button = ({
     );
   }
 
-  const classes = classnames(style.button, !primary && style.secondary);
+  const classes = classnames(
+    style.button,
+    !primary && style.secondary,
+    extraClasses
+  );
 
   return (
     <button

@@ -3,13 +3,13 @@ import API from "rest/api";
 import { IRanks } from "../rest/ladder";
 
 type State = {
-  ranks: Array<IRanks>;
-  loading: boolean;
+  ranks: {
+    [key: string]: { data: Array<IRanks>; loading: boolean };
+  };
 };
 
 const initialState: State = {
-  ranks: [],
-  loading: true,
+  ranks: {},
 };
 
 const Store = createStore({
@@ -18,11 +18,27 @@ const Store = createStore({
     initialLoad:
       (ladder_id: number) =>
       ({ getState, setState }) => {
-        if (!getState().loading) return;
+        if (getState().ranks[ladder_id]) return;
+
+        setState({
+          ranks: {
+            ...getState().ranks,
+            [ladder_id]: {
+              data: [],
+              loading: true,
+            },
+          },
+        });
+
         API.ladder.getRanks({ ladder_id }).then(({ result }) => {
           setState({
-            ranks: result,
-            loading: false,
+            ranks: {
+              ...getState().ranks,
+              [ladder_id]: {
+                data: result,
+                loading: false,
+              },
+            },
           });
         });
       },

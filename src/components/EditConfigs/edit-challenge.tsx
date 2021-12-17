@@ -9,6 +9,7 @@ import { R400 } from "@atlaskit/theme/colors";
 import Button from "components/Button";
 import Input from "components/Input";
 import { IMatches } from "rest/ladder";
+import { parseDateFromString } from "../../utils/parseDateFromString";
 
 interface IProps extends IMatches {
   setOpen: (open: boolean) => void;
@@ -34,7 +35,11 @@ const EditChallenge = ({
   const { showFlag } = useFlags();
 
   const handleUpdate = () => {
-    API.ladder.challengeAdminEdit(match).then((res) => {
+    const updatedMatch = {
+      ...match,
+      match_date: parseDateFromString(match.match_date),
+    };
+    API.ladder.challengeAdminEdit(updatedMatch).then((res) => {
       if (res.success) {
         showFlag({
           isAutoDismiss: true,
@@ -65,7 +70,7 @@ const EditChallenge = ({
   };
 
   const matchInPast =
-    match.match_date && parseInt(match.match_date) < Date.now();
+    match.match_date && parseDateFromString(match.match_date) < Date.now();
 
   return (
     <>

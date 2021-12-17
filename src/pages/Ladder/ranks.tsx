@@ -23,7 +23,7 @@ const Ranks = ({ ladderid }: IProps) => {
 
   const [challenged, setChallenged] = useState<Array<number>>([]);
 
-  const [{ ranks, loading }, actions] = useRanksStore();
+  const [{ ranks }, actions] = useRanksStore();
 
   useEffect(() => {
     actions.initialLoad(ladderid);
@@ -67,13 +67,12 @@ const Ranks = ({ ladderid }: IProps) => {
       });
   };
 
-  // if (ladderid === undefined) {
-  //   return <Redirect to="/" />;
-  // }
+  if (!ranks[ladderid]) return null;
+  const { data, loading } = ranks[ladderid];
 
-  let userRankIndex = ranks.length;
-  for (let i = 0; i < ranks.length; i += 1) {
-    if (ranks[i].id === user.id) {
+  let userRankIndex = data.length;
+  for (let i = 0; i < data.length; i += 1) {
+    if (data[i].id === user.id) {
       userRankIndex = i;
       break;
     }
@@ -111,7 +110,7 @@ const Ranks = ({ ladderid }: IProps) => {
     return <td className={className}>#{visualRank}</td>;
   };
 
-  const body = ranks.map(({ id, firstname, photo }, rank) => {
+  const body = data.map(({ id, firstname, photo }, rank) => {
     return [
       <>
         {renderLadderLeague(rank)}
@@ -125,7 +124,7 @@ const Ranks = ({ ladderid }: IProps) => {
 
   return (
     <>
-      {!loading && <Signup ladder_id={ladderid} players={ranks} />}
+      {!loading && <Signup ladder_id={ladderid} players={data} />}
       <List
         title="Ranks"
         headers={["Rank", "Player", ""]}

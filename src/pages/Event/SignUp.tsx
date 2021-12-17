@@ -117,6 +117,8 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
     nameList.push([<div className={style.row}>No registrations yet.</div>]);
   }
 
+  const title = `${userEvents.length}/${event.spots} registered`;
+
   return (
     <div className={style.signup}>
       <Register
@@ -130,7 +132,7 @@ const SignupSheet = ({ event, userEvents, setUserEvents }: IProps) => {
         setUserEvents={setUserEvents}
       />
 
-      <List headers={[event.name]} body={nameList} />
+      <List headers={[title]} body={nameList} />
 
       <ManualRegistration event_id={event.id} />
     </div>
