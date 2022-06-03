@@ -1,0 +1,16 @@
+.list {
+  th,
+  tr,
+  td {
+    border: solid 1px black;
+    padding: 10px;
+  }
+
+  th {
+    background: lightblue;
+  }
+
+  td {
+    background: lightgray;
+  }
+}

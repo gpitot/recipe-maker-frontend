@@ -65,7 +65,7 @@
     "react-dom": "^17.0.1",
     "react-refresh": "^0.8.3",
     "react-router-dom": "^5.2.0",
-    "react-sweet-state": "^2.5.2",
+    "react-sweet-state": "^2.6.0",
     "react-toastify": "^7.0.0",
     "resolve": "1.18.1",
     "resolve-url-loader": "^3.1.2",
@@ -85,7 +85,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "lint" : "npx prettier ./src --write"
   },
   "eslintConfig": {
     "extends": [

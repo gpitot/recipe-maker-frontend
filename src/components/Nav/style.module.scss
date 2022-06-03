@@ -1,0 +1,12 @@
+.nav {
+  padding: 20px;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  background: darkgoldenrod;
+  color: white;
+
+  a {
+    color: inherit;
+  }
+}
